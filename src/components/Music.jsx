@@ -1,4 +1,22 @@
 import { useState } from 'react'
+import {
+  Box,
+  Container,
+  Typography,
+  Paper,
+  Button,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction,
+  Stack,
+} from '@mui/material'
+import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import PauseIcon from '@mui/icons-material/Pause'
+import AppleIcon from '@mui/icons-material/Apple'
+import MusicNoteIcon from '@mui/icons-material/MusicNote'
+import HeadphonesIcon from '@mui/icons-material/Headphones'
 
 const Music = () => {
   const [playingTrack, setPlayingTrack] = useState(null)
@@ -17,44 +35,187 @@ const Music = () => {
     }
   }
 
+  const handleVideoClick = () => {
+    alert('Siin oleks YouTube/Vimeo video embedded')
+  }
+
   return (
-    <section className="section-dark" id="muusika">
-      <h2>🎵 Kuula Meie Muusikat</h2>
-      
-      <div className="video-container">
-        <div 
-          className="video-placeholder" 
-          onClick={() => alert('Siin oleks YouTube/Vimeo video embedded')}
+    <Box
+      id="muusika"
+      sx={{
+        py: 8,
+        px: 2,
+        background: 'var(--black)',
+        color: 'var(--white)',
+      }}
+    >
+      <Container maxWidth="lg">
+        <Typography
+          variant="h2"
+          component="h2"
+          textAlign="center"
+          sx={{ mb: 5 }}
         >
-          ▶️
-        </div>
-      </div>
+          🎵 Kuula Meie Muusikat
+        </Typography>
 
-      <div className="music-player">
-        <h3 style={{ color: 'var(--gold)', marginBottom: '1rem' }}>Populaarsed Palad</h3>
-        <div className="track-list">
-          {tracks.map((track, index) => (
-            <div key={index} className="track">
-              <div>
-                <div style={{ fontWeight: 'bold' }}>{track.title}</div>
-                <div style={{ fontSize: '0.9rem', color: '#666' }}>Album: {track.album}</div>
-              </div>
-              <button 
-                className="play-btn" 
-                onClick={() => handlePlay(index)}
+        {/* Video Container */}
+        <Box
+          sx={{
+            position: 'relative',
+            paddingBottom: '56.25%',
+            height: 0,
+            overflow: 'hidden',
+            maxWidth: '100%',
+            background: 'var(--gray)',
+            borderRadius: 2,
+            mb: 4,
+            cursor: 'pointer',
+            '&:hover': {
+              opacity: 0.9,
+            },
+          }}
+        >
+          <Box
+            onClick={handleVideoClick}
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'linear-gradient(135deg, secondary.main, primary.main)',
+              color: 'white',
+              fontSize: '4rem',
+            }}
+          >
+            <PlayArrowIcon sx={{ fontSize: '5rem' }} />
+          </Box>
+        </Box>
+
+        {/* Music Player */}
+        <Paper
+          elevation={3}
+          sx={{
+            p: 3,
+            mb: 4,
+            background: 'var(--gray)',
+            borderRadius: 2,
+          }}
+        >
+          <Typography
+            variant="h5"
+            sx={{
+              mb: 3,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+            }}
+          >
+            <MusicNoteIcon />
+            Populaarsed Palad
+          </Typography>
+
+          <List sx={{ bgcolor: 'background.paper', borderRadius: 1 }}>
+            {tracks.map((track, index) => (
+              <ListItem
+                key={index}
+                sx={{
+                  mb: 1,
+                  borderRadius: 1,
+                  bgcolor: 'background.paper',
+                  '&:hover': {
+                    bgcolor: 'action.hover',
+                  },
+                }}
               >
-                {playingTrack === index ? '⏸ Pause' : '▶ Play'}
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
+                <ListItemText
+                  primary={
+                    <Typography variant="subtitle1" fontWeight="bold">
+                      {track.title}
+                    </Typography>
+                  }
+                  secondary={
+                    <Typography variant="body2" color="text.secondary">
+                      Album: {track.album}
+                    </Typography>
+                  }
+                />
+                <ListItemSecondaryAction>
+                  <IconButton
+                    edge="end"
+                    aria-label={playingTrack === index ? 'pause' : 'play'}
+                    onClick={() => handlePlay(index)}
+                    color="primary"
+                    sx={{
+                      bgcolor: 'primary.main',
+                      color: 'white',
+                      '&:hover': {
+                        bgcolor: 'primary.dark',
+                      },
+                    }}
+                  >
+                    {playingTrack === index ? (
+                      <PauseIcon />
+                    ) : (
+                      <PlayArrowIcon />
+                    )}
+                  </IconButton>
+                </ListItemSecondaryAction>
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
 
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-        <a href="#" className="btn btn-primary">🎧 Kuula Spotifys</a>
-        <a href="#" className="btn btn-secondary">🍎 Apple Music</a>
-      </div>
-    </section>
+        {/* Streaming Links */}
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={2}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Button
+            variant="contained"
+            size="large"
+            startIcon={<HeadphonesIcon />}
+            href="#"
+            target="_blank"
+            sx={{
+              px: 4,
+              py: 1.5,
+              bgcolor: '#1DB954',
+              '&:hover': {
+                bgcolor: '#1ed760',
+              },
+            }}
+          >
+            Kuula Spotifys
+          </Button>
+          <Button
+            variant="outlined"
+            size="large"
+            startIcon={<AppleIcon />}
+            href="#"
+            target="_blank"
+            sx={{
+              px: 4,
+              py: 1.5,
+              borderColor: 'white',
+              color: 'white',
+              '&:hover': {
+                borderColor: 'white',
+                bgcolor: 'rgba(255, 255, 255, 0.1)',
+              },
+            }}
+          >
+            Apple Music
+          </Button>
+        </Stack>
+      </Container>
+    </Box>
   )
 }
 

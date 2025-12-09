@@ -18,7 +18,7 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: var(--gray);
     background: var(--black);
@@ -113,10 +113,13 @@ nav .container {
 }
 
 .hero-content h1 {
+    font-family: 'Righteous', cursive;
     font-size: 3.5rem;
     margin-bottom: 1rem;
-    color: var(--gold);
+    color: #D4AF37;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
 }
 
 .hero-content p {
@@ -184,10 +187,18 @@ section {
 }
 
 h2 {
+    font-family: 'Righteous', cursive;
     font-size: 2.5rem;
     margin-bottom: 2rem;
-    color: var(--gold);
+    color: #D4AF37;
     text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+h3, h4, h5, h6 {
+    font-family: 'Righteous', cursive;
+    color: #D4AF37;
 }
 
 /* Events Calendar */
