@@ -6,6 +6,7 @@
       {
         "id": "3f2c77e385a4f449",
         "type": "tabs",
+        "dimension": 37.86407766990291,
         "children": [
           {
             "id": "00d8e9a830e217ce",
@@ -26,6 +27,7 @@
       {
         "id": "54bddb5beba9189b",
         "type": "tabs",
+        "dimension": 62.13592233009708,
         "children": [
           {
             "id": "2f1bb503d15e94f4",
@@ -111,7 +113,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "4f108b5ae96c0d6a",
@@ -216,25 +219,25 @@
   },
   "active": "0d1d42e27d89e1a8",
   "lastOpenFiles": [
+    "img/Pasted Image 20251209222814_522.png",
+    "img/Pasted Image 20251209222609_898.png",
+    "img/Pasted Image 20251209221407_052.png",
+    "Excalidraw/SAFB Drawing 2025-12-09 15.43.44.excalidraw.md",
+    "img/Pasted Image 20251209190308_439.png",
+    "img/Pasted Image 20251209190130_664.png",
     "img/live-performance-1.png",
     "presa.md",
     "img/live-add-1.jpg",
-    "Excalidraw/SAFB Drawing 2025-12-09 15.43.44.excalidraw.md",
     "CX-strategy.md",
     "img/sound-player-1.png",
     "img/player-1.png",
     "img/band-2.png",
     "img/band-1.png",
-    "img/screencapture-file-C-Users-Admin-Documents-SAFunkBand-docs-safunkband-prototype-html-2025-12-09-15_41_10.png",
     "pdf",
     "Excalidraw",
     "safunkband-prototype.html",
     "safunkband-prototype (1).html",
     "pdf/presa.pdf",
-    "img/Gemini_Generated_Image_bgfvyzbgfvyzbgfv.png",
-    "img/Gemini_Generated_Image_3hoj2n3hoj2n3hoj.png",
-    "img/Gemini_Generated_Image_ucfdoiucfdoiucfd.png",
-    "img/Gemini_Generated_Image_jwx2ayjwx2ayjwx2.png",
     "img"
   ]
 }
