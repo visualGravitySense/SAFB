@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import { ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+import theme from './theme'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
@@ -14,7 +17,8 @@ function App() {
   const [language, setLanguage] = useState('EST')
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Navigation language={language} setLanguage={setLanguage} />
       <Hero />
       <Stats />
@@ -25,7 +29,7 @@ function App() {
       <Booking />
       <Gallery />
       <Footer />
-    </>
+    </ThemeProvider>
   )
 }
 
