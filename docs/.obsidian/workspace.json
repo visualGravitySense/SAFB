@@ -40,8 +40,21 @@
               "icon": "lucide-file",
               "title": "presa"
             }
+          },
+          {
+            "id": "0d1d42e27d89e1a8",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/SAFB Drawing 2025-12-09 15.43.44.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "SAFB Drawing 2025-12-09 15.43.44.excalidraw"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -98,8 +111,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "4f108b5ae96c0d6a",
@@ -198,23 +210,31 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "2f1bb503d15e94f4",
+  "active": "0d1d42e27d89e1a8",
   "lastOpenFiles": [
+    "img/live-performance-1.png",
+    "presa.md",
+    "img/live-add-1.jpg",
+    "Excalidraw/SAFB Drawing 2025-12-09 15.43.44.excalidraw.md",
+    "CX-strategy.md",
+    "img/sound-player-1.png",
+    "img/player-1.png",
+    "img/band-2.png",
+    "img/band-1.png",
+    "img/screencapture-file-C-Users-Admin-Documents-SAFunkBand-docs-safunkband-prototype-html-2025-12-09-15_41_10.png",
+    "pdf",
+    "Excalidraw",
+    "safunkband-prototype.html",
+    "safunkband-prototype (1).html",
+    "pdf/presa.pdf",
     "img/Gemini_Generated_Image_bgfvyzbgfvyzbgfv.png",
     "img/Gemini_Generated_Image_3hoj2n3hoj2n3hoj.png",
     "img/Gemini_Generated_Image_ucfdoiucfdoiucfd.png",
     "img/Gemini_Generated_Image_jwx2ayjwx2ayjwx2.png",
-    "img/Gemini_Generated_Image_g5d926g5d926g5d9.png",
-    "img/Gemini_Generated_Image_zgrt7jzgrt7jzgrt.png",
-    "img/Gemini_Generated_Image_a2xep4a2xep4a2xe.png",
-    "img/gemini-image-2_Explosive_funk_band_website_hero_section_vibrant_gold_and_crimson_red_color_sche-0.jpg",
-    "img/Gemini_Generated_Image_h10574h10574h105.png",
-    "img/Gemini_Generated_Image_win9xmwin9xmwin9.png",
-    "img",
-    "CX-strategy.md",
-    "presa.md"
+    "img"
   ]
 }
