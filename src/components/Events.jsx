@@ -179,7 +179,7 @@ const Events = () => {
       sx={{
         py: 10,
         px: 2,
-        background: 'linear-gradient(180deg, #FAF8F3 0%, #F5F3ED 100%)',
+        background: 'linear-gradient(180deg, #FAF8F3 0%, #FFF8E7 30%, #F5F3ED 70%, #FAF8F3 100%)',
         color: '#1A1A1A',
         position: 'relative',
         overflow: 'hidden',
@@ -189,8 +189,10 @@ const Events = () => {
           top: 0,
           left: 0,
           right: 0,
-          height: '6px',
-          background: 'repeating-linear-gradient(90deg, #D4AF37 0px, #D4AF37 20px, #1A1A1A 20px, #1A1A1A 40px)',
+          height: '8px',
+          background: 'linear-gradient(90deg, #F46733, #D4AF37, #C41E3A, #D4AF37, #F46733)',
+          backgroundSize: '200% 100%',
+          animation: 'funkShimmerBorder 3s ease-in-out infinite',
         },
         '&::after': {
           content: '""',
@@ -198,12 +200,19 @@ const Events = () => {
           bottom: 0,
           left: 0,
           right: 0,
-          height: '6px',
-          background: 'repeating-linear-gradient(90deg, #D4AF37 0px, #D4AF37 20px, #1A1A1A 20px, #1A1A1A 40px)',
+          height: '8px',
+          background: 'linear-gradient(90deg, #F46733, #D4AF37, #C41E3A, #D4AF37, #F46733)',
+          backgroundSize: '200% 100%',
+          animation: 'funkShimmerBorder 3s ease-in-out infinite',
+        },
+        '@keyframes funkShimmerBorder': {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
         },
       }}
     >
-      {/* Art Deco Background Pattern */}
+      {/* Art Deco Background Pattern with FUNK */}
       <Box
         sx={{
           position: 'absolute',
@@ -211,12 +220,40 @@ const Events = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          opacity: 0.03,
+          opacity: 0.05,
           backgroundImage: `
-            repeating-linear-gradient(45deg, transparent, transparent 10px, #D4AF37 10px, #D4AF37 20px),
-            repeating-linear-gradient(-45deg, transparent, transparent 10px, #1A1A1A 10px, #1A1A1A 20px)
+            repeating-linear-gradient(45deg, transparent, transparent 10px, #F46733 10px, #F46733 20px),
+            repeating-linear-gradient(-45deg, transparent, transparent 10px, #D4AF37 10px, #D4AF37 20px)
           `,
           pointerEvents: 'none',
+        }}
+      />
+      
+      {/* FUNK Radial Gradients */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '20%',
+          left: '10%',
+          width: '300px',
+          height: '300px',
+          background: 'radial-gradient(circle, rgba(244, 103, 51, 0.08) 0%, transparent 70%)',
+          borderRadius: '50%',
+          pointerEvents: 'none',
+          filter: 'blur(40px)',
+        }}
+      />
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '20%',
+          right: '10%',
+          width: '300px',
+          height: '300px',
+          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)',
+          borderRadius: '50%',
+          pointerEvents: 'none',
+          filter: 'blur(40px)',
         }}
       />
 
@@ -237,23 +274,25 @@ const Events = () => {
                 sx={{
                   width: '60px',
                   height: '3px',
-                  background: 'linear-gradient(90deg, transparent, #D4AF37)',
+                  background: 'linear-gradient(90deg, transparent, #F46733, #D4AF37)',
                 }}
               />
               <Box
                 sx={{
                   width: '8px',
                   height: '8px',
-                  background: '#D4AF37',
+                  background: 'linear-gradient(135deg, #F46733, #D4AF37)',
                   transform: 'rotate(45deg)',
-                  boxShadow: '0 0 10px rgba(212, 175, 55, 0.5)',
+                  boxShadow: '0 0 12px rgba(244, 103, 51, 0.6)',
                 }}
               />
               <Box
                 sx={{
                   width: '120px',
                   height: '3px',
-                  background: '#D4AF37',
+                  background: 'linear-gradient(90deg, #F46733, #D4AF37, #F46733)',
+                  backgroundSize: '200% 100%',
+                  animation: 'funkShimmerSubtle 3s ease infinite',
                   position: 'relative',
                   '&::before': {
                     content: '""',
@@ -264,7 +303,7 @@ const Events = () => {
                     width: 0,
                     height: 0,
                     borderLeft: '8px solid transparent',
-                    borderRight: '8px solid #D4AF37',
+                    borderRight: '8px solid #F46733',
                     borderTop: '4px solid transparent',
                     borderBottom: '4px solid transparent',
                   },
@@ -281,22 +320,27 @@ const Events = () => {
                     borderTop: '4px solid transparent',
                     borderBottom: '4px solid transparent',
                   },
+                  '@keyframes funkShimmerSubtle': {
+                    '0%': { backgroundPosition: '0% 50%' },
+                    '50%': { backgroundPosition: '100% 50%' },
+                    '100%': { backgroundPosition: '0% 50%' },
+                  },
                 }}
               />
               <Box
                 sx={{
                   width: '8px',
                   height: '8px',
-                  background: '#D4AF37',
+                  background: 'linear-gradient(135deg, #D4AF37, #F46733)',
                   transform: 'rotate(45deg)',
-                  boxShadow: '0 0 10px rgba(212, 175, 55, 0.5)',
+                  boxShadow: '0 0 12px rgba(212, 175, 55, 0.6)',
                 }}
               />
               <Box
                 sx={{
                   width: '60px',
                   height: '3px',
-                  background: 'linear-gradient(90deg, #D4AF37, transparent)',
+                  background: 'linear-gradient(90deg, #D4AF37, #F46733, transparent)',
                 }}
               />
             </Box>
@@ -308,11 +352,16 @@ const Events = () => {
                 mb: 2,
                 fontFamily: "'Righteous', cursive",
                 fontSize: { xs: '2.5rem', md: '3.5rem' },
-                color: '#1A1A1A',
+                background: 'linear-gradient(135deg, #1A1A1A 0%, #D4AF37 30%, #F46733 50%, #D4AF37 70%, #1A1A1A 100%)',
+                backgroundSize: '200% 200%',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 textTransform: 'uppercase',
                 letterSpacing: '0.15em',
                 position: 'relative',
                 display: 'inline-block',
+                animation: 'funkGradientSubtle 5s ease infinite',
                 '&::before': {
                   content: '""',
                   position: 'absolute',
@@ -321,8 +370,9 @@ const Events = () => {
                   transform: 'translateY(-50%)',
                   width: '20px',
                   height: '20px',
-                  border: '3px solid #D4AF37',
+                  border: '3px solid #F46733',
                   borderRadius: '50%',
+                  boxShadow: '0 0 15px rgba(244, 103, 51, 0.5)',
                 },
                 '&::after': {
                   content: '""',
@@ -334,6 +384,12 @@ const Events = () => {
                   height: '20px',
                   border: '3px solid #D4AF37',
                   borderRadius: '50%',
+                  boxShadow: '0 0 15px rgba(212, 175, 55, 0.5)',
+                },
+                '@keyframes funkGradientSubtle': {
+                  '0%': { backgroundPosition: '0% 50%' },
+                  '50%': { backgroundPosition: '100% 50%' },
+                  '100%': { backgroundPosition: '0% 50%' },
                 },
               }}
             >
@@ -370,14 +426,16 @@ const Events = () => {
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    background: '#FFFFFF',
+                    background: 'linear-gradient(135deg, #FFFFFF 0%, #FFFBF0 100%)',
                     border: '3px solid',
-                    borderColor: event.soldOut ? '#C41E3A' : '#D4AF37',
+                    borderColor: event.soldOut ? '#C41E3A' : '#F46733',
                     borderRadius: 0,
-                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    transition: 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
                     position: 'relative',
                     overflow: 'visible',
-                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                    boxShadow: event.soldOut 
+                      ? '0 4px 20px rgba(196, 30, 58, 0.2)' 
+                      : '0 4px 20px rgba(244, 103, 51, 0.2)',
                     '&::before': {
                       content: '""',
                       position: 'absolute',
@@ -386,14 +444,19 @@ const Events = () => {
                       right: '-3px',
                       bottom: '-3px',
                       background: event.soldOut 
-                        ? 'linear-gradient(45deg, #C41E3A, #E04A5A, #C41E3A)' 
-                        : 'linear-gradient(45deg, #D4AF37, #E5BF50, #F4D03F, #D4AF37)',
+                        ? 'linear-gradient(45deg, #C41E3A, #E04A5A, #D42E4A, #C41E3A)' 
+                        : 'linear-gradient(45deg, #F46733, #D4AF37, #E5BF50, #F46733)',
                       backgroundSize: '400% 400%',
-                      animation: event.soldOut ? 'none' : 'gradientShift 3s ease infinite',
+                      animation: event.soldOut ? 'funkGradientSoldOut 3s ease infinite' : 'funkGradientCard 3s ease infinite',
                       zIndex: -1,
                       opacity: 0,
                       transition: 'opacity 0.4s ease',
-                      '@keyframes gradientShift': {
+                      '@keyframes funkGradientCard': {
+                        '0%': { backgroundPosition: '0% 50%' },
+                        '50%': { backgroundPosition: '100% 50%' },
+                        '100%': { backgroundPosition: '0% 50%' },
+                      },
+                      '@keyframes funkGradientSoldOut': {
                         '0%': { backgroundPosition: '0% 50%' },
                         '50%': { backgroundPosition: '100% 50%' },
                         '100%': { backgroundPosition: '0% 50%' },
@@ -413,21 +476,26 @@ const Events = () => {
                       transition: 'opacity 0.4s ease',
                     },
                     '&:hover': {
-                      transform: 'translateY(-12px)',
+                      transform: 'translateY(-15px) scale(1.02)',
+                      borderColor: event.soldOut ? '#E04A5A' : '#FF7744',
                       boxShadow: event.soldOut 
-                        ? '0 20px 60px rgba(196, 30, 58, 0.4)' 
-                        : '0 20px 60px rgba(212, 175, 55, 0.4)',
+                        ? '0 25px 70px rgba(196, 30, 58, 0.5), 0 0 40px rgba(196, 30, 58, 0.3)' 
+                        : '0 25px 70px rgba(244, 103, 51, 0.5), 0 0 40px rgba(212, 175, 55, 0.3)',
                       '&::before': {
-                        opacity: 0.3,
+                        opacity: 0.5,
                       },
                       '&::after': {
                         opacity: 1,
+                        background: event.soldOut 
+                          ? 'repeating-linear-gradient(90deg, #C41E3A 0px, #C41E3A 8px, #FFFFFF 8px, #FFFFFF 16px)' 
+                          : 'repeating-linear-gradient(90deg, #F46733 0px, #F46733 8px, #D4AF37 8px, #D4AF37 16px, #FFFFFF 16px, #FFFFFF 24px)',
                       },
                       '& .art-deco-corner': {
                         opacity: 1,
+                        borderColor: event.soldOut ? '#E04A5A' : '#FF7744',
                       },
                       '& .event-price': {
-                        transform: 'scale(1.1)',
+                        transform: 'scale(1.15)',
                       },
                     },
                   }}
@@ -547,7 +615,7 @@ const Events = () => {
                   />
                   <CardContent sx={{ 
                     flexGrow: 1, 
-                    p: 4, 
+                    p: 2.5, 
                     position: 'relative', 
                     zIndex: 1,
                     display: 'flex',
@@ -559,11 +627,11 @@ const Events = () => {
                       display: 'flex', 
                       alignItems: 'center', 
                       justifyContent: 'space-between', 
-                      mb: 3,
+                      mb: 1.5,
                       position: 'relative',
-                      pb: 2,
+                      pb: 1,
                       flexWrap: 'wrap',
-                      gap: 1,
+                      gap: 0.75,
                       '&::after': {
                         content: '""',
                         position: 'absolute',
@@ -571,42 +639,75 @@ const Events = () => {
                         left: 0,
                         right: 0,
                         height: '2px',
-                        background: 'repeating-linear-gradient(90deg, #D4AF37 0px, #D4AF37 4px, transparent 4px, transparent 8px)',
+                        background: 'linear-gradient(90deg, #F46733, #D4AF37, #F46733)',
+                        backgroundSize: '200% 100%',
+                        animation: 'funkShimmerLine 2s ease infinite',
+                        '@keyframes funkShimmerLine': {
+                          '0%': { backgroundPosition: '0% 50%' },
+                          '50%': { backgroundPosition: '100% 50%' },
+                          '100%': { backgroundPosition: '0% 50%' },
+                        },
                       },
                     }}>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <Box
                           sx={{
-                            width: '40px',
-                            height: '40px',
-                            border: '2px solid #D4AF37',
+                            width: '32px',
+                            height: '32px',
+                            border: '2px solid',
+                            borderImage: 'linear-gradient(135deg, #F46733, #D4AF37) 1',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             position: 'relative',
+                            boxShadow: '0 0 15px rgba(244, 103, 51, 0.4)',
+                            transition: 'all 0.3s ease',
                             '&::before': {
                               content: '""',
                               position: 'absolute',
-                              width: '24px',
-                              height: '24px',
-                              border: '1px solid #D4AF37',
+                              width: '18px',
+                              height: '18px',
+                              border: '1px solid',
+                              borderImage: 'linear-gradient(135deg, #F46733, #D4AF37) 1',
+                            },
+                            '&:hover': {
+                              transform: 'scale(1.1) rotate(5deg)',
+                              boxShadow: '0 0 25px rgba(244, 103, 51, 0.6)',
                             },
                           }}
                         >
-                          <EventIcon sx={{ color: '#C41E3A', fontSize: '1rem', zIndex: 1 }} />
+                          <EventIcon sx={{ 
+                            background: 'linear-gradient(135deg, #C41E3A, #F46733)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                            fontSize: '0.85rem !important', 
+                            zIndex: 1,
+                            filter: 'drop-shadow(0 0 5px rgba(244, 103, 51, 0.5))',
+                          }} />
                         </Box>
                         <Typography
                           variant="h6"
                           component="div"
                           sx={{
-                            color: '#C41E3A',
+                            background: 'linear-gradient(135deg, #C41E3A, #F46733, #C41E3A)',
+                            backgroundSize: '200% 200%',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
                             fontWeight: 700,
-                            fontSize: { xs: '0.85rem', sm: '1rem' },
+                            fontSize: { xs: '0.75rem', sm: '0.85rem' },
                             letterSpacing: '0.1em',
                             textTransform: 'uppercase',
                             fontFamily: "'Righteous', cursive",
                             wordBreak: 'break-word',
                             overflowWrap: 'break-word',
+                            animation: 'funkGradientDate 3s ease infinite',
+                            '@keyframes funkGradientDate': {
+                              '0%': { backgroundPosition: '0% 50%' },
+                              '50%': { backgroundPosition: '100% 50%' },
+                              '100%': { backgroundPosition: '0% 50%' },
+                            },
                           }}
                         >
                           {event.date}
@@ -615,20 +716,30 @@ const Events = () => {
                       {getPopularityChip(event.popularity, event.soldOut)}
                     </Box>
 
-                    {/* Art Deco Title */}
+                    {/* Art Deco Title with FUNK */}
                     <Typography
                       variant="h5"
                       component="h3"
                       sx={{
-                        mb: 3,
+                        mb: 1.5,
                         fontWeight: 700,
-                        fontSize: { xs: '1.3rem', sm: '1.6rem' },
-                        color: '#1A1A1A',
+                        fontSize: { xs: '1.1rem', sm: '1.3rem' },
+                        background: 'linear-gradient(135deg, #1A1A1A 0%, #F46733 30%, #D4AF37 50%, #F46733 70%, #1A1A1A 100%)',
+                        backgroundSize: '200% 200%',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
                         lineHeight: 1.2,
                         fontFamily: "'Righteous', cursive",
                         letterSpacing: '0.05em',
                         textTransform: 'uppercase',
                         position: 'relative',
+                        animation: 'funkGradientTitle 4s ease infinite',
+                        '@keyframes funkGradientTitle': {
+                          '0%': { backgroundPosition: '0% 50%' },
+                          '50%': { backgroundPosition: '100% 50%' },
+                          '100%': { backgroundPosition: '0% 50%' },
+                        },
                         pl: 2,
                         wordBreak: 'break-word',
                         overflowWrap: 'break-word',
@@ -649,14 +760,14 @@ const Events = () => {
                     </Typography>
 
                     {/* Location & Time - ABILITY (Clear Information) */}
-                    <Stack spacing={1.5} sx={{ mb: 2 }}>
+                    <Stack spacing={1} sx={{ mb: 1.5 }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
                         <LocationOnIcon fontSize="small" sx={{ color: 'text.secondary', flexShrink: 0 }} />
                         <Typography
                           variant="body2"
                           color="text.secondary"
                           sx={{ 
-                            fontSize: '0.9rem',
+                            fontSize: '0.85rem',
                             wordBreak: 'break-word',
                             overflowWrap: 'break-word',
                           }}
@@ -678,13 +789,13 @@ const Events = () => {
 
                     {/* Art Deco Price - MOTIVATION (Value Proposition) */}
                     <Box sx={{ 
-                      mb: 3,
+                      mb: 1.5,
                       position: 'relative',
-                      py: 2,
-                      px: 3,
-                      background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%)',
+                      py: 1.5,
+                      px: 2,
+                      background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.08) 0%, rgba(212, 175, 55, 0.1) 50%, rgba(244, 103, 51, 0.08) 100%)',
                       border: '2px solid',
-                      borderColor: '#D4AF37',
+                      borderColor: '#F46733',
                       borderLeft: 'none',
                       borderRight: 'none',
                       '&::before': {
@@ -710,13 +821,23 @@ const Events = () => {
                         className="event-price"
                         variant="h6"
                         sx={{
-                          color: '#D4AF37',
+                          background: 'linear-gradient(135deg, #F46733, #D4AF37, #F46733)',
+                          backgroundSize: '200% 200%',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
                           fontWeight: 700,
-                          fontSize: '1.5rem',
+                          fontSize: { xs: '1.2rem', sm: '1.3rem' },
                           transition: 'all 0.3s ease',
                           textAlign: 'center',
                           letterSpacing: '0.1em',
                           textShadow: '0 2px 4px rgba(212, 175, 55, 0.3)',
+                          animation: 'funkGradientSubtlePrice 4s ease infinite',
+                          '@keyframes funkGradientSubtlePrice': {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                          },
                         }}
                       >
                         {event.price}
@@ -725,7 +846,7 @@ const Events = () => {
 
                     {/* Social Proof - MOTIVATION */}
                     {!event.soldOut && (
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
                         <PeopleIcon fontSize="small" sx={{ color: 'text.secondary' }} />
                         <Typography
                           variant="body2"
@@ -739,8 +860,8 @@ const Events = () => {
 
                     {/* Art Deco Tickets Availability - PROMPTS (Urgency) */}
                     {!event.soldOut && event.ticketsLeft > 0 && (
-                      <Box sx={{ mb: 3 }}>
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5 }}>
+                      <Box sx={{ mb: 1.5 }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                           <Typography 
                             variant="caption" 
                             sx={{ 
@@ -782,7 +903,7 @@ const Events = () => {
                                 width: `${event.ticketsLeft}%`,
                                 background: event.ticketsLeft <= 30 
                                   ? 'repeating-linear-gradient(45deg, #C41E3A 0px, #C41E3A 4px, #E04A5A 4px, #E04A5A 8px)' 
-                                  : 'repeating-linear-gradient(45deg, #D4AF37 0px, #D4AF37 4px, #E5BF50 4px, #E5BF50 8px)',
+                                  : 'repeating-linear-gradient(45deg, #F46733 0px, #F46733 4px, #D4AF37 4px, #E5BF50 4px, #E5BF50 8px)',
                                 transition: 'width 1s ease',
                               },
                             }}
@@ -807,7 +928,7 @@ const Events = () => {
                   </CardContent>
 
                   {/* Art Deco CTA Button - ABILITY & PROMPTS */}
-                  <CardActions sx={{ p: 4, pt: 2 }}>
+                  <CardActions sx={{ p: 2, pt: 1.5 }}>
                     {event.soldOut ? (
                       <Button
                         fullWidth
@@ -815,7 +936,7 @@ const Events = () => {
                         disabled
                         startIcon={<BlockIcon />}
                         sx={{
-                          py: 2,
+                          py: 1.5,
                           borderWidth: '3px',
                           borderColor: '#C41E3A',
                           color: '#C41E3A',
@@ -846,19 +967,21 @@ const Events = () => {
                         startIcon={<TicketIcon />}
                         onClick={() => handleTicketClick(event)}
                         sx={{
-                          py: 2.2,
-                          bgcolor: '#D4AF37',
+                          py: 1.5,
+                          background: 'linear-gradient(135deg, #F46733, #D4AF37)',
+                          backgroundSize: '200% 200%',
                           color: '#1A1A1A',
                           fontWeight: 700,
-                          fontSize: '1.1rem',
+                          fontSize: { xs: '0.95rem', sm: '1rem' },
                           textTransform: 'uppercase',
                           letterSpacing: '0.15em',
                           borderRadius: 0,
                           fontFamily: "'Righteous', cursive",
-                          boxShadow: '0 4px 20px rgba(212, 175, 55, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+                          boxShadow: '0 4px 20px rgba(244, 103, 51, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
                           border: '3px solid #1A1A1A',
                           position: 'relative',
                           overflow: 'hidden',
+                          animation: 'funkGradientButton 3s ease infinite',
                           '&::before': {
                             content: '""',
                             position: 'absolute',
@@ -866,19 +989,24 @@ const Events = () => {
                             left: '-100%',
                             width: '100%',
                             height: '100%',
-                            background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)',
+                            background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)',
                             transition: 'left 0.5s ease',
                           },
                           '&:hover': {
-                            bgcolor: '#E5BF50',
+                            background: 'linear-gradient(135deg, #FF7744, #E5BF50)',
                             transform: 'translateY(-3px)',
-                            boxShadow: '0 8px 30px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4)',
+                            boxShadow: '0 8px 30px rgba(244, 103, 51, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4)',
                             '&::before': {
                               left: '100%',
                             },
                           },
                           '&:active': {
                             transform: 'translateY(-1px)',
+                          },
+                          '@keyframes funkGradientButton': {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
                           },
                         }}
                       >
