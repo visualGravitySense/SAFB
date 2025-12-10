@@ -83,14 +83,13 @@ const Footer = () => {
       component="footer"
       id="kontakt"
       sx={{
-        background: 'linear-gradient(180deg, #0A0A0A 0%, #1A0F1A 50%, #0A0A0A 100%)',
+        background: 'linear-gradient(180deg, #0F0F0F 0%, #1A1A1A 50%, #0F0F0F 100%)',
         color: 'var(--white)',
         pt: 8,
         pb: 3,
         position: 'relative',
         overflow: 'hidden',
-        borderTop: '4px solid transparent',
-        borderImage: 'linear-gradient(90deg, #F46733, #D4AF37, #C41E3A, #D4AF37, #F46733) 1',
+        borderTop: '1px solid rgba(255, 255, 255, 0.1)',
         '&::before': {
           content: '""',
           position: 'absolute',
@@ -99,27 +98,10 @@ const Footer = () => {
           right: 0,
           height: '100%',
           background: `
-            radial-gradient(circle at 20% 50%, rgba(244, 103, 51, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 50% 80%, rgba(196, 30, 58, 0.1) 0%, transparent 50%)
+            radial-gradient(circle at 20% 50%, rgba(244, 103, 51, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%)
           `,
           pointerEvents: 'none',
-        },
-        '&::after': {
-          content: '""',
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '3px',
-          background: 'linear-gradient(90deg, #F46733, #D4AF37, #C41E3A, #D4AF37, #F46733)',
-          backgroundSize: '200% 100%',
-          animation: 'funkShimmer 3s ease-in-out infinite',
-          '@keyframes funkShimmer': {
-            '0%': { backgroundPosition: '0% 50%' },
-            '50%': { backgroundPosition: '100% 50%' },
-            '100%': { backgroundPosition: '0% 50%' },
-          },
         },
       }}
     >
@@ -134,20 +116,9 @@ const Footer = () => {
                 fontFamily: "'Righteous', cursive",
                 fontSize: '1.4rem',
                 fontWeight: 700,
-                background: 'linear-gradient(135deg, #F46733 0%, #D4AF37 50%, #F46733 100%)',
-                backgroundSize: '200% 200%',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                animation: 'funkGradient 3s ease infinite',
+                color: 'rgba(212, 175, 55, 0.9)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                textShadow: '0 0 30px rgba(244, 103, 51, 0.5)',
-                '@keyframes funkGradient': {
-                  '0%': { backgroundPosition: '0% 50%' },
-                  '50%': { backgroundPosition: '100% 50%' },
-                  '100%': { backgroundPosition: '0% 50%' },
-                },
               }}
             >
               Siim Aimla Funk Band
@@ -156,53 +127,19 @@ const Footer = () => {
               Tipptasemel live-muusika<br />teie üritusele
             </Typography>
             
-            {/* Motivation: Social Proof - Followers Count */}
-            <Box sx={{ mb: 2 }}>
-              <Chip
-                icon={<PeopleIcon sx={{ fontSize: '1rem', animation: 'pulse 2s ease-in-out infinite' }} />}
-                label={`${socialStats.subscribers.toLocaleString()}+ Jälgijat`}
-                size="small"
-                sx={{
-                  background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
-                  color: '#F46733',
-                  fontSize: '0.85rem',
-                  fontWeight: 700,
-                  border: '2px solid',
-                  borderImage: 'linear-gradient(135deg, #F46733, #D4AF37) 1',
-                  boxShadow: '0 0 15px rgba(244, 103, 51, 0.3)',
-                  mb: 1,
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    transform: 'scale(1.05) translateY(-2px)',
-                    boxShadow: '0 5px 20px rgba(244, 103, 51, 0.5)',
-                  },
-                  '@keyframes pulse': {
-                    '0%, 100%': { transform: 'scale(1)' },
-                    '50%': { transform: 'scale(1.1)' },
-                  },
-                }}
-              />
-            </Box>
-
-            <Stack direction="row" spacing={1.5}>
+            <Stack direction="row" spacing={1.5} sx={{ mt: 2 }}>
               <Tooltip title={`${socialStats.facebookFollowers.toLocaleString()} jälgijat`} arrow>
                 <IconButton
                   href="#"
                   target="_blank"
                   sx={{
-                    background: 'linear-gradient(135deg, #F46733, #C41E3A)',
-                    color: '#FFFFFF',
-                    transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-                    boxShadow: '0 4px 15px rgba(244, 103, 51, 0.4)',
+                    background: 'rgba(244, 103, 51, 0.15)',
+                    color: 'rgba(244, 103, 51, 0.9)',
+                    border: '1px solid rgba(244, 103, 51, 0.2)',
+                    transition: 'all 0.3s ease',
                     '&:hover': {
-                      background: 'linear-gradient(135deg, #FF7744, #D42E4A)',
-                      transform: 'scale(1.2) rotate(15deg) translateY(-5px)',
-                      boxShadow: '0 8px 25px rgba(244, 103, 51, 0.6)',
-                      animation: 'funkBounce 0.6s ease',
-                    },
-                    '@keyframes funkBounce': {
-                      '0%, 100%': { transform: 'scale(1.2) rotate(15deg) translateY(-5px)' },
-                      '50%': { transform: 'scale(1.25) rotate(20deg) translateY(-8px)' },
+                      background: 'rgba(244, 103, 51, 0.25)',
+                      borderColor: 'rgba(244, 103, 51, 0.4)',
                     },
                   }}
                 >
@@ -214,15 +151,13 @@ const Footer = () => {
                   href="#"
                   target="_blank"
                   sx={{
-                    background: 'linear-gradient(135deg, #D4AF37, #F46733)',
-                    color: '#0A0A0A',
-                    transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-                    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)',
+                    background: 'rgba(212, 175, 55, 0.15)',
+                    color: 'rgba(212, 175, 55, 0.9)',
+                    border: '1px solid rgba(212, 175, 55, 0.2)',
+                    transition: 'all 0.3s ease',
                     '&:hover': {
-                      background: 'linear-gradient(135deg, #E5BF50, #FF7744)',
-                      transform: 'scale(1.2) rotate(-15deg) translateY(-5px)',
-                      boxShadow: '0 8px 25px rgba(212, 175, 55, 0.6)',
-                      animation: 'funkBounce 0.6s ease',
+                      background: 'rgba(212, 175, 55, 0.25)',
+                      borderColor: 'rgba(212, 175, 55, 0.4)',
                     },
                   }}
                 >
@@ -234,15 +169,13 @@ const Footer = () => {
                   href="#"
                   target="_blank"
                   sx={{
-                    background: 'linear-gradient(135deg, #C41E3A, #F46733)',
-                    color: '#FFFFFF',
-                    transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-                    boxShadow: '0 4px 15px rgba(196, 30, 58, 0.4)',
+                    background: 'rgba(196, 30, 58, 0.15)',
+                    color: 'rgba(196, 30, 58, 0.9)',
+                    border: '1px solid rgba(196, 30, 58, 0.2)',
+                    transition: 'all 0.3s ease',
                     '&:hover': {
-                      background: 'linear-gradient(135deg, #D42E4A, #FF7744)',
-                      transform: 'scale(1.2) rotate(15deg) translateY(-5px)',
-                      boxShadow: '0 8px 25px rgba(196, 30, 58, 0.6)',
-                      animation: 'funkBounce 0.6s ease',
+                      background: 'rgba(196, 30, 58, 0.25)',
+                      borderColor: 'rgba(196, 30, 58, 0.4)',
                     },
                   }}
                 >
@@ -281,10 +214,7 @@ const Footer = () => {
                 fontFamily: "'Righteous', cursive",
                 fontSize: '1.3rem',
                 fontWeight: 700,
-                background: 'linear-gradient(135deg, #F46733, #D4AF37)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
+                color: 'rgba(212, 175, 55, 0.9)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
               }}
@@ -304,23 +234,15 @@ const Footer = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: 1.5,
-                  transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                  transition: 'all 0.3s ease',
                   py: 0.5,
                   px: 1,
                   borderRadius: '4px',
                   '&:hover': {
-                    background: 'linear-gradient(90deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
-                    color: '#F46733',
-                    transform: 'translateX(10px) scale(1.05)',
-                    '& .MuiSvgIcon-root': {
-                      opacity: 1,
-                      transform: 'rotate(0deg)',
-                      color: '#F46733',
-                    },
+                    color: 'rgba(212, 175, 55, 0.9)',
                   },
                 }}
               >
-                <ArrowForwardIcon sx={{ fontSize: '1rem', opacity: 0, transition: 'all 0.3s ease', transform: 'rotate(-45deg)' }} />
                 Kontserdid
               </Link>
               <Link
@@ -332,26 +254,14 @@ const Footer = () => {
                 sx={{
                   color: 'rgba(255, 255, 255, 0.8)',
                   textDecoration: 'none',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1.5,
-                  transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                  transition: 'color 0.3s ease',
                   py: 0.5,
-                  px: 1,
-                  borderRadius: '4px',
+                  display: 'block',
                   '&:hover': {
-                    background: 'linear-gradient(90deg, rgba(212, 175, 55, 0.2), rgba(244, 103, 51, 0.2))',
-                    color: '#D4AF37',
-                    transform: 'translateX(10px) scale(1.05)',
-                    '& .MuiSvgIcon-root': {
-                      opacity: 1,
-                      transform: 'rotate(0deg)',
-                      color: '#D4AF37',
-                    },
+                    color: 'rgba(212, 175, 55, 0.9)',
                   },
                 }}
               >
-                <ArrowForwardIcon sx={{ fontSize: '1rem', opacity: 0, transition: 'all 0.3s ease', transform: 'rotate(-45deg)' }} />
                 Muusika
               </Link>
               <Link
@@ -363,26 +273,14 @@ const Footer = () => {
                 sx={{
                   color: 'rgba(255, 255, 255, 0.8)',
                   textDecoration: 'none',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1.5,
-                  transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                  transition: 'color 0.3s ease',
                   py: 0.5,
-                  px: 1,
-                  borderRadius: '4px',
+                  display: 'block',
                   '&:hover': {
-                    background: 'linear-gradient(90deg, rgba(244, 103, 51, 0.2), rgba(196, 30, 58, 0.2))',
-                    color: '#F46733',
-                    transform: 'translateX(10px) scale(1.05)',
-                    '& .MuiSvgIcon-root': {
-                      opacity: 1,
-                      transform: 'rotate(0deg)',
-                      color: '#F46733',
-                    },
+                    color: 'rgba(212, 175, 55, 0.9)',
                   },
                 }}
               >
-                <ArrowForwardIcon sx={{ fontSize: '1rem', opacity: 0, transition: 'all 0.3s ease', transform: 'rotate(-45deg)' }} />
                 Bändist
               </Link>
               <Link
@@ -394,26 +292,14 @@ const Footer = () => {
                 sx={{
                   color: 'rgba(255, 255, 255, 0.8)',
                   textDecoration: 'none',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1.5,
-                  transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                  transition: 'color 0.3s ease',
                   py: 0.5,
-                  px: 1,
-                  borderRadius: '4px',
+                  display: 'block',
                   '&:hover': {
-                    background: 'linear-gradient(90deg, rgba(212, 175, 55, 0.2), rgba(244, 103, 51, 0.2))',
-                    color: '#D4AF37',
-                    transform: 'translateX(10px) scale(1.05)',
-                    '& .MuiSvgIcon-root': {
-                      opacity: 1,
-                      transform: 'rotate(0deg)',
-                      color: '#D4AF37',
-                    },
+                    color: 'rgba(212, 175, 55, 0.9)',
                   },
                 }}
               >
-                <ArrowForwardIcon sx={{ fontSize: '1rem', opacity: 0, transition: 'all 0.3s ease', transform: 'rotate(-45deg)' }} />
                 Broneeri
               </Link>
               <Link
@@ -425,26 +311,14 @@ const Footer = () => {
                 sx={{
                   color: 'rgba(255, 255, 255, 0.8)',
                   textDecoration: 'none',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1.5,
-                  transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                  transition: 'color 0.3s ease',
                   py: 0.5,
-                  px: 1,
-                  borderRadius: '4px',
+                  display: 'block',
                   '&:hover': {
-                    background: 'linear-gradient(90deg, rgba(196, 30, 58, 0.2), rgba(212, 175, 55, 0.2))',
-                    color: '#C41E3A',
-                    transform: 'translateX(10px) scale(1.05)',
-                    '& .MuiSvgIcon-root': {
-                      opacity: 1,
-                      transform: 'rotate(0deg)',
-                      color: '#C41E3A',
-                    },
+                    color: 'rgba(212, 175, 55, 0.9)',
                   },
                 }}
               >
-                <ArrowForwardIcon sx={{ fontSize: '1rem', opacity: 0, transition: 'all 0.3s ease', transform: 'rotate(-45deg)' }} />
                 Galerii
               </Link>
             </Stack>
@@ -459,10 +333,7 @@ const Footer = () => {
                 fontFamily: "'Righteous', cursive",
                 fontSize: '1.3rem',
                 fontWeight: 700,
-                background: 'linear-gradient(135deg, #C41E3A, #F46733)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
+                color: 'rgba(212, 175, 55, 0.9)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
               }}
@@ -474,35 +345,12 @@ const Footer = () => {
                 sx={{ 
                   display: 'flex', 
                   alignItems: 'center', 
-                  gap: 1.5,
-                  p: 1.5,
-                  borderRadius: '8px',
-                  background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.1), rgba(212, 175, 55, 0.1))',
-                  border: '1px solid rgba(244, 103, 51, 0.3)',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    transform: 'translateX(5px)',
-                    background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
-                    borderColor: '#F46733',
-                    boxShadow: '0 4px 15px rgba(244, 103, 51, 0.3)',
-                  },
+                  gap: 1,
+                  py: 0.75,
                 }}
               >
-                <Box
-                  sx={{
-                    width: '36px',
-                    height: '36px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #F46733, #C41E3A)',
-                    borderRadius: '8px',
-                    boxShadow: '0 2px 8px rgba(244, 103, 51, 0.4)',
-                  }}
-                >
-                  <EmailIcon sx={{ color: '#FFFFFF', fontSize: '1.2rem' }} />
-                </Box>
-                <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '0.95rem', fontWeight: 500 }}>
+                <EmailIcon sx={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '1rem' }} />
+                <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem' }}>
                   info@safunkband.ee
                 </Typography>
               </Box>
@@ -510,35 +358,12 @@ const Footer = () => {
                 sx={{ 
                   display: 'flex', 
                   alignItems: 'center', 
-                  gap: 1.5,
-                  p: 1.5,
-                  borderRadius: '8px',
-                  background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 103, 51, 0.1))',
-                  border: '1px solid rgba(212, 175, 55, 0.3)',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    transform: 'translateX(5px)',
-                    background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(244, 103, 51, 0.2))',
-                    borderColor: '#D4AF37',
-                    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)',
-                  },
+                  gap: 1,
+                  py: 0.75,
                 }}
               >
-                <Box
-                  sx={{
-                    width: '36px',
-                    height: '36px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #D4AF37, #F46733)',
-                    borderRadius: '8px',
-                    boxShadow: '0 2px 8px rgba(212, 175, 55, 0.4)',
-                  }}
-                >
-                  <PhoneIcon sx={{ color: '#0A0A0A', fontSize: '1.2rem' }} />
-                </Box>
-                <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '0.95rem', fontWeight: 500 }}>
+                <PhoneIcon sx={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '1rem' }} />
+                <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem' }}>
                   +372 5XXX XXXX
                 </Typography>
               </Box>
@@ -546,35 +371,12 @@ const Footer = () => {
                 sx={{ 
                   display: 'flex', 
                   alignItems: 'center', 
-                  gap: 1.5,
-                  p: 1.5,
-                  borderRadius: '8px',
-                  background: 'linear-gradient(135deg, rgba(196, 30, 58, 0.1), rgba(244, 103, 51, 0.1))',
-                  border: '1px solid rgba(196, 30, 58, 0.3)',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    transform: 'translateX(5px)',
-                    background: 'linear-gradient(135deg, rgba(196, 30, 58, 0.2), rgba(244, 103, 51, 0.2))',
-                    borderColor: '#C41E3A',
-                    boxShadow: '0 4px 15px rgba(196, 30, 58, 0.3)',
-                  },
+                  gap: 1,
+                  py: 0.75,
                 }}
               >
-                <Box
-                  sx={{
-                    width: '36px',
-                    height: '36px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'linear-gradient(135deg, #C41E3A, #F46733)',
-                    borderRadius: '8px',
-                    boxShadow: '0 2px 8px rgba(196, 30, 58, 0.4)',
-                  }}
-                >
-                  <LocationOnIcon sx={{ color: '#FFFFFF', fontSize: '1.2rem' }} />
-                </Box>
-                <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '0.95rem', fontWeight: 500 }}>
+                <LocationOnIcon sx={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '1rem' }} />
+                <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem' }}>
                   Tallinn, Estonia
                 </Typography>
               </Box>
@@ -583,63 +385,23 @@ const Footer = () => {
 
           {/* Newsletter */}
           <Grid item xs={12} sm={6} md={3}>
-            <Stack direction="row" alignItems="center" spacing={1.5} sx={{ mb: 2 }}>
-              <Box
-                sx={{
-                  width: '40px',
-                  height: '40px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #D4AF37, #F46733)',
-                  borderRadius: '10px',
-                  boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)',
-                  animation: 'funkPulse 2s ease-in-out infinite',
-                  '@keyframes funkPulse': {
-                    '0%, 100%': { transform: 'scale(1)', boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)' },
-                    '50%': { transform: 'scale(1.1)', boxShadow: '0 6px 20px rgba(212, 175, 55, 0.6)' },
-                  },
-                }}
-              >
-                <NotificationsActiveIcon sx={{ color: '#0A0A0A', fontSize: '1.5rem' }} />
-              </Box>
-              <Typography 
-                variant="h6" 
-                sx={{ 
-                  fontFamily: "'Righteous', cursive",
-                  fontSize: '1.3rem',
-                  fontWeight: 700,
-                  background: 'linear-gradient(135deg, #D4AF37, #F46733)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                }}
-              >
-                Uudiskiri
-              </Typography>
-            </Stack>
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                mb: 2,
+                fontFamily: "'Righteous', cursive",
+                fontSize: '1.3rem',
+                fontWeight: 700,
+                color: 'rgba(212, 175, 55, 0.9)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+              }}
+            >
+              Uudiskiri
+            </Typography>
             
-            {/* Motivation: Social Proof */}
-            <Box sx={{ mb: 2 }}>
-              <Chip
-                icon={<TrendingUpIcon sx={{ fontSize: '0.9rem' }} />}
-                label={`${socialStats.subscribers.toLocaleString()}+ Tellijat`}
-                size="small"
-                sx={{
-                  background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
-                  color: '#F46733',
-                  fontSize: '0.8rem',
-                  fontWeight: 700,
-                  border: '2px solid',
-                  borderImage: 'linear-gradient(135deg, #F46733, #D4AF37) 1',
-                  boxShadow: '0 0 15px rgba(244, 103, 51, 0.3)',
-                }}
-              />
-            </Box>
 
-            <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary', lineHeight: 1.6 }}>
+            <Typography variant="body2" sx={{ mb: 3, color: 'rgba(255, 255, 255, 0.6)', lineHeight: 1.6, fontSize: '0.85rem' }}>
               Saa infot uute kontsertide, albumite ja eriürituste kohta esimesena
             </Typography>
 
@@ -659,23 +421,6 @@ const Footer = () => {
                   size="small"
                   disabled={isSubmitting}
                   InputProps={{
-                    startAdornment: (
-                      <Box
-                        sx={{
-                          width: '28px',
-                          height: '28px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          background: 'linear-gradient(135deg, #F46733, #D4AF37)',
-                          borderRadius: '6px',
-                          mr: 1,
-                          boxShadow: '0 2px 8px rgba(244, 103, 51, 0.3)',
-                        }}
-                      >
-                        <EmailIcon sx={{ color: '#FFFFFF', fontSize: '1rem' }} />
-                      </Box>
-                    ),
                   }}
                   sx={{
                     '& .MuiOutlinedInput-root': {
@@ -683,17 +428,16 @@ const Footer = () => {
                       color: 'white',
                       transition: 'all 0.3s ease',
                       '& fieldset': {
-                        borderColor: 'rgba(244, 103, 51, 0.4)',
-                        borderWidth: '2px',
+                        borderColor: 'rgba(255, 255, 255, 0.1)',
+                        borderWidth: '1px',
                       },
                       '&:hover fieldset': {
-                        borderColor: '#F46733',
-                        borderWidth: '2px',
+                        borderColor: 'rgba(212, 175, 55, 0.3)',
+                        borderWidth: '1px',
                       },
                       '&.Mui-focused fieldset': {
-                        borderColor: '#D4AF37',
-                        borderWidth: '3px',
-                        boxShadow: '0 0 15px rgba(212, 175, 55, 0.5)',
+                        borderColor: 'rgba(212, 175, 55, 0.5)',
+                        borderWidth: '1px',
                       },
                     },
                     '& .MuiInputBase-input::placeholder': {
@@ -726,58 +470,27 @@ const Footer = () => {
                   disabled={isSubmitting || success}
                   sx={{
                     background: success 
-                      ? 'linear-gradient(135deg, #4CAF50, #45A049)' 
-                      : 'linear-gradient(135deg, #F46733, #D4AF37, #C41E3A)',
-                    backgroundSize: '200% 200%',
-                    color: success ? '#FFFFFF' : '#FFFFFF',
-                    fontWeight: 700,
-                    fontSize: '1rem',
-                    py: 1.4,
-                    textTransform: 'uppercase',
-                    fontFamily: "'Righteous', cursive",
-                    letterSpacing: '0.1em',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    borderRadius: '8px',
-                    border: '2px solid transparent',
-                    boxShadow: success 
-                      ? '0 4px 15px rgba(76, 175, 80, 0.4)' 
-                      : '0 4px 15px rgba(244, 103, 51, 0.5)',
-                    transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-                    animation: success ? 'none' : 'funkGradientMove 3s ease infinite',
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      top: 0,
-                      left: '-100%',
-                      width: '100%',
-                      height: '100%',
-                      background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
-                      transition: 'left 0.6s ease',
-                    },
+                      ? 'rgba(76, 175, 80, 0.2)' 
+                      : 'rgba(212, 175, 55, 0.2)',
+                    color: success ? 'rgba(76, 175, 80, 0.9)' : 'rgba(212, 175, 55, 0.9)',
+                    fontWeight: 500,
+                    fontSize: '0.95rem',
+                    py: 1.2,
+                    textTransform: 'none',
+                    fontFamily: "'Inter', sans-serif",
+                    letterSpacing: '0.02em',
+                    borderRadius: '6px',
+                    border: `1px solid ${success ? 'rgba(76, 175, 80, 0.3)' : 'rgba(212, 175, 55, 0.3)'}`,
+                    transition: 'all 0.3s ease',
                     '&:hover': {
                       background: success 
-                        ? 'linear-gradient(135deg, #4CAF50, #45A049)' 
-                        : 'linear-gradient(135deg, #FF7744, #E5BF50, #D42E4A)',
-                      transform: 'translateY(-4px) scale(1.02)',
-                      boxShadow: success
-                        ? '0 8px 25px rgba(76, 175, 80, 0.6)'
-                        : '0 8px 30px rgba(244, 103, 51, 0.7)',
-                      '&::before': {
-                        left: '100%',
-                      },
-                    },
-                    '&:active': {
-                      transform: 'translateY(-1px) scale(0.98)',
+                        ? 'rgba(76, 175, 80, 0.25)' 
+                        : 'rgba(212, 175, 55, 0.25)',
+                      borderColor: success ? 'rgba(76, 175, 80, 0.4)' : 'rgba(212, 175, 55, 0.4)',
                     },
                     '&:disabled': {
-                      background: 'linear-gradient(135deg, #4CAF50, #45A049)',
-                      color: '#FFFFFF',
-                    },
-                    '@keyframes funkGradientMove': {
-                      '0%': { backgroundPosition: '0% 50%' },
-                      '50%': { backgroundPosition: '100% 50%' },
-                      '100%': { backgroundPosition: '0% 50%' },
+                      background: 'rgba(76, 175, 80, 0.2)',
+                      color: 'rgba(76, 175, 80, 0.9)',
                     },
                   }}
                 >
@@ -816,14 +529,12 @@ const Footer = () => {
           </Grid>
         </Grid>
 
-        {/* FUNK Divider */}
+        {/* Divider */}
         <Box
           sx={{
             my: 5,
-            height: '2px',
-            background: 'linear-gradient(90deg, transparent, #F46733, #D4AF37, #C41E3A, #D4AF37, #F46733, transparent)',
-            backgroundSize: '200% 100%',
-            animation: 'funkShimmer 3s ease-in-out infinite',
+            height: '1px',
+            background: 'rgba(255, 255, 255, 0.1)',
           }}
         />
 

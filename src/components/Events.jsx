@@ -22,6 +22,7 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import PeopleIcon from '@mui/icons-material/People'
 import WarningIcon from '@mui/icons-material/Warning'
 import StarIcon from '@mui/icons-material/Star'
+import bandHero2 from '../img/band-hero-2.jpg'
 
 const Events = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -179,8 +180,12 @@ const Events = () => {
       sx={{
         py: 10,
         px: 2,
-        background: 'linear-gradient(180deg, #FAF8F3 0%, #FFF8E7 30%, #F5F3ED 70%, #FAF8F3 100%)',
-        color: '#1A1A1A',
+        backgroundImage: `url(${bandHero2})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        color: '#FFFFFF',
         position: 'relative',
         overflow: 'hidden',
         '&::before': {
@@ -212,7 +217,7 @@ const Events = () => {
         },
       }}
     >
-      {/* Art Deco Background Pattern with FUNK */}
+      {/* Background Overlay for readability */}
       <Box
         sx={{
           position: 'absolute',
@@ -220,40 +225,13 @@ const Events = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          opacity: 0.05,
-          backgroundImage: `
-            repeating-linear-gradient(45deg, transparent, transparent 10px, #F46733 10px, #F46733 20px),
-            repeating-linear-gradient(-45deg, transparent, transparent 10px, #D4AF37 10px, #D4AF37 20px)
+          background: `
+            linear-gradient(180deg, rgba(10, 10, 10, 0.75) 0%, rgba(26, 15, 26, 0.8) 50%, rgba(10, 10, 10, 0.75) 100%),
+            radial-gradient(circle at 20% 30%, rgba(244, 103, 51, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)
           `,
           pointerEvents: 'none',
-        }}
-      />
-      
-      {/* FUNK Radial Gradients */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '20%',
-          left: '10%',
-          width: '300px',
-          height: '300px',
-          background: 'radial-gradient(circle, rgba(244, 103, 51, 0.08) 0%, transparent 70%)',
-          borderRadius: '50%',
-          pointerEvents: 'none',
-          filter: 'blur(40px)',
-        }}
-      />
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: '20%',
-          right: '10%',
-          width: '300px',
-          height: '300px',
-          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%)',
-          borderRadius: '50%',
-          pointerEvents: 'none',
-          filter: 'blur(40px)',
+          zIndex: 0,
         }}
       />
 
@@ -400,12 +378,13 @@ const Events = () => {
               variant="body1"
               sx={{
                 fontSize: '1.1rem',
-                color: '#666',
+                color: 'rgba(255, 255, 255, 0.9)',
                 maxWidth: '600px',
                 mx: 'auto',
                 fontStyle: 'italic',
                 letterSpacing: '0.05em',
                 mt: 2,
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
               }}
             >
               Valige oma täiuslik muusikaline elamus
@@ -426,7 +405,7 @@ const Events = () => {
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    background: 'linear-gradient(135deg, #FFFFFF 0%, #FFFBF0 100%)',
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 251, 240, 0.95) 100%)',
                     border: '3px solid',
                     borderColor: event.soldOut ? '#C41E3A' : '#F46733',
                     borderRadius: 0,
@@ -724,7 +703,7 @@ const Events = () => {
                         mb: 1.5,
                         fontWeight: 700,
                         fontSize: { xs: '1.1rem', sm: '1.3rem' },
-                        background: 'linear-gradient(135deg, #1A1A1A 0%, #F46733 30%, #D4AF37 50%, #F46733 70%, #1A1A1A 100%)',
+                        background: 'linear-gradient(135deg, #FFFFFF 0%, #F46733 30%, #D4AF37 50%, #F46733 70%, #FFFFFF 100%)',
                         backgroundSize: '200% 200%',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
@@ -1029,104 +1008,153 @@ const Events = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                mb: 3,
+                mb: 4,
                 gap: 2,
               }}
             >
               <Box
                 sx={{
-                  width: '40px',
-                  height: '2px',
-                  background: '#D4AF37',
+                  width: '60px',
+                  height: '3px',
+                  background: 'linear-gradient(90deg, transparent, #D4AF37)',
                 }}
               />
               <Box
                 sx={{
-                  width: '12px',
-                  height: '12px',
+                  width: '14px',
+                  height: '14px',
                   border: '2px solid #D4AF37',
                   transform: 'rotate(45deg)',
+                  boxShadow: '0 0 10px rgba(212, 175, 55, 0.6)',
                 }}
               />
               <Box
                 sx={{
-                  width: '80px',
-                  height: '2px',
-                  background: '#D4AF37',
+                  width: '120px',
+                  height: '3px',
+                  background: 'linear-gradient(90deg, #D4AF37, #F46733, #D4AF37)',
+                  position: 'relative',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    left: '50%',
+                    top: '50%',
+                    transform: 'translate(-50%, -50%) rotate(45deg)',
+                    width: '10px',
+                    height: '10px',
+                    border: '2px solid #D4AF37',
+                    boxShadow: '0 0 10px rgba(212, 175, 55, 0.6)',
+                  },
                 }}
               />
               <Box
                 sx={{
-                  width: '12px',
-                  height: '12px',
+                  width: '14px',
+                  height: '14px',
                   border: '2px solid #D4AF37',
                   transform: 'rotate(45deg)',
+                  boxShadow: '0 0 10px rgba(212, 175, 55, 0.6)',
                 }}
               />
               <Box
                 sx={{
-                  width: '40px',
-                  height: '2px',
-                  background: '#D4AF37',
+                  width: '60px',
+                  height: '3px',
+                  background: 'linear-gradient(90deg, #D4AF37, transparent)',
                 }}
               />
             </Box>
 
             <Box
               sx={{
-                maxWidth: '700px',
+                maxWidth: '800px',
                 mx: 'auto',
-                p: 4,
-                background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%)',
+                p: 5,
+                background: 'linear-gradient(135deg, rgba(10, 10, 10, 0.85) 0%, rgba(20, 15, 20, 0.9) 100%)',
                 border: '3px solid #D4AF37',
+                borderRadius: '4px',
                 position: 'relative',
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 50px rgba(212, 175, 55, 0.1)',
                 '&::before': {
                   content: '""',
                   position: 'absolute',
-                  top: '-3px',
-                  left: '20px',
-                  width: '40px',
-                  height: '3px',
-                  background: '#D4AF37',
-                },
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  bottom: '-3px',
-                  right: '20px',
-                  width: '40px',
-                  height: '3px',
-                  background: '#D4AF37',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: 'radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%)',
+                  pointerEvents: 'none',
+                  borderRadius: '4px',
                 },
               }}
             >
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, mb: 1 }}>
-                <StarIcon sx={{ color: '#D4AF37', fontSize: '1.5rem' }} />
-                <Typography 
-                  variant="h6" 
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 2.5, position: 'relative', zIndex: 1 }}>
+                <StarIcon 
                   sx={{ 
-                    color: '#1A1A1A',
+                    color: '#D4AF37',
+                    fontSize: '2.5rem',
+                    filter: 'drop-shadow(0 0 15px rgba(212, 175, 55, 0.8))',
+                    animation: 'starTwinkle 3s ease-in-out infinite',
+                  }} 
+                />
+                <Typography 
+                  variant="h3" 
+                  component="h3"
+                  sx={{ 
+                    background: 'linear-gradient(135deg, #D4AF37, #F4D03F, #D4AF37)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
                     fontWeight: 700,
+                    fontSize: { xs: '2rem', md: '3rem' },
                     fontFamily: "'Righteous', cursive",
-                    letterSpacing: '0.1em',
+                    letterSpacing: '0.15em',
                     textTransform: 'uppercase',
+                    textShadow: '0 0 30px rgba(212, 175, 55, 0.5)',
+                    lineHeight: 1.2,
                   }}
                 >
-                  Garantii
+                  GARANTII
                 </Typography>
-                <StarIcon sx={{ color: '#D4AF37', fontSize: '1.5rem' }} />
+                <StarIcon 
+                  sx={{ 
+                    color: '#D4AF37',
+                    fontSize: '2.5rem',
+                    filter: 'drop-shadow(0 0 15px rgba(212, 175, 55, 0.8))',
+                    animation: 'starTwinkle 3s ease-in-out infinite 1.5s',
+                  }} 
+                />
               </Box>
               <Typography 
                 variant="body1" 
                 sx={{ 
-                  fontWeight: 600,
-                  color: '#333',
-                  fontStyle: 'italic',
+                  fontWeight: 500,
+                  color: 'rgba(255, 255, 255, 0.95)',
+                  fontSize: { xs: '0.95rem', md: '1.1rem' },
                   letterSpacing: '0.05em',
+                  lineHeight: 1.6,
+                  position: 'relative',
+                  zIndex: 1,
+                  textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
                 }}
               >
-                Kõik kontserdid toovad tagatud elamuse! 100% rahulolu garantii.
+                Kõik kontserdid toovad tagatud rõõmu ja 100% rahulolu garantii.
               </Typography>
+              <style>
+                {`
+                  @keyframes starTwinkle {
+                    0%, 100% {
+                      transform: scale(1);
+                      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));
+                    }
+                    50% {
+                      transform: scale(1.2);
+                      filter: drop-shadow(0 0 25px rgba(212, 175, 55, 1));
+                    }
+                  }
+                `}
+              </style>
             </Box>
           </Box>
         </Fade>

@@ -296,6 +296,12 @@ const Navigation = () => {
                   color: '#F46733',
                   background: 'rgba(244, 103, 51, 0.1)',
                   border: '2px solid rgba(244, 103, 51, 0.3)',
+                  width: { xs: '40px', sm: '40px', md: '40px' },
+                  height: { xs: '40px', sm: '40px', md: '40px' },
+                  minWidth: '40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
                   '&:hover': {
                     background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
@@ -303,10 +309,13 @@ const Navigation = () => {
                     transform: 'rotate(90deg) scale(1.1)',
                     boxShadow: '0 4px 15px rgba(244, 103, 51, 0.4)',
                   },
+                  '& svg': {
+                    fontSize: { xs: '1.5rem', sm: '1.5rem', md: '1.5rem' },
+                  },
                 }}
                 onClick={toggleMenu}
               >
-                <MenuIcon />
+                <MenuIcon sx={{ fontSize: '1.5rem !important' }} />
               </IconButton>
             </Box>
 
@@ -347,10 +356,15 @@ const Navigation = () => {
               {/* Mobile Menu Button with FUNK */}
               <IconButton
                 sx={{
-                  display: { xs: 'block', md: 'none', lg: 'none' },
+                  display: { xs: 'flex', md: 'none', lg: 'none' },
                   color: '#F46733',
                   background: 'rgba(244, 103, 51, 0.1)',
                   border: '2px solid rgba(244, 103, 51, 0.3)',
+                  width: { xs: '40px', sm: '40px' },
+                  height: { xs: '40px', sm: '40px' },
+                  minWidth: '40px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
                   '&:hover': {
                     background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
@@ -358,10 +372,13 @@ const Navigation = () => {
                     transform: 'rotate(90deg) scale(1.1)',
                     boxShadow: '0 4px 15px rgba(244, 103, 51, 0.4)',
                   },
+                  '& svg': {
+                    fontSize: '1.5rem',
+                  },
                 }}
                 onClick={toggleMenu}
               >
-                <MenuIcon />
+                <MenuIcon sx={{ fontSize: '1.5rem !important' }} />
               </IconButton>
             </Box>
           </Toolbar>

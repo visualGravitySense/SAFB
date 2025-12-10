@@ -87,7 +87,11 @@ const Hero = () => {
               spacing={2}
               justifyContent="center"
               alignItems="center"
-              sx={{ mb: 4, flexWrap: 'wrap' }}
+              sx={{ 
+                mb: 4, 
+                flexWrap: 'wrap',
+                display: { xs: 'none', sm: 'flex' }
+              }}
             >
               {/* First Badge - Orange Theme */}
               <Box
