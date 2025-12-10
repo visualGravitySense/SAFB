@@ -142,7 +142,7 @@ const Stats = () => {
       sx={{
         py: 8,
         px: 2,
-        background: 'var(--black)',
+        background: 'linear-gradient(180deg, #0A0A0A 0%, #1A0F1A 50%, #0A0A0A 100%)',
         color: 'var(--white)',
         position: 'relative',
         overflow: 'hidden',
@@ -153,8 +153,27 @@ const Stats = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 70%)',
+          background: `
+            radial-gradient(circle at 20% 50%, rgba(244, 103, 51, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%)
+          `,
           pointerEvents: 'none',
+        },
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '3px',
+          background: 'linear-gradient(90deg, #F46733, #D4AF37, #C41E3A, #D4AF37, #F46733)',
+          backgroundSize: '200% 100%',
+          animation: 'funkShimmer 3s ease-in-out infinite',
+        },
+        '@keyframes funkShimmer': {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
         },
       }}
     >
@@ -184,45 +203,63 @@ const Stats = () => {
                       right: 0,
                       bottom: 0,
                       borderRadius: '16px',
-                      background: `linear-gradient(135deg, ${stat.color}15, transparent)`,
+                      background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.15), rgba(212, 175, 55, 0.15), transparent)',
                       opacity: 0,
                       transition: 'opacity 0.4s ease',
                     },
                     '&:hover': {
-                      transform: 'translateY(-10px) scale(1.05)',
+                      transform: 'translateY(-12px) scale(1.08)',
+                      boxShadow: '0 20px 40px rgba(244, 103, 51, 0.3)',
                       '&::before': {
                         opacity: 1,
                       },
                       '& .stat-icon': {
-                        transform: 'scale(1.2) rotate(5deg)',
-                        filter: 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.6))',
+                        transform: 'scale(1.25) rotate(8deg)',
+                        filter: 'drop-shadow(0 0 25px rgba(244, 103, 51, 0.8))',
                       },
                       '& .stat-number': {
-                        transform: 'scale(1.1)',
-                        textShadow: '0 0 30px rgba(212, 175, 55, 0.8)',
+                        transform: 'scale(1.15)',
+                        textShadow: '0 0 40px rgba(244, 103, 51, 0.8), 0 0 60px rgba(212, 175, 55, 0.6)',
                       },
                       '& .stat-label': {
-                        color: stat.color,
+                        color: '#F46733',
                       },
+                      '& .stat-line': {
+                        width: '60px',
+                        background: 'linear-gradient(90deg, #F46733, #D4AF37, #F46733)',
+                        backgroundSize: '200% 100%',
+                        animation: 'funkShimmerLine 2s ease infinite',
+                      },
+                    },
+                    '@keyframes funkShimmerLine': {
+                      '0%': { backgroundPosition: '0% 50%' },
+                      '50%': { backgroundPosition: '100% 50%' },
+                      '100%': { backgroundPosition: '0% 50%' },
                     },
                   }}
                 >
-                  {/* Icon - MOTIVATION (Visual Appeal) */}
+                  {/* Icon - MOTIVATION (Visual Appeal) with FUNK */}
                   <Box
                     className="stat-icon"
                     sx={{
-                      color: stat.color,
                       mb: 2,
                       display: 'flex',
                       justifyContent: 'center',
-                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      filter: 'drop-shadow(0 4px 8px rgba(212, 175, 55, 0.3))',
+                      transition: 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                      filter: 'drop-shadow(0 4px 12px rgba(244, 103, 51, 0.4))',
+                      '& svg': {
+                        background: 'linear-gradient(135deg, #F46733, #D4AF37)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                        filter: 'drop-shadow(0 0 15px rgba(244, 103, 51, 0.5))',
+                      },
                     }}
                   >
                     {stat.icon}
                   </Box>
 
-                  {/* Number - PROMPTS (Animated Count-up) */}
+                  {/* Number - PROMPTS (Animated Count-up) with FUNK */}
                   <Typography
                     className="stat-number"
                     variant="h2"
@@ -230,12 +267,22 @@ const Stats = () => {
                     sx={{
                       fontSize: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
                       fontWeight: 'bold',
-                      color: stat.color,
                       mb: 1,
                       fontFamily: "'Righteous', cursive",
-                      textShadow: '0 4px 20px rgba(212, 175, 55, 0.4)',
-                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                      background: 'linear-gradient(135deg, #F46733, #D4AF37, #F46733)',
+                      backgroundSize: '200% 200%',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                      textShadow: '0 4px 20px rgba(244, 103, 51, 0.4)',
+                      transition: 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
                       lineHeight: 1,
+                      animation: isVisible ? 'funkGradientMove 4s ease infinite' : 'none',
+                      '@keyframes funkGradientMove': {
+                        '0%': { backgroundPosition: '0% 50%' },
+                        '50%': { backgroundPosition: '100% 50%' },
+                        '100%': { backgroundPosition: '0% 50%' },
+                      },
                     }}
                   >
                     {isVisible ? formatValue(stat, getCountedValue(index)) : '0'}
@@ -273,17 +320,19 @@ const Stats = () => {
                     {stat.description}
                   </Typography>
 
-                  {/* Decorative Line - PROMPTS (Visual Interest) */}
+                  {/* Decorative Line - PROMPTS (Visual Interest) with FUNK */}
                   <Box
+                    className="stat-line"
                     sx={{
                       mt: 2,
                       height: '3px',
                       width: '40px',
-                      background: `linear-gradient(90deg, transparent, ${stat.color}, transparent)`,
+                      background: `linear-gradient(90deg, transparent, #F46733, #D4AF37, transparent)`,
                       margin: '12px auto 0',
                       borderRadius: '2px',
                       transition: 'all 0.4s ease',
-                      opacity: 0.6,
+                      opacity: 0.8,
+                      boxShadow: '0 0 10px rgba(244, 103, 51, 0.4)',
                     }}
                   />
                 </Box>
@@ -292,19 +341,84 @@ const Stats = () => {
           ))}
         </Grid>
 
-        {/* Trust Indicator - Additional MOTIVATION */}
+        {/* Trust Indicator - Additional MOTIVATION with FUNK */}
         <Fade in={isVisible} timeout={1000}>
-          <Box sx={{ textAlign: 'center', mt: 4 }}>
-            <Typography
-              variant="body2"
+          <Box sx={{ textAlign: 'center', mt: 5 }}>
+            <Box
               sx={{
-                color: 'rgba(255, 255, 255, 0.7)',
-                fontSize: '0.9rem',
-                fontStyle: 'italic',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 1.5,
+                px: 4,
+                py: 2,
+                borderRadius: '12px',
+                background: 'rgba(26, 20, 20, 0.9)',
+                border: '2px solid',
+                borderColor: 'rgba(244, 103, 51, 0.4)',
+                boxShadow: '0 4px 20px rgba(244, 103, 51, 0.2), 0 0 30px rgba(244, 103, 51, 0.1)',
+                transition: 'all 0.3s ease',
+                position: 'relative',
+                overflow: 'hidden',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: '-100%',
+                  width: '100%',
+                  height: '100%',
+                  background: 'linear-gradient(90deg, transparent, rgba(244, 103, 51, 0.1), transparent)',
+                  transition: 'left 1s ease',
+                },
+                '&:hover': {
+                  borderColor: 'rgba(244, 103, 51, 0.6)',
+                  boxShadow: '0 6px 30px rgba(244, 103, 51, 0.4), 0 0 40px rgba(244, 103, 51, 0.2)',
+                  transform: 'translateY(-2px)',
+                  '&::before': {
+                    left: '100%',
+                  },
+                  '& .trust-star': {
+                    transform: 'scale(1.2) rotate(15deg)',
+                    filter: 'drop-shadow(0 0 15px rgba(212, 175, 55, 0.9))',
+                  },
+                },
               }}
             >
-              ⭐ Usaldatud kümnete ürituste korraldajate poolt
-            </Typography>
+              <Box
+                className="trust-star"
+                component="span"
+                sx={{
+                  fontSize: '1.8rem',
+                  lineHeight: 1,
+                  filter: 'drop-shadow(0 0 10px rgba(212, 175, 55, 0.7))',
+                  transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                  animation: 'starPulse 2s ease-in-out infinite',
+                  '@keyframes starPulse': {
+                    '0%, 100%': {
+                      transform: 'scale(1)',
+                      filter: 'drop-shadow(0 0 10px rgba(212, 175, 55, 0.7))',
+                    },
+                    '50%': {
+                      transform: 'scale(1.1)',
+                      filter: 'drop-shadow(0 0 15px rgba(212, 175, 55, 0.9))',
+                    },
+                  },
+                }}
+              >
+                ⭐
+              </Box>
+              <Typography
+                variant="body2"
+                component="span"
+                sx={{
+                  color: '#FFFFFF',
+                  fontSize: '0.95rem',
+                  fontWeight: 500,
+                  letterSpacing: '0.02em',
+                }}
+              >
+                Usaldatud kümnete ürituste korraldajate poolt
+              </Typography>
+            </Box>
           </Box>
         </Fade>
       </Container>
