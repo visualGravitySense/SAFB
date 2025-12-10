@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import theme from './theme'
@@ -14,12 +13,10 @@ import Gallery from './components/Gallery'
 import Footer from './components/Footer'
 
 function App() {
-  const [language, setLanguage] = useState('EST')
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Navigation language={language} setLanguage={setLanguage} />
+      <Navigation />
       <Hero />
       <Stats />
       <Events />

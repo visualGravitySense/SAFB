@@ -3,7 +3,6 @@ import {
   AppBar, 
   Toolbar, 
   Button, 
-  ButtonGroup, 
   IconButton, 
   Box, 
   Drawer, 
@@ -28,7 +27,7 @@ import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary'
 import InfoIcon from '@mui/icons-material/Info'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 
-const Navigation = ({ language, setLanguage }) => {
+const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('avaleht')
@@ -62,8 +61,6 @@ const Navigation = ({ language, setLanguage }) => {
     setMenuOpen(!menuOpen)
   }
 
-  const languages = ['EST', 'ENG', 'RUS']
-
   const navLinks = [
     { label: 'Avaleht', href: '#avaleht', icon: <HomeIcon fontSize="small" /> },
     { label: 'Kontserdid', href: '#kontserdid', icon: <CalendarMonthIcon fontSize="small" /> },
@@ -92,16 +89,44 @@ const Navigation = ({ language, setLanguage }) => {
           position="fixed" 
           sx={{ 
             background: scrolled 
-              ? 'rgba(10, 10, 10, 0.98)' 
-              : 'rgba(10, 10, 10, 0.95)',
+              ? 'linear-gradient(180deg, rgba(10, 10, 10, 0.98), rgba(26, 15, 26, 0.98))' 
+              : 'linear-gradient(180deg, rgba(10, 10, 10, 0.95), rgba(26, 15, 26, 0.95))',
             backdropFilter: 'blur(20px)',
-            borderBottom: scrolled 
-              ? `3px solid #D4AF37` 
-              : `2px solid #D4AF37`,
+            position: 'relative',
+            borderBottom: 'none',
             boxShadow: scrolled 
-              ? '0 4px 20px rgba(212, 175, 55, 0.3)' 
+              ? '0 4px 20px rgba(244, 103, 51, 0.3)' 
               : 'none',
             transition: 'all 0.3s ease',
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: scrolled ? '4px' : '3px',
+              background: 'linear-gradient(90deg, #F46733, #D4AF37, #C41E3A, #D4AF37, #F46733)',
+              backgroundSize: '200% 100%',
+              animation: 'funkShimmer 3s ease-in-out infinite',
+            },
+            '@keyframes funkShimmer': {
+              '0%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+              '100%': { backgroundPosition: '0% 50%' },
+            },
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: `
+                radial-gradient(circle at 20% 0%, rgba(244, 103, 51, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 0%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)
+              `,
+              pointerEvents: 'none',
+            },
           }}
         >
           <Toolbar 
@@ -113,7 +138,7 @@ const Navigation = ({ language, setLanguage }) => {
               py: 1,
             }}
           >
-            {/* Logo - Enhanced MOTIVATION */}
+            {/* Logo - Enhanced MOTIVATION with FUNK Style */}
             <Button
               href="#avaleht"
               onClick={(e) => {
@@ -121,16 +146,33 @@ const Navigation = ({ language, setLanguage }) => {
                 handleNavClick('#avaleht')
               }}
               sx={{
-                fontSize: { xs: '1.3rem', md: '1.6rem' },
-                fontWeight: 'bold',
-                color: '#D4AF37',
+                fontSize: { xs: '1.4rem', md: '1.8rem' },
+                fontFamily: "'Righteous', cursive",
+                fontWeight: 700,
+                background: 'linear-gradient(135deg, #F46733 0%, #D4AF37 50%, #F46733 100%)',
+                backgroundSize: '200% 200%',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 textDecoration: 'none',
-                textTransform: 'none',
-                transition: 'all 0.3s ease',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                position: 'relative',
+                animation: 'funkGradient 3s ease infinite',
+                textShadow: '0 0 30px rgba(244, 103, 51, 0.5)',
                 '&:hover': {
-                  color: '#E5BF50',
-                  transform: 'scale(1.05)',
-                  background: 'transparent',
+                  transform: 'scale(1.1) rotate(2deg)',
+                  animation: 'funkPulse 0.6s ease',
+                },
+                '@keyframes funkGradient': {
+                  '0%': { backgroundPosition: '0% 50%' },
+                  '50%': { backgroundPosition: '100% 50%' },
+                  '100%': { backgroundPosition: '0% 50%' },
+                },
+                '@keyframes funkPulse': {
+                  '0%, 100%': { transform: 'scale(1.1) rotate(2deg)' },
+                  '50%': { transform: 'scale(1.15) rotate(-2deg)' },
                 },
               }}
             >
@@ -154,16 +196,29 @@ const Navigation = ({ language, setLanguage }) => {
                     startIcon={link.icon}
                     variant={isCTA ? 'contained' : 'text'}
                     sx={{
-                      color: isActive && !isCTA ? '#D4AF37' : isCTA ? '#0A0A0A' : '#FFFFFF',
+                      color: isCTA 
+                        ? '#FFFFFF' 
+                        : isActive 
+                          ? '#F46733' 
+                          : '#FFFFFF',
                       fontWeight: isActive || isCTA ? 700 : 500,
                       fontSize: isCTA ? '0.95rem' : '0.9rem',
                       px: isCTA ? 2.5 : 1.5,
                       py: isCTA ? 1 : 0.5,
-                      bgcolor: isCTA ? '#D4AF37' : 'transparent',
+                      background: isCTA 
+                        ? 'linear-gradient(135deg, #F46733, #D4AF37, #C41E3A)'
+                        : isActive
+                          ? 'linear-gradient(90deg, rgba(244, 103, 51, 0.15), rgba(212, 175, 55, 0.15))'
+                          : 'transparent',
+                      backgroundSize: isCTA ? '200% 200%' : 'auto',
                       textTransform: 'none',
                       borderRadius: isCTA ? '8px' : '4px',
                       position: 'relative',
-                      transition: 'all 0.3s ease',
+                      transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                      animation: isCTA ? 'funkGradientMove 3s ease infinite' : 'none',
+                      boxShadow: isCTA 
+                        ? '0 4px 15px rgba(244, 103, 51, 0.4)'
+                        : 'none',
                       '&::after': isActive && !isCTA ? {
                         content: '""',
                         position: 'absolute',
@@ -172,14 +227,24 @@ const Navigation = ({ language, setLanguage }) => {
                         transform: 'translateX(-50%)',
                         width: '60%',
                         height: '3px',
-                        bgcolor: '#D4AF37',
+                        background: 'linear-gradient(90deg, #F46733, #D4AF37)',
                         borderRadius: '2px',
+                        boxShadow: '0 0 10px rgba(244, 103, 51, 0.5)',
                       } : {},
                       '&:hover': {
-                        color: isCTA ? '#0A0A0A' : '#D4AF37',
-                        bgcolor: isCTA ? '#E5BF50' : 'rgba(212, 175, 55, 0.1)',
-                        transform: isCTA ? 'translateY(-2px)' : 'none',
-                        boxShadow: isCTA ? '0 4px 12px rgba(212, 175, 55, 0.4)' : 'none',
+                        color: isCTA ? '#FFFFFF' : '#F46733',
+                        background: isCTA 
+                          ? 'linear-gradient(135deg, #FF7744, #E5BF50, #D42E4A)'
+                          : 'linear-gradient(90deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
+                        transform: isCTA ? 'translateY(-3px) scale(1.05)' : 'translateY(-2px)',
+                        boxShadow: isCTA 
+                          ? '0 8px 25px rgba(244, 103, 51, 0.6)'
+                          : '0 4px 12px rgba(244, 103, 51, 0.3)',
+                      },
+                      '@keyframes funkGradientMove': {
+                        '0%': { backgroundPosition: '0% 50%' },
+                        '50%': { backgroundPosition: '100% 50%' },
+                        '100%': { backgroundPosition: '0% 50%' },
                       },
                     }}
                   >
@@ -189,7 +254,7 @@ const Navigation = ({ language, setLanguage }) => {
               })}
             </Box>
 
-            {/* Mobile/Tablet Navigation - Simplified */}
+            {/* Mobile/Tablet Navigation - Simplified with FUNK */}
             <Box sx={{ display: { xs: 'none', md: 'flex', lg: 'none' }, gap: '1rem', alignItems: 'center' }}>
               <Button
                 variant="contained"
@@ -199,17 +264,28 @@ const Navigation = ({ language, setLanguage }) => {
                   handleNavClick('#broneeri')
                 }}
                 sx={{
-                  bgcolor: '#D4AF37',
-                  color: '#0A0A0A',
+                  background: 'linear-gradient(135deg, #F46733, #D4AF37, #C41E3A)',
+                  backgroundSize: '200% 200%',
+                  color: '#FFFFFF',
                   fontWeight: 700,
                   px: 2,
                   py: 1,
-                  textTransform: 'none',
+                  textTransform: 'uppercase',
+                  fontFamily: "'Righteous', cursive",
+                  letterSpacing: '0.05em',
                   borderRadius: '8px',
+                  boxShadow: '0 4px 15px rgba(244, 103, 51, 0.5)',
+                  animation: 'funkGradientMove 3s ease infinite',
+                  transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
                   '&:hover': {
-                    bgcolor: '#E5BF50',
-                    transform: 'translateY(-2px)',
-                    boxShadow: '0 4px 12px rgba(212, 175, 55, 0.4)',
+                    background: 'linear-gradient(135deg, #FF7744, #E5BF50, #D42E4A)',
+                    transform: 'translateY(-3px) scale(1.05)',
+                    boxShadow: '0 8px 25px rgba(244, 103, 51, 0.7)',
+                  },
+                  '@keyframes funkGradientMove': {
+                    '0%': { backgroundPosition: '0% 50%' },
+                    '50%': { backgroundPosition: '100% 50%' },
+                    '100%': { backgroundPosition: '0% 50%' },
                   },
                 }}
               >
@@ -217,7 +293,16 @@ const Navigation = ({ language, setLanguage }) => {
               </Button>
               <IconButton
                 sx={{
-                  color: '#D4AF37',
+                  color: '#F46733',
+                  background: 'rgba(244, 103, 51, 0.1)',
+                  border: '2px solid rgba(244, 103, 51, 0.3)',
+                  transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                  '&:hover': {
+                    background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
+                    borderColor: '#F46733',
+                    transform: 'rotate(90deg) scale(1.1)',
+                    boxShadow: '0 4px 15px rgba(244, 103, 51, 0.4)',
+                  },
                 }}
                 onClick={toggleMenu}
               >
@@ -227,11 +312,11 @@ const Navigation = ({ language, setLanguage }) => {
 
             {/* Right Side Actions - MOTIVATION & PROMPTS */}
             <Box sx={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              {/* Quick Contact - MOTIVATION (Social Proof) */}
+              {/* Quick Contact - MOTIVATION (Social Proof) with FUNK */}
               <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 0.5 }}>
                 <Fade in={scrolled} timeout={300}>
                   <Chip
-                    icon={<PhoneIcon sx={{ color: '#D4AF37 !important', fontSize: '1rem' }} />}
+                    icon={<PhoneIcon sx={{ color: '#F46733 !important', fontSize: '1rem' }} />}
                     label="+372 5XXX XXXX"
                     onClick={(e) => {
                       e.preventDefault()
@@ -239,73 +324,39 @@ const Navigation = ({ language, setLanguage }) => {
                     }}
                     sx={{
                       display: scrolled ? 'flex' : 'none',
-                      bgcolor: 'rgba(212, 175, 55, 0.15)',
-                      color: '#D4AF37',
-                      border: '1px solid rgba(212, 175, 55, 0.3)',
-                      fontWeight: 600,
+                      background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
+                      color: '#F46733',
+                      border: '2px solid',
+                      borderImage: 'linear-gradient(135deg, #F46733, #D4AF37) 1',
+                      fontWeight: 700,
                       fontSize: '0.85rem',
-                      height: '32px',
+                      height: '36px',
                       cursor: 'pointer',
-                      transition: 'all 0.3s ease',
+                      transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                      boxShadow: '0 2px 8px rgba(244, 103, 51, 0.3)',
                       '&:hover': {
-                        bgcolor: 'rgba(212, 175, 55, 0.25)',
-                        transform: 'scale(1.05)',
+                        background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.3), rgba(212, 175, 55, 0.3))',
+                        transform: 'scale(1.1) translateY(-2px)',
+                        boxShadow: '0 4px 15px rgba(244, 103, 51, 0.5)',
                       },
                     }}
                   />
                 </Fade>
               </Box>
 
-              {/* Language Selector */}
-              <ButtonGroup
-                variant="outlined"
-                size="small"
-                sx={{
-                  display: { xs: 'none', sm: 'flex' },
-                  '& .MuiButton-root': {
-                    borderColor: '#D4AF37',
-                    color: '#D4AF37',
-                    minWidth: 'auto',
-                    padding: '0.4rem 0.9rem',
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                      borderColor: '#E5BF50',
-                      bgcolor: 'rgba(212, 175, 55, 0.1)',
-                    },
-                    '&.active': {
-                      background: '#D4AF37',
-                      color: '#0A0A0A',
-                      borderColor: '#D4AF37',
-                      '&:hover': {
-                        background: '#E5BF50',
-                        borderColor: '#E5BF50',
-                      },
-                    },
-                  },
-                }}
-              >
-                {languages.map(lang => (
-                  <Button
-                    key={lang}
-                    className={language === lang ? 'active' : ''}
-                    onClick={() => setLanguage(lang)}
-                  >
-                    {lang}
-                  </Button>
-                ))}
-              </ButtonGroup>
-
-              {/* Mobile Menu Button */}
+              {/* Mobile Menu Button with FUNK */}
               <IconButton
                 sx={{
                   display: { xs: 'block', md: 'none', lg: 'none' },
-                  color: '#D4AF37',
-                  transition: 'transform 0.3s ease',
+                  color: '#F46733',
+                  background: 'rgba(244, 103, 51, 0.1)',
+                  border: '2px solid rgba(244, 103, 51, 0.3)',
+                  transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
                   '&:hover': {
-                    transform: 'rotate(90deg)',
-                    bgcolor: 'rgba(212, 175, 55, 0.1)',
+                    background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
+                    borderColor: '#F46733',
+                    transform: 'rotate(90deg) scale(1.1)',
+                    boxShadow: '0 4px 15px rgba(244, 103, 51, 0.4)',
                   },
                 }}
                 onClick={toggleMenu}
@@ -325,10 +376,11 @@ const Navigation = ({ language, setLanguage }) => {
         sx={{
           display: { xs: 'block', md: 'block', lg: 'none' },
           '& .MuiDrawer-paper': {
-            background: 'rgba(10, 10, 10, 0.98)',
+            background: 'linear-gradient(180deg, rgba(10, 10, 10, 0.98), rgba(26, 15, 26, 0.98))',
             backdropFilter: 'blur(20px)',
             marginTop: scrolled ? '76px' : '70px',
-            borderBottom: '2px solid #D4AF37',
+            borderBottom: '3px solid transparent',
+            borderImage: 'linear-gradient(90deg, #F46733, #D4AF37, #C41E3A) 1',
             pt: 2,
             pb: 3,
           },
@@ -345,15 +397,34 @@ const Navigation = ({ language, setLanguage }) => {
                   onClick={() => handleNavClick(link.href)}
                   sx={{
                     borderRadius: '8px',
-                    bgcolor: isCTA ? '#D4AF37' : isActive ? 'rgba(212, 175, 55, 0.2)' : 'transparent',
-                    color: isCTA ? '#0A0A0A' : isActive ? '#D4AF37' : '#FFFFFF',
+                    background: isCTA 
+                      ? 'linear-gradient(135deg, #F46733, #D4AF37, #C41E3A)'
+                      : isActive 
+                        ? 'linear-gradient(90deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))'
+                        : 'transparent',
+                    backgroundSize: isCTA ? '200% 200%' : 'auto',
+                    color: isCTA ? '#FFFFFF' : isActive ? '#F46733' : '#FFFFFF',
                     fontWeight: isCTA || isActive ? 700 : 500,
                     py: 1.5,
-                    transition: 'all 0.3s ease',
+                    transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                    animation: isCTA ? 'funkGradientMove 3s ease infinite' : 'none',
+                    boxShadow: isCTA 
+                      ? '0 2px 8px rgba(244, 103, 51, 0.4)'
+                      : 'none',
                     '&:hover': {
-                      bgcolor: isCTA ? '#E5BF50' : 'rgba(212, 175, 55, 0.15)',
-                      transform: 'translateX(5px)',
-                      color: isCTA ? '#0A0A0A' : '#D4AF37',
+                      background: isCTA 
+                        ? 'linear-gradient(135deg, #FF7744, #E5BF50, #D42E4A)'
+                        : 'linear-gradient(90deg, rgba(244, 103, 51, 0.25), rgba(212, 175, 55, 0.25))',
+                      transform: 'translateX(8px) scale(1.02)',
+                      color: isCTA ? '#FFFFFF' : '#F46733',
+                      boxShadow: isCTA 
+                        ? '0 4px 15px rgba(244, 103, 51, 0.6)'
+                        : '0 2px 8px rgba(244, 103, 51, 0.3)',
+                    },
+                    '@keyframes funkGradientMove': {
+                      '0%': { backgroundPosition: '0% 50%' },
+                      '50%': { backgroundPosition: '100% 50%' },
+                      '100%': { backgroundPosition: '0% 50%' },
                     },
                   }}
                 >
@@ -395,47 +466,23 @@ const Navigation = ({ language, setLanguage }) => {
                 setMenuOpen(false)
               }}
               sx={{
-                borderColor: '#D4AF37',
-                color: '#D4AF37',
-                fontWeight: 600,
+                borderColor: '#F46733',
+                borderWidth: '2px',
+                color: '#F46733',
+                fontWeight: 700,
                 py: 1.5,
                 borderRadius: '8px',
+                transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
                 '&:hover': {
-                  borderColor: '#E5BF50',
-                  bgcolor: 'rgba(212, 175, 55, 0.1)',
+                  borderColor: '#D4AF37',
+                  background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 4px 15px rgba(244, 103, 51, 0.4)',
                 },
               }}
             >
               Helista Nüüd
             </Button>
-          </ListItem>
-          
-          {/* Language Selector */}
-          <ListItem sx={{ justifyContent: 'center', gap: '0.5rem', padding: '1rem 0' }}>
-            {languages.map(lang => (
-              <Button
-                key={lang}
-                variant={language === lang ? 'contained' : 'outlined'}
-                size="small"
-                onClick={() => {
-                  setLanguage(lang)
-                  setMenuOpen(false)
-                }}
-                sx={{
-                  minWidth: '60px',
-                  bgcolor: language === lang ? '#D4AF37' : 'transparent',
-                  color: language === lang ? '#0A0A0A' : '#D4AF37',
-                  borderColor: '#D4AF37',
-                  fontWeight: 600,
-                  '&:hover': {
-                    bgcolor: language === lang ? '#E5BF50' : 'rgba(212, 175, 55, 0.1)',
-                    borderColor: '#E5BF50',
-                  },
-                }}
-              >
-                {lang}
-              </Button>
-            ))}
           </ListItem>
         </List>
       </Drawer>
