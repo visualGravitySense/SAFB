@@ -21,6 +21,11 @@ import ZoomInIcon from '@mui/icons-material/ZoomIn'
 import CategoryIcon from '@mui/icons-material/Category'
 import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import creativeGallery1 from '../img/creative-gallery-1.jpg'
+import creativeGallery2 from '../img/creative-gallery-2.jpg'
+import creativeGallery3 from '../img/creative-gallery-3.jpg'
+import creativeGallery4 from '../img/creative-gallery-4.jpg'
+import creativeGallery5 from '../img/creative-gallery-5.jpg'
 
 const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -30,12 +35,11 @@ const Gallery = () => {
 
   // Gallery items with metadata for Fogg's Model
   const galleryItems = [
-    { emoji: '🎸', category: 'instruments', views: 1250, likes: 89, title: 'Live Performance' },
-    { emoji: '🎺', category: 'instruments', views: 980, likes: 72, title: 'Stage Moments' },
-    { emoji: '🥁', category: 'instruments', views: 1100, likes: 95, title: 'Energy & Rhythm' },
-    { emoji: '🎷', category: 'instruments', views: 1350, likes: 102, title: 'Solo Performance' },
-    { emoji: '🎹', category: 'instruments', views: 920, likes: 68, title: 'Keyboard Magic' },
-    { emoji: '🎤', category: 'events', views: 1500, likes: 120, title: 'Crowd Interaction' },
+    { image: creativeGallery1, category: 'events', views: 1250, likes: 89, title: 'Live Performance' },
+    { image: creativeGallery2, category: 'instruments', views: 980, likes: 72, title: 'Stage Moments' },
+    { image: creativeGallery3, category: 'events', views: 1100, likes: 95, title: 'Energy & Rhythm' },
+    { image: creativeGallery4, category: 'instruments', views: 1350, likes: 102, title: 'Solo Performance' },
+    { image: creativeGallery5, category: 'events', views: 920, likes: 68, title: 'Keyboard Magic' },
   ]
 
   const categories = [
@@ -220,15 +224,16 @@ const Gallery = () => {
                       background: 'rgba(0, 0, 0, 0.4)',
                       opacity: hoveredIndex === index ? 0 : 1,
                       transition: 'opacity 0.4s ease',
+                      zIndex: 1,
                     },
                     '&:hover': {
                       transform: 'scale(1.08) translateY(-8px)',
                       boxShadow: '0 25px 70px rgba(212, 175, 55, 0.5)',
                       '&::before': {
-                        opacity: 0,
+                        opacity: 0.2,
                       },
-                      '& .gallery-emoji': {
-                        transform: 'scale(1.4) rotate(-8deg)',
+                      '& .gallery-image': {
+                        transform: 'scale(1.1)',
                       },
                       '& .gallery-overlay': {
                         opacity: 1,
@@ -249,16 +254,21 @@ const Gallery = () => {
                     }}
                   >
                     <Box
-                      className="gallery-emoji"
+                      component="img"
+                      src={item.image}
+                      alt={item.title}
+                      className="gallery-image"
                       sx={{
-                        fontSize: '6rem',
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
                         transition: 'transform 0.4s ease',
-                        zIndex: 1,
-                        position: 'relative',
+                        zIndex: 0,
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
                       }}
-                    >
-                      {item.emoji}
-                    </Box>
+                    />
 
                     {/* Prompts: Hover Overlay with Info */}
                     <Box
@@ -278,7 +288,7 @@ const Gallery = () => {
                         opacity: 0,
                         transform: 'translateY(20px)',
                         transition: 'all 0.4s ease',
-                        zIndex: 2,
+                        zIndex: 3,
                       }}
                     >
                       <Typography

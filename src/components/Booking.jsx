@@ -792,7 +792,7 @@ const Booking = () => {
               <Paper
                 elevation={8}
                 sx={{
-                  p: { xs: 2, sm: 3, md: 5 },
+                  p: { xs: 1.5, sm: 2, md: 2.5 },
                   borderRadius: 0,
                   position: 'relative',
                   background: '#FFFFFF',
@@ -984,7 +984,7 @@ const Booking = () => {
                 </Box>
 
                 <form onSubmit={handleSubmit}>
-                  <Grid container spacing={{ xs: 2, sm: 2.5, md: 3 }}>
+                  <Grid container spacing={{ xs: 1, sm: 1.5, md: 2 }}>
                     {/* Event Type */}
                     <Grid item xs={12}>
                       <TextField
@@ -1001,20 +1001,21 @@ const Booking = () => {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <EventIcon sx={{ color: formData.eventType ? '#D4AF37' : '#999', fontSize: { xs: '1.25rem', md: '1.5rem' } }} />
+                              <EventIcon sx={{ color: formData.eventType ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
                             </InputAdornment>
                           ),
                         }}
                         sx={{
                           '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.875rem', md: '1rem' },
+                            fontSize: { xs: '0.8rem', md: '0.875rem' },
                           },
                           '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.95rem', md: '1rem' },
-                            py: { xs: 1.25, md: 1.5 },
+                            fontSize: { xs: '0.875rem', md: '0.9rem' },
+                            py: { xs: 0.75, md: 1 },
                           },
                           '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.7rem', md: '0.75rem' },
+                            fontSize: { xs: '0.65rem', md: '0.7rem' },
+                            mt: 0.5,
                           },
                           '& .MuiOutlinedInput-root': {
                             '&:hover fieldset': {
@@ -1059,20 +1060,21 @@ const Booking = () => {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <CalendarMonthIcon sx={{ color: formData.eventDate ? '#D4AF37' : '#999', fontSize: { xs: '1.25rem', md: '1.5rem' } }} />
+                              <CalendarMonthIcon sx={{ color: formData.eventDate ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
                             </InputAdornment>
                           ),
                         }}
                         sx={{
                           '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.875rem', md: '1rem' },
+                            fontSize: { xs: '0.8rem', md: '0.875rem' },
                           },
                           '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.95rem', md: '1rem' },
-                            py: { xs: 1.25, md: 1.5 },
+                            fontSize: { xs: '0.875rem', md: '0.9rem' },
+                            py: { xs: 0.75, md: 1 },
                           },
                           '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.7rem', md: '0.75rem' },
+                            fontSize: { xs: '0.65rem', md: '0.7rem' },
+                            mt: 0.5,
                           },
                           '& .MuiOutlinedInput-root': {
                             '&:hover fieldset': {
@@ -1104,20 +1106,21 @@ const Booking = () => {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <PeopleIcon sx={{ color: formData.guests ? '#D4AF37' : '#999', fontSize: { xs: '1.25rem', md: '1.5rem' } }} />
+                              <PeopleIcon sx={{ color: formData.guests ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
                             </InputAdornment>
                           ),
                         }}
                         sx={{
                           '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.875rem', md: '1rem' },
+                            fontSize: { xs: '0.8rem', md: '0.875rem' },
                           },
                           '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.95rem', md: '1rem' },
-                            py: { xs: 1.25, md: 1.5 },
+                            fontSize: { xs: '0.875rem', md: '0.9rem' },
+                            py: { xs: 0.75, md: 1 },
                           },
                           '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.7rem', md: '0.75rem' },
+                            fontSize: { xs: '0.65rem', md: '0.7rem' },
+                            mt: 0.5,
                           },
                           '& .MuiOutlinedInput-root': {
                             '&:hover fieldset': {
@@ -1147,20 +1150,21 @@ const Booking = () => {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <LocationOnIcon sx={{ color: formData.location ? '#D4AF37' : '#999', fontSize: { xs: '1.25rem', md: '1.5rem' } }} />
+                              <LocationOnIcon sx={{ color: formData.location ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
                             </InputAdornment>
                           ),
                         }}
                         sx={{
                           '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.875rem', md: '1rem' },
+                            fontSize: { xs: '0.8rem', md: '0.875rem' },
                           },
                           '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.95rem', md: '1rem' },
-                            py: { xs: 1.25, md: 1.5 },
+                            fontSize: { xs: '0.875rem', md: '0.9rem' },
+                            py: { xs: 0.75, md: 1 },
                           },
                           '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.7rem', md: '0.75rem' },
+                            fontSize: { xs: '0.65rem', md: '0.7rem' },
+                            mt: 0.5,
                           },
                           '& .MuiOutlinedInput-root': {
                             '&:hover fieldset': {
@@ -1190,20 +1194,21 @@ const Booking = () => {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <PersonIcon sx={{ color: formData.name ? '#D4AF37' : '#999', fontSize: { xs: '1.25rem', md: '1.5rem' } }} />
+                              <PersonIcon sx={{ color: formData.name ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
                             </InputAdornment>
                           ),
                         }}
                         sx={{
                           '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.875rem', md: '1rem' },
+                            fontSize: { xs: '0.8rem', md: '0.875rem' },
                           },
                           '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.95rem', md: '1rem' },
-                            py: { xs: 1.25, md: 1.5 },
+                            fontSize: { xs: '0.875rem', md: '0.9rem' },
+                            py: { xs: 0.75, md: 1 },
                           },
                           '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.7rem', md: '0.75rem' },
+                            fontSize: { xs: '0.65rem', md: '0.7rem' },
+                            mt: 0.5,
                           },
                           '& .MuiOutlinedInput-root': {
                             '&:hover fieldset': {
@@ -1234,20 +1239,21 @@ const Booking = () => {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <EmailIcon sx={{ color: formData.email && !fieldErrors.email ? '#D4AF37' : '#999', fontSize: { xs: '1.25rem', md: '1.5rem' } }} />
+                              <EmailIcon sx={{ color: formData.email && !fieldErrors.email ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
                             </InputAdornment>
                           ),
                         }}
                         sx={{
                           '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.875rem', md: '1rem' },
+                            fontSize: { xs: '0.8rem', md: '0.875rem' },
                           },
                           '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.95rem', md: '1rem' },
-                            py: { xs: 1.25, md: 1.5 },
+                            fontSize: { xs: '0.875rem', md: '0.9rem' },
+                            py: { xs: 0.75, md: 1 },
                           },
                           '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.7rem', md: '0.75rem' },
+                            fontSize: { xs: '0.65rem', md: '0.7rem' },
+                            mt: 0.5,
                           },
                           '& .MuiOutlinedInput-root': {
                             '&:hover fieldset': {
@@ -1278,20 +1284,21 @@ const Booking = () => {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <PhoneIcon sx={{ color: formData.phone && !fieldErrors.phone ? '#D4AF37' : '#999', fontSize: { xs: '1.25rem', md: '1.5rem' } }} />
+                              <PhoneIcon sx={{ color: formData.phone && !fieldErrors.phone ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
                             </InputAdornment>
                           ),
                         }}
                         sx={{
                           '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.875rem', md: '1rem' },
+                            fontSize: { xs: '0.8rem', md: '0.875rem' },
                           },
                           '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.95rem', md: '1rem' },
-                            py: { xs: 1.25, md: 1.5 },
+                            fontSize: { xs: '0.875rem', md: '0.9rem' },
+                            py: { xs: 0.75, md: 1 },
                           },
                           '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.7rem', md: '0.75rem' },
+                            fontSize: { xs: '0.65rem', md: '0.7rem' },
+                            mt: 0.5,
                           },
                           '& .MuiOutlinedInput-root': {
                             '&:hover fieldset': {
@@ -1310,7 +1317,7 @@ const Booking = () => {
                       <TextField
                         fullWidth
                         multiline
-                        rows={4}
+                        rows={2}
                         label="Lisainfo / Soovid"
                         name="message"
                         value={formData.message}
@@ -1318,17 +1325,19 @@ const Booking = () => {
                         placeholder="Kirjeldage oma üritust ja ootusi... (valikuline)"
                         InputProps={{
                           startAdornment: (
-                            <InputAdornment position="start" sx={{ alignSelf: 'flex-start', mt: { xs: 1.5, md: 1 } }}>
-                              <InfoIcon sx={{ color: '#999', fontSize: { xs: '1.25rem', md: '1.5rem' } }} />
+                            <InputAdornment position="start" sx={{ alignSelf: 'flex-start', mt: { xs: 0.75, md: 0.5 } }}>
+                              <InfoIcon sx={{ color: '#999', fontSize: { xs: '0.9rem', md: '1rem' } }} />
                             </InputAdornment>
                           ),
                         }}
                         sx={{
                           '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.875rem', md: '1rem' },
+                            fontSize: { xs: '0.8rem', md: '0.875rem' },
                           },
                           '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.95rem', md: '1rem' },
+                            fontSize: { xs: '0.875rem', md: '0.9rem' },
+                            py: { xs: 0.75, md: 1 },
+                            lineHeight: 1.4,
                           },
                           '& .MuiOutlinedInput-root': {
                             '&:hover fieldset': {
@@ -1390,12 +1399,12 @@ const Booking = () => {
                         startIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SendIcon sx={{ fontSize: { xs: '1.25rem', md: '1.5rem' } }} />}
                         disabled={loading || !isFormValid()}
                         sx={{
-                          py: { xs: 1.75, md: 2 },
-                          minHeight: { xs: '48px', md: '56px' },
+                          py: { xs: 1.25, md: 1.5 },
+                          minHeight: { xs: '42px', md: '48px' },
                           bgcolor: isFormValid() ? '#D4AF37' : '#ccc',
                           color: '#1A1A1A',
                           fontWeight: 700,
-                          fontSize: { xs: '0.95rem', sm: '1rem', md: '1.1rem' },
+                          fontSize: { xs: '0.85rem', sm: '0.9rem', md: '0.95rem' },
                           textTransform: 'uppercase',
                           letterSpacing: '0.15em',
                           borderRadius: 0,

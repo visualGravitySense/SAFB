@@ -24,7 +24,7 @@ const Stats = () => {
 
   const stats = [
     {
-      icon: <EventIcon sx={{ fontSize: '3rem' }} />,
+      icon: <EventIcon sx={{ fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }} />,
       value: 200,
       suffix: '+',
       label: 'Üritust',
@@ -33,7 +33,7 @@ const Stats = () => {
       duration: 2000,
     },
     {
-      icon: <PeopleIcon sx={{ fontSize: '3rem' }} />,
+      icon: <PeopleIcon sx={{ fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }} />,
       value: 50,
       suffix: 'K+',
       label: 'Vaatajat',
@@ -42,7 +42,7 @@ const Stats = () => {
       duration: 2500,
     },
     {
-      icon: <CalendarTodayIcon sx={{ fontSize: '3rem' }} />,
+      icon: <CalendarTodayIcon sx={{ fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }} />,
       value: 8,
       suffix: '',
       label: 'Aastat',
@@ -51,7 +51,7 @@ const Stats = () => {
       duration: 1500,
     },
     {
-      icon: <AlbumIcon sx={{ fontSize: '3rem' }} />,
+      icon: <AlbumIcon sx={{ fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }} />,
       value: 2,
       suffix: '',
       label: 'Albumit',
@@ -140,8 +140,8 @@ const Stats = () => {
     <Box
       ref={statsRef}
       sx={{
-        py: 8,
-        px: 2,
+        py: { xs: 4, sm: 6, md: 8 },
+        px: { xs: 1, sm: 2 },
         background: 'linear-gradient(180deg, #0A0A0A 0%, #1A0F1A 50%, #0A0A0A 100%)',
         color: 'var(--white)',
         position: 'relative',
@@ -178,23 +178,28 @@ const Stats = () => {
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={4}>
+        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
           {stats.map((stat, index) => (
             <Grid item xs={6} md={3} key={index}>
               <Grow
                 in={isVisible}
                 timeout={600 + index * 200}
-                style={{ transformOrigin: 'center' }}
+                style={{ transformOrigin: 'center', display: 'flex', height: '100%' }}
               >
                 <Box
                   sx={{
                     textAlign: 'center',
-                    py: 3,
-                    px: 2,
+                    py: { xs: 2, sm: 2.5, md: 3 },
+                    px: { xs: 1, sm: 1.5, md: 2 },
                     borderRadius: '16px',
                     position: 'relative',
                     transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                     cursor: 'default',
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
                     '&::before': {
                       content: '""',
                       position: 'absolute',
@@ -242,7 +247,7 @@ const Stats = () => {
                   <Box
                     className="stat-icon"
                     sx={{
-                      mb: 2,
+                      mb: { xs: 1.5, md: 2 },
                       display: 'flex',
                       justifyContent: 'center',
                       transition: 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
@@ -265,9 +270,9 @@ const Stats = () => {
                     variant="h2"
                     component="div"
                     sx={{
-                      fontSize: { xs: '2.5rem', sm: '3rem', md: '3.5rem' },
+                      fontSize: { xs: '2rem', sm: '2.5rem', md: '3.5rem' },
                       fontWeight: 'bold',
-                      mb: 1,
+                      mb: { xs: 0.75, md: 1 },
                       fontFamily: "'Righteous', cursive",
                       background: 'linear-gradient(135deg, #F46733, #D4AF37, #F46733)',
                       backgroundSize: '200% 200%',
@@ -294,10 +299,10 @@ const Stats = () => {
                     variant="h6"
                     component="div"
                     sx={{
-                      fontSize: { xs: '1rem', md: '1.2rem' },
+                      fontSize: { xs: '0.85rem', sm: '0.95rem', md: '1.2rem' },
                       fontWeight: 600,
                       color: 'rgba(255, 255, 255, 0.9)',
-                      mb: 0.5,
+                      mb: { xs: 0.25, md: 0.5 },
                       transition: 'color 0.3s ease',
                       textTransform: 'uppercase',
                       letterSpacing: '0.1em',
@@ -310,7 +315,7 @@ const Stats = () => {
                   <Typography
                     variant="body2"
                     sx={{
-                      fontSize: '0.85rem',
+                      fontSize: { xs: '0.7rem', sm: '0.75rem', md: '0.85rem' },
                       color: 'rgba(255, 255, 255, 0.6)',
                       fontStyle: 'italic',
                       opacity: 0.8,
@@ -324,11 +329,11 @@ const Stats = () => {
                   <Box
                     className="stat-line"
                     sx={{
-                      mt: 2,
+                      mt: { xs: 1.5, md: 2 },
                       height: '3px',
-                      width: '40px',
+                      width: { xs: '30px', sm: '35px', md: '40px' },
                       background: `linear-gradient(90deg, transparent, #F46733, #D4AF37, transparent)`,
-                      margin: '12px auto 0',
+                      margin: { xs: '8px auto 0', md: '12px auto 0' },
                       borderRadius: '2px',
                       transition: 'all 0.4s ease',
                       opacity: 0.8,
@@ -340,17 +345,18 @@ const Stats = () => {
             </Grid>
           ))}
         </Grid>
+        </Box>
 
         {/* Trust Indicator - Additional MOTIVATION with FUNK */}
         <Fade in={isVisible} timeout={1000}>
-          <Box sx={{ textAlign: 'center', mt: 5 }}>
+          <Box sx={{ textAlign: 'center', mt: { xs: 3, sm: 4, md: 5 } }}>
             <Box
               sx={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: 1.5,
-                px: 4,
-                py: 2,
+                gap: { xs: 1, sm: 1.25, md: 1.5 },
+                px: { xs: 2, sm: 3, md: 4 },
+                py: { xs: 1.5, sm: 1.75, md: 2 },
                 borderRadius: '12px',
                 background: 'rgba(26, 20, 20, 0.9)',
                 border: '2px solid',
@@ -387,7 +393,7 @@ const Stats = () => {
                 className="trust-star"
                 component="span"
                 sx={{
-                  fontSize: '1.8rem',
+                  fontSize: { xs: '1.4rem', sm: '1.6rem', md: '1.8rem' },
                   lineHeight: 1,
                   filter: 'drop-shadow(0 0 10px rgba(212, 175, 55, 0.7))',
                   transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
@@ -411,7 +417,7 @@ const Stats = () => {
                 component="span"
                 sx={{
                   color: '#FFFFFF',
-                  fontSize: '0.95rem',
+                  fontSize: { xs: '0.8rem', sm: '0.85rem', md: '0.95rem' },
                   fontWeight: 500,
                   letterSpacing: '0.02em',
                 }}
