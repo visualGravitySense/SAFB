@@ -5,19 +5,49 @@ import {
   Button,
   Grid,
   Stack,
+  Fade,
 } from '@mui/material'
-import AppleIcon from '@mui/icons-material/Apple'
 import HeadphonesIcon from '@mui/icons-material/Headphones'
+import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import { useState, useEffect, useRef } from 'react'
 
 const Music = () => {
+  const [isVisible, setIsVisible] = useState(false)
+  const musicRef = useRef(null)
+
   const videos = [
     { id: 'i8pk65jrAr4' },
     { id: 'diNFHbWtF6o' },
     { id: 'Twa7DHyG81A' }
   ]
 
+  // Intersection Observer for scroll-triggered animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    if (musicRef.current) {
+      observer.observe(musicRef.current)
+    }
+
+    return () => {
+      if (musicRef.current) {
+        observer.unobserve(musicRef.current)
+      }
+    }
+  }, [])
+
   return (
     <Box
+      ref={musicRef}
       id="muusika"
       sx={{
         py: 8,
@@ -87,6 +117,183 @@ const Music = () => {
         >
           🎵 Kuula Meie Muusikat
         </Typography>
+
+        {/* Introduction Text - MOTIVATION */}
+        <Fade in={isVisible} timeout={800}>
+          <Box sx={{ maxWidth: '900px', mx: 'auto', mb: 5, px: { xs: 2, sm: 3, md: 0 }, position: 'relative', zIndex: 1 }}>
+            <Typography
+              variant="h3"
+              component="h3"
+              sx={{
+                fontSize: { xs: '1.4rem', sm: '1.6rem', md: '1.8rem' },
+                fontWeight: 700,
+                mb: 3,
+                textAlign: 'center',
+                background: 'linear-gradient(135deg, #F46733, #D4AF37)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                fontFamily: "'Righteous', cursive",
+                letterSpacing: '0.05em',
+              }}
+            >
+              Siim Aimla Funk Band – Eeskujudest omaloominguni
+            </Typography>
+
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' },
+                lineHeight: 1.9,
+                color: 'rgba(255, 255, 255, 0.95)',
+                mb: 3,
+                textAlign: 'center',
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+              }}
+            >
+              🎺 Kui funk kohtub jazzi ja eesti muusikalise meisterlikkusega, sünnib midagi erilist.
+            </Typography>
+
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' },
+                lineHeight: 1.9,
+                color: 'rgba(255, 255, 255, 0.9)',
+                mb: 3,
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+              }}
+            >
+              <strong style={{ 
+                background: 'linear-gradient(135deg, #F46733, #D4AF37)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                fontWeight: 700,
+              }}>Siim Aimla</strong>, Eesti jazz'i kvaliteedimärk juba paarkümmend aastat, lõi <strong style={{ color: '#D4AF37' }}>2017. aastal</strong> bändi, mis kannab tema isikupärast käekirja. Inspiratsioon tuleb <strong style={{ color: '#D4AF37' }}>James Brownilt</strong>, <strong style={{ color: '#D4AF37' }}>Michael Breckerilt</strong> ja <strong style={{ color: '#D4AF37' }}>Nils Landgrenilt</strong>, aga tulemus on 100% oma.
+            </Typography>
+
+            {/* Albums Section */}
+            <Box sx={{ mb: 3 }}>
+              <Box
+                sx={{
+                  p: { xs: 2, sm: 2.5, md: 3 },
+                  mb: 2.5,
+                  borderRadius: '12px',
+                  background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.15), rgba(212, 175, 55, 0.15))',
+                  border: '2px solid',
+                  borderColor: 'rgba(212, 175, 55, 0.3)',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    borderColor: 'rgba(212, 175, 55, 0.5)',
+                    boxShadow: '0 8px 30px rgba(244, 103, 51, 0.2)',
+                  },
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
+                    fontWeight: 700,
+                    mb: 1.5,
+                    color: '#D4AF37',
+                    fontFamily: "'Righteous', cursive",
+                  }}
+                >
+                  📀 "We Need To Talk" (2019)
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: '0.95rem', sm: '1rem', md: '1.1rem' },
+                    lineHeight: 1.8,
+                    color: 'rgba(255, 255, 255, 0.9)',
+                    textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                  }}
+                >
+                  – dünaamiline, mitmekihiline, sügav. Mõjutused <strong style={{ color: '#D4AF37' }}>John Scofieldi</strong>, <strong style={{ color: '#D4AF37' }}>Jaco Pastoriouse</strong> ja <strong style={{ color: '#D4AF37' }}>Bob Mintzerist</strong>, aga käekiri puhtalt Aimla oma.
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  p: { xs: 2, sm: 2.5, md: 3 },
+                  borderRadius: '12px',
+                  background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.15), rgba(212, 175, 55, 0.15))',
+                  border: '2px solid',
+                  borderColor: 'rgba(212, 175, 55, 0.3)',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    borderColor: 'rgba(212, 175, 55, 0.5)',
+                    boxShadow: '0 8px 30px rgba(244, 103, 51, 0.2)',
+                  },
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
+                    fontWeight: 700,
+                    mb: 1.5,
+                    color: '#D4AF37',
+                    fontFamily: "'Righteous', cursive",
+                  }}
+                >
+                  📀 "Blind Date" (2021)
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: '0.95rem', sm: '1rem', md: '1.1rem' },
+                    lineHeight: 1.8,
+                    color: 'rgba(255, 255, 255, 0.9)',
+                    textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                    mb: 1,
+                  }}
+                >
+                  – album, mis muudab iga kuulamise reedeõhtuseks peoks. Muusika, mis ei jää kõrvu – see läheb otse naha alla.
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontSize: { xs: '0.85rem', sm: '0.9rem', md: '0.95rem' },
+                    lineHeight: 1.7,
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontStyle: 'italic',
+                    textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                  }}
+                >
+                  Külalisvokalistid <strong style={{ color: '#D4AF37' }}>Sofia Rubina-Hunter</strong>, <strong style={{ color: '#D4AF37' }}>Rita Ray</strong>, <strong style={{ color: '#D4AF37' }}>Marvi Vallaste</strong>, <strong style={{ color: '#D4AF37' }}>Kalle Sepp</strong> ja Rootsi jazzidiiva <strong style={{ color: '#D4AF37' }}>Viktoria Tolstoy</strong> lisavad särtsu.
+                </Typography>
+              </Box>
+            </Box>
+
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
+                lineHeight: 1.8,
+                color: 'rgba(255, 255, 255, 0.95)',
+                textAlign: 'center',
+                fontStyle: 'italic',
+                px: 3,
+                py: 2.5,
+                borderRadius: '12px',
+                background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
+                border: '2px solid',
+                borderColor: 'rgba(212, 175, 55, 0.4)',
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+              }}
+            >
+              ✨ <strong style={{ 
+                background: 'linear-gradient(135deg, #F46733, #D4AF37)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}>Tulemus?</strong> Muusika, mis vallutab nii südame kui ka meeled. Funk, jazz ja loomeenergia, mis ei küsi luba – ta lihtsalt juhtub. 🎶
+            </Typography>
+          </Box>
+        </Fade>
 
         {/* YouTube Videos Grid with FUNK */}
         <Grid container spacing={3} sx={{ mb: 5, position: 'relative', zIndex: 1 }}>
@@ -163,8 +370,9 @@ const Music = () => {
             variant="contained"
             size="large"
             startIcon={<HeadphonesIcon />}
-            href="#"
+            href="https://open.spotify.com/artist/21qqplNYBXQBFtm3kqqo09"
             target="_blank"
+            rel="noopener noreferrer"
             sx={{
               px: 4,
               py: 1.8,
@@ -191,9 +399,10 @@ const Music = () => {
           <Button
             variant="outlined"
             size="large"
-            startIcon={<AppleIcon />}
-            href="#"
+            startIcon={<PlayArrowIcon />}
+            href="https://www.youtube.com/@siimaimlafunkband3223"
             target="_blank"
+            rel="noopener noreferrer"
             sx={{
               px: 4,
               py: 1.8,
@@ -218,7 +427,7 @@ const Music = () => {
               },
             }}
           >
-            Apple Music
+            Vaata Rohkem Videoid
           </Button>
         </Stack>
       </Container>

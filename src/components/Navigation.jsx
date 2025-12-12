@@ -31,7 +31,18 @@ const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('avaleht')
+  const [isNavVisible, setIsNavVisible] = useState(true)
   const theme = useTheme()
+
+  // Generate snowflakes for Christmas animation in header
+  const snowflakes = Array.from({ length: 15 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    delay: Math.random() * 8,
+    duration: 5 + Math.random() * 7,
+    size: 8 + Math.random() * 10,
+    opacity: 0.4 + Math.random() * 0.4,
+  }))
 
   // Track scroll for header styling - PROMPTS
   useEffect(() => {
@@ -55,6 +66,38 @@ const Navigation = () => {
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Track navigation visibility to disable snowflake animation when not visible
+  useEffect(() => {
+    const navElement = document.querySelector('[role="banner"]') || document.querySelector('header')
+    if (!navElement) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Disable animation when navigation is not visible (scrolled down)
+          setIsNavVisible(entry.isIntersecting || window.scrollY < 200)
+        })
+      },
+      {
+        threshold: 0,
+        rootMargin: '-100px 0px 0px 0px', // Consider nav visible if within 100px from top
+      }
+    )
+
+    observer.observe(navElement)
+
+    // Also check on scroll for better performance
+    const handleScrollCheck = () => {
+      setIsNavVisible(window.scrollY < 200)
+    }
+    window.addEventListener('scroll', handleScrollCheck, { passive: true })
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', handleScrollCheck)
+    }
   }, [])
 
   const toggleMenu = () => {
@@ -98,6 +141,42 @@ const Navigation = () => {
               ? '0 4px 20px rgba(244, 103, 51, 0.3)' 
               : 'none',
             transition: 'all 0.3s ease',
+            overflow: 'visible',
+            // Christmas snowflakes animation keyframes
+            '@keyframes snowfallHeader': {
+              '0%': {
+                transform: 'translateY(0) translateX(0) rotate(0deg)',
+                opacity: 0,
+              },
+              '5%': {
+                opacity: 0.9,
+              },
+              '50%': {
+                transform: 'translateY(60px) translateX(10px) rotate(180deg)',
+                opacity: 0.8,
+              },
+              '95%': {
+                opacity: 0.2,
+              },
+              '100%': {
+                transform: 'translateY(100px) translateX(-5px) rotate(360deg)',
+                opacity: 0,
+              },
+            },
+            // Christmas snowflakes animation in header
+            '& .snowflake': {
+              position: 'absolute',
+              top: '-10px',
+              color: 'rgba(255, 255, 255, 1)',
+              fontSize: '1.2rem',
+              pointerEvents: 'none',
+              userSelect: 'none',
+              zIndex: 100,
+              textShadow: '0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(212, 175, 55, 0.6)',
+              willChange: 'transform, opacity',
+              lineHeight: 1,
+              display: 'block',
+            },
             '&::after': {
               content: '""',
               position: 'absolute',
@@ -129,6 +208,29 @@ const Navigation = () => {
             },
           }}
         >
+          {/* Christmas Snowflakes in Header - Only animate when visible */}
+          {isNavVisible && snowflakes.map((snowflake) => (
+            <Box
+              key={snowflake.id}
+              className="snowflake"
+              component="span"
+              sx={{
+                position: 'absolute',
+                left: `${snowflake.left}%`,
+                top: '-10px',
+                animation: isNavVisible 
+                  ? `snowfallHeader ${snowflake.duration}s linear ${snowflake.delay}s infinite`
+                  : 'none',
+                fontSize: `${snowflake.size}px`,
+                filter: 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.7))',
+                zIndex: 100,
+                display: isNavVisible ? 'block' : 'none',
+              }}
+            >
+              ❄
+            </Box>
+          ))}
+
           <Toolbar 
             sx={{ 
               maxWidth: '1400px', 
@@ -136,6 +238,8 @@ const Navigation = () => {
               margin: '0 auto', 
               justifyContent: 'space-between',
               py: 1,
+              position: 'relative',
+              zIndex: 1,
             }}
           >
             {/* Logo - Enhanced MOTIVATION with FUNK Style */}
@@ -323,34 +427,83 @@ const Navigation = () => {
             <Box sx={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
               {/* Quick Contact - MOTIVATION (Social Proof) with FUNK */}
               <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 0.5 }}>
-                <Fade in={scrolled} timeout={300}>
-                  <Chip
-                    icon={<PhoneIcon sx={{ color: '#F46733 !important', fontSize: '1rem' }} />}
-                    label="+372 5XXX XXXX"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      handleNavClick('#kontakt')
-                    }}
+                <Box
+                  sx={{
+                    position: 'relative',
+                    '&:hover': {
+                      transform: 'translateY(-2px)',
+                    },
+                    transition: 'transform 0.3s ease',
+                  }}
+                >
+                  {/* Glow effect */}
+                  <Box
                     sx={{
-                      display: scrolled ? 'flex' : 'none',
-                      background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
-                      color: '#F46733',
-                      border: '2px solid',
-                      borderImage: 'linear-gradient(135deg, #F46733, #D4AF37) 1',
-                      fontWeight: 700,
-                      fontSize: '0.85rem',
-                      height: '36px',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-                      boxShadow: '0 2px 8px rgba(244, 103, 51, 0.3)',
-                      '&:hover': {
-                        background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.3), rgba(212, 175, 55, 0.3))',
-                        transform: 'scale(1.1) translateY(-2px)',
-                        boxShadow: '0 4px 15px rgba(244, 103, 51, 0.5)',
+                      position: 'absolute',
+                      inset: '-2px',
+                      borderRadius: '20px',
+                      background: 'linear-gradient(135deg, #F46733, #D4AF37, #F46733)',
+                      backgroundSize: '200% 200%',
+                      opacity: 0.4,
+                      filter: 'blur(6px)',
+                      zIndex: 0,
+                      animation: 'elegantPhoneGlow 3s ease-in-out infinite',
+                      '@keyframes elegantPhoneGlow': {
+                        '0%': { backgroundPosition: '0% 50%' },
+                        '50%': { backgroundPosition: '100% 50%' },
+                        '100%': { backgroundPosition: '0% 50%' },
                       },
                     }}
                   />
-                </Fade>
+                  <Chip
+                    icon={<PhoneIcon sx={{ 
+                      color: '#D4AF37 !important', 
+                      fontSize: '1.1rem !important',
+                      filter: 'drop-shadow(0 0 6px rgba(212, 175, 55, 0.6))',
+                      transition: 'all 0.3s ease',
+                    }} />}
+                    label="+372 511 8528"
+                    component="a"
+                    href="tel:+3725118528"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                    }}
+                    sx={{
+                      position: 'relative',
+                      zIndex: 1,
+                      background: 'linear-gradient(135deg, rgba(20, 18, 16, 0.95), rgba(30, 25, 20, 0.95))',
+                      color: '#D4AF37',
+                      border: '1.5px solid',
+                      borderColor: 'rgba(212, 175, 55, 0.4)',
+                      fontWeight: 600,
+                      fontSize: '0.9rem',
+                      height: '40px',
+                      px: 2,
+                      cursor: 'pointer',
+                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                      borderRadius: '20px',
+                      backdropFilter: 'blur(20px)',
+                      boxShadow: '0 4px 20px rgba(212, 175, 55, 0.25), 0 0 0 1px rgba(212, 175, 55, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+                      letterSpacing: '0.03em',
+                      '& .MuiChip-label': {
+                        px: 1,
+                        fontWeight: 600,
+                      },
+                      '&:hover': {
+                        background: 'linear-gradient(135deg, rgba(30, 25, 20, 0.98), rgba(40, 32, 24, 0.98))',
+                        borderColor: 'rgba(212, 175, 55, 0.7)',
+                        color: '#FFD700',
+                        transform: 'scale(1.05)',
+                        boxShadow: '0 8px 30px rgba(212, 175, 55, 0.4), 0 0 40px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.12)',
+                        '& .MuiChip-icon': {
+                          color: '#FFD700 !important',
+                          filter: 'drop-shadow(0 0 10px rgba(255, 215, 0, 0.8))',
+                          transform: 'scale(1.1)',
+                        },
+                      },
+                    }}
+                  />
+                </Box>
               </Box>
 
               {/* Mobile Menu Button with FUNK */}
@@ -393,7 +546,7 @@ const Navigation = () => {
         sx={{
           display: { xs: 'block', md: 'block', lg: 'none' },
           '& .MuiDrawer-paper': {
-            background: 'linear-gradient(180deg, rgba(10, 10, 10, 0.98), rgba(26, 15, 26, 0.98))',
+            background: 'linear-gradient(180deg, rgba(10, 10, 10, 0.9), rgba(26, 15, 26, 0.9))',
             backdropFilter: 'blur(20px)',
             marginTop: scrolled ? '76px' : '70px',
             borderBottom: '3px solid transparent',
@@ -478,8 +631,9 @@ const Navigation = () => {
               fullWidth
               variant="outlined"
               startIcon={<PhoneIcon />}
+              component="a"
+              href="tel:+3725118528"
               onClick={() => {
-                handleNavClick('#kontakt')
                 setMenuOpen(false)
               }}
               sx={{
