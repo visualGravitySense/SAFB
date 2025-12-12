@@ -21,35 +21,52 @@
 3. Используйте следующий шаблон:
 
 ```
-Тема: Uus broneeringu päring - {{eventType}}
+Тема: Uus broneering: {{eventType}}
 
 Tere!
 
-Teil on uus broneeringu päring Siim Aimla Funk Band jaoks.
+Saite uue broneeringu tellimuse Siim Aimla Funk Band veebilehelt.
 
-Andmed:
-- Ürituse tüüp: {{eventType}}
-- Kuupäev: {{eventDate}}
-- Asukoht: {{location}}
-- Külaliste arv: {{guests}}
-- Nimi: {{name}}
-- E-mail: {{email}}
-- Telefon: {{phone}}
-- Lisainfo: {{message}}
+DETALJID:
+---------------------------
+Ürituse tüüp: {{eventType}}
+Kuupäev: {{eventDate}}
+Asukoht: {{location}}
+Koosseisu formaat: {{format}}
+---------------------------
 
-Parimate soovidega,
-Siim Aimla Funk Band veebisait
+KONTAKTANDMED:
+Nimi: {{name}}
+E-post: {{email}}
+Telefon: {{phone}}
+---------------------------
+
+LISAINFO:
+{{message}}
+
+---------------------------
+Küsimuste korral võtke ühendust: info@safunkband.ee
 ```
 
-4. Скопируйте **Template ID** (например: `template_xxxxxxx`)
+4. В шаблоне используйте следующие переменные:
+   - {{eventType}} - Тип мероприятия
+   - {{eventDate}} - Дата мероприятия
+   - {{location}} - Местоположение
+   - {{format}} - Формат состава (PREMIUM/STANDARD/DUO)
+   - {{name}} - Имя клиента
+   - {{email}} - Email клиента
+   - {{phone}} - Телефон клиента
+   - {{message}} - Дополнительная информация
 
-## Шаг 4: Получение Public Key
+5. Скопируйте **Template ID** (например: `template_xxxxxxx`)
+
+## Шаг 5: Получение Public Key
 
 1. Перейдите в раздел **Account** → **General**
 2. Найдите **Public Key**
 3. Скопируйте его (например: `xxxxxxxxxxxxx`)
 
-## Шаг 5: Настройка конфигурации
+## Шаг 6: Настройка конфигурации
 
 Откройте файл `src/config/emailjs.js` и замените значения:
 

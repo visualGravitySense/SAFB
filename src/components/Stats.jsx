@@ -178,6 +178,35 @@ const Stats = () => {
       }}
     >
       <Container maxWidth="lg">
+        {/* Introductory Text - MOTIVATION */}
+        <Fade in={isVisible} timeout={600}>
+          <Box sx={{ textAlign: 'center', mb: { xs: 4, sm: 5, md: 6 } }}>
+            <Typography
+              variant="h4"
+              component="p"
+              sx={{
+                maxWidth: '800px',
+                mx: 'auto',
+                fontSize: { xs: '1.2rem', sm: '1.4rem', md: '1.6rem' },
+                lineHeight: 1.8,
+                color: 'rgba(255, 255, 255, 0.95)',
+                px: { xs: 2, sm: 3, md: 0 },
+                fontWeight: 500,
+                textShadow: '0 2px 15px rgba(0, 0, 0, 0.5)',
+                '& strong': {
+                  background: 'linear-gradient(135deg, #F46733, #D4AF37)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  fontWeight: 700,
+                },
+              }}
+            >
+              🎷 Kas teie külalised seisavad nurgas kohvitassiga või tantsivad laest jalust? Vahe teeb ainult üks asi – <strong>õige bänd</strong>.
+            </Typography>
+          </Box>
+        </Fade>
+
         <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
           <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
           {stats.map((stat, index) => (

@@ -1126,21 +1126,46 @@ const Events = () => {
                   }} 
                 />
               </Box>
-              <Typography 
-                variant="body1" 
-                sx={{ 
-                  fontWeight: 500,
-                  color: 'rgba(255, 255, 255, 0.95)',
-                  fontSize: { xs: '0.95rem', md: '1.1rem' },
-                  letterSpacing: '0.05em',
-                  lineHeight: 1.6,
-                  position: 'relative',
-                  zIndex: 1,
-                  textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
-                }}
-              >
-                Kõik kontserdid toovad tagatud rõõmu ja 100% rahulolu garantii.
-              </Typography>
+              <Box sx={{ position: 'relative', zIndex: 1 }}>
+                <Typography 
+                  variant="body1" 
+                  sx={{ 
+                    fontWeight: 500,
+                    color: 'rgba(255, 255, 255, 0.95)',
+                    fontSize: { xs: '1rem', md: '1.2rem' },
+                    letterSpacing: '0.02em',
+                    lineHeight: 1.8,
+                    mb: 3,
+                    textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                  }}
+                >
+                  ✨ <strong style={{ 
+                    background: 'linear-gradient(135deg, #F46733, #D4AF37)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}>Live'esitus</strong> on see, kus juhtub päris maagia. Argipäev muutub pidupäevaks, jalg hakkab ise taktis käima ja isegi kõige vaoshoitum publik kaotab kontrolli (heas mõttes).
+                </Typography>
+                <Typography 
+                  variant="body1" 
+                  sx={{ 
+                    fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
+                    lineHeight: 1.8,
+                    color: 'rgba(255, 255, 255, 0.95)',
+                    fontStyle: 'italic',
+                    textAlign: 'center',
+                    px: 3,
+                    py: 2.5,
+                    borderRadius: '8px',
+                    background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.15), rgba(212, 175, 55, 0.15))',
+                    border: '2px solid',
+                    borderColor: 'rgba(212, 175, 55, 0.3)',
+                    textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                  }}
+                >
+                  Kohtumine Siim Aimla Funk Bandiga = päris muusika, päris emotsioonid, pidu, mis jääb meelde.
+                </Typography>
+              </Box>
               <style>
                 {`
                   @keyframes starTwinkle {

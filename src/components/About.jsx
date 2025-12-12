@@ -217,41 +217,68 @@ const About = () => {
             </Typography>
 
             <Typography
-              variant="body1"
+              variant="h3"
+              component="h3"
               sx={{
-                maxWidth: '800px',
+                maxWidth: '900px',
                 mx: 'auto',
-                fontSize: '1.2rem',
-                lineHeight: 1.8,
+                fontSize: { xs: '1.3rem', sm: '1.6rem', md: '2rem' },
+                lineHeight: 1.6,
                 color: 'rgba(255, 255, 255, 0.95)',
-                mb: 2,
+                mb: 3,
                 textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                fontWeight: 700,
+                fontFamily: "'Righteous', cursive",
               }}
             >
-              <strong style={{ 
+              <span style={{ 
                 background: 'linear-gradient(135deg, #F46733, #D4AF37)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-              }}>Siim Aimla Funk Band</strong> – tipptasemel muusika, mis loob elamuse.
+              }}>Siim Aimla Funk Band</span> – Bänd, mis paneb publiku tantsima (isegi neid, kes "ei oska")
             </Typography>
 
-            <Typography
-              variant="body1"
+            <Box
               sx={{
-                maxWidth: '700px',
+                maxWidth: '900px',
                 mx: 'auto',
-                fontSize: { xs: '0.95rem', sm: '1rem', md: '1.1rem' },
-                px: { xs: 2, sm: 0 },
-                lineHeight: 1.7,
-                color: 'rgba(255, 255, 255, 0.8)',
-                fontStyle: 'italic',
-                textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                px: { xs: 2, sm: 3, md: 0 },
+                mb: 3,
               }}
             >
-              Kui otsite bändi, kes paneb iga publiku tantsima ja toob lavale muusika, 
-              mis hingab energiat ja emotsioone, siis Siim Aimla Funk Band on õige valik.
-            </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' },
+                  lineHeight: 1.9,
+                  color: 'rgba(255, 255, 255, 0.9)',
+                  mb: 2.5,
+                  textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                }}
+              >
+                Siim Aimla Funk Band on see, mis muudab iga ürituse peoks. James Brown'i energia, Michael Breckeri vibe ja eesti popiklassika, mida keegi ei oska oodata – kõik ühes paketis. Alates <strong style={{ color: '#D4AF37' }}>2017. aastast</strong> on see ansambel tõestanud, et funk ei küsi luba – ta lihtsalt võtab lava üle.
+              </Typography>
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' },
+                  lineHeight: 1.9,
+                  color: 'rgba(255, 255, 255, 0.9)',
+                  mb: 2.5,
+                  textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                }}
+              >
+                Eesti jazz'i särav nimi <strong style={{ 
+                  background: 'linear-gradient(135deg, #F46733, #D4AF37)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}>Siim Aimla</strong> juhib bändi, mis ei tea sõna "igav". Lavale tõusevad ka Eesti ja rahvusvahelised vokalistid nagu <strong style={{ color: '#D4AF37' }}>Sofia Rubina-Hunter</strong>, <strong style={{ color: '#D4AF37' }}>Rita Ray</strong>, <strong style={{ color: '#D4AF37' }}>Kristel Aaslaid</strong> ja Rootsi jazzidiiva <strong style={{ color: '#D4AF37' }}>Viktoria Tolstoy</strong>. Tulemus? Muusika, mis jääb kõlama veel kaua pärast viimast nooti.
+              </Typography>
+
+            </Box>
 
             {/* Social Proof - MOTIVATION */}
             <Stack
@@ -265,48 +292,131 @@ const About = () => {
                 display: { xs: 'none', sm: 'flex' }
               }}
             >
-              <Chip
-                icon={<StarIcon sx={{ color: '#F46733 !important', filter: 'drop-shadow(0 0 8px rgba(244, 103, 51, 0.6))' }} />}
-                label="7 Professionaalset Muusikut"
+              <Box
                 sx={{
-                  background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
-                  color: '#F46733',
-                  fontWeight: 700,
-                  fontSize: { xs: '0.75rem', sm: '0.8rem', md: '0.9rem' },
-                  py: { xs: 1.5, sm: 2, md: 2.5 },
-                  px: { xs: 1, sm: 1.5, md: 2 },
-                  border: '2px solid',
-                  borderImage: 'linear-gradient(135deg, #F46733, #D4AF37) 1',
-                  boxShadow: '0 4px 20px rgba(244, 103, 51, 0.3)',
-                  backdropFilter: 'blur(10px)',
-                  transition: 'all 0.3s ease',
+                  position: 'relative',
                   '&:hover': {
-                    transform: 'scale(1.05) translateY(-3px)',
-                    boxShadow: '0 8px 30px rgba(244, 103, 51, 0.5)',
+                    transform: 'translateY(-4px)',
                   },
+                  transition: 'transform 0.3s ease',
                 }}
-              />
-              <Chip
-                icon={<MusicNoteIcon sx={{ color: '#D4AF37 !important', filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.6))' }} />}
-                label="100+ Koosseisust Kontsert"
+              >
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    inset: '-3px',
+                    borderRadius: '16px',
+                    background: 'linear-gradient(135deg, #F46733, #D4AF37, #F46733)',
+                    backgroundSize: '200% 200%',
+                    opacity: 0.6,
+                    filter: 'blur(8px)',
+                    zIndex: 0,
+                    animation: 'funkChipGlow 3s ease-in-out infinite',
+                    '@keyframes funkChipGlow': {
+                      '0%': { backgroundPosition: '0% 50%' },
+                      '50%': { backgroundPosition: '100% 50%' },
+                      '100%': { backgroundPosition: '0% 50%' },
+                    },
+                  }}
+                />
+                <Chip
+                  icon={<StarIcon sx={{ 
+                    color: '#F46733 !important', 
+                    fontSize: '1.5rem !important',
+                    filter: 'drop-shadow(0 0 10px rgba(244, 103, 51, 0.8)) drop-shadow(0 0 20px rgba(244, 103, 51, 0.4))',
+                  }} />}
+                  label="7 Professionaalset Muusikut"
+                  sx={{
+                    position: 'relative',
+                    zIndex: 1,
+                    background: 'linear-gradient(135deg, rgba(30, 20, 15, 0.95), rgba(40, 25, 18, 0.95))',
+                    color: '#F46733',
+                    fontWeight: 800,
+                    fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' },
+                    py: { xs: 2, sm: 2.5, md: 3 },
+                    px: { xs: 2, sm: 2.5, md: 3 },
+                    border: '2px solid',
+                    borderColor: 'rgba(244, 103, 51, 0.5)',
+                    borderRadius: '16px',
+                    boxShadow: '0 8px 32px rgba(244, 103, 51, 0.4), 0 0 0 1px rgba(244, 103, 51, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(20px)',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    letterSpacing: '0.02em',
+                    '&:hover': {
+                      borderColor: 'rgba(244, 103, 51, 0.8)',
+                      boxShadow: '0 12px 40px rgba(244, 103, 51, 0.5), 0 0 60px rgba(244, 103, 51, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
+                      transform: 'scale(1.03)',
+                      color: '#FF6B42',
+                    },
+                    '& .MuiChip-label': {
+                      px: { xs: 1, sm: 1.5 },
+                    },
+                  }}
+                />
+              </Box>
+              
+              <Box
                 sx={{
-                  background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(244, 103, 51, 0.2))',
-                  color: '#D4AF37',
-                  fontWeight: 700,
-                  fontSize: { xs: '0.75rem', sm: '0.8rem', md: '0.9rem' },
-                  py: { xs: 1.5, sm: 2, md: 2.5 },
-                  px: { xs: 1, sm: 1.5, md: 2 },
-                  border: '2px solid',
-                  borderImage: 'linear-gradient(135deg, #D4AF37, #F46733) 1',
-                  boxShadow: '0 4px 20px rgba(212, 175, 55, 0.3)',
-                  backdropFilter: 'blur(10px)',
-                  transition: 'all 0.3s ease',
+                  position: 'relative',
                   '&:hover': {
-                    transform: 'scale(1.05) translateY(-3px)',
-                    boxShadow: '0 8px 30px rgba(212, 175, 55, 0.5)',
+                    transform: 'translateY(-4px)',
                   },
+                  transition: 'transform 0.3s ease',
                 }}
-              />
+              >
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    inset: '-3px',
+                    borderRadius: '16px',
+                    background: 'linear-gradient(135deg, #D4AF37, #FFD700, #D4AF37)',
+                    backgroundSize: '200% 200%',
+                    opacity: 0.6,
+                    filter: 'blur(8px)',
+                    zIndex: 0,
+                    animation: 'funkChipGlow2 3s ease-in-out infinite',
+                    '@keyframes funkChipGlow2': {
+                      '0%': { backgroundPosition: '0% 50%' },
+                      '50%': { backgroundPosition: '100% 50%' },
+                      '100%': { backgroundPosition: '0% 50%' },
+                    },
+                  }}
+                />
+                <Chip
+                  icon={<MusicNoteIcon sx={{ 
+                    color: '#D4AF37 !important', 
+                    fontSize: '1.5rem !important',
+                    filter: 'drop-shadow(0 0 10px rgba(212, 175, 55, 0.8)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.4))',
+                  }} />}
+                  label="100+ Koosseisust Kontsert"
+                  sx={{
+                    position: 'relative',
+                    zIndex: 1,
+                    background: 'linear-gradient(135deg, rgba(35, 28, 18, 0.95), rgba(45, 35, 22, 0.95))',
+                    color: '#D4AF37',
+                    fontWeight: 800,
+                    fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' },
+                    py: { xs: 2, sm: 2.5, md: 3 },
+                    px: { xs: 2, sm: 2.5, md: 3 },
+                    border: '2px solid',
+                    borderColor: 'rgba(212, 175, 55, 0.5)',
+                    borderRadius: '16px',
+                    boxShadow: '0 8px 32px rgba(212, 175, 55, 0.4), 0 0 0 1px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(20px)',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    letterSpacing: '0.02em',
+                    '&:hover': {
+                      borderColor: 'rgba(212, 175, 55, 0.8)',
+                      boxShadow: '0 12px 40px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
+                      transform: 'scale(1.03)',
+                      color: '#FFD700',
+                    },
+                    '& .MuiChip-label': {
+                      px: { xs: 1, sm: 1.5 },
+                    },
+                  }}
+                />
+              </Box>
             </Stack>
           </Box>
         </Fade>
@@ -327,46 +437,47 @@ const About = () => {
                     height: '100%',
                     textAlign: 'center',
                     background: hoveredMember === index
-                      ? 'linear-gradient(135deg, rgba(40, 32, 24, 0.98), rgba(30, 24, 18, 0.98))'
-                      : 'linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(40, 30, 40, 0.95))',
+                      ? 'linear-gradient(135deg, rgba(30, 24, 18, 0.98), rgba(40, 28, 20, 0.98))'
+                      : 'linear-gradient(135deg, rgba(20, 18, 16, 0.95), rgba(26, 22, 20, 0.95))',
                     border: '2px solid',
                     borderColor: hoveredMember === index 
-                      ? 'rgba(212, 175, 55, 0.6)' 
-                      : 'rgba(244, 103, 51, 0.15)',
-                    borderRadius: '16px',
-                    transition: 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      ? 'transparent'
+                      : 'rgba(244, 103, 51, 0.2)',
+                    borderRadius: '20px',
+                    transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                     cursor: 'pointer',
                     position: 'relative',
                     overflow: 'visible',
-                    backdropFilter: 'blur(15px)',
+                    backdropFilter: 'blur(20px)',
                     boxShadow: hoveredMember === index 
-                      ? '0 20px 60px rgba(212, 175, 55, 0.25), 0 0 80px rgba(184, 134, 11, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)' 
-                      : '0 4px 20px rgba(0, 0, 0, 0.3)',
+                      ? '0 25px 70px rgba(244, 103, 51, 0.35), 0 0 100px rgba(212, 175, 55, 0.2), inset 0 2px 10px rgba(255, 255, 255, 0.05)' 
+                      : '0 8px 30px rgba(0, 0, 0, 0.4)',
                     '&::before': {
                       content: '""',
                       position: 'absolute',
-                      top: '-2px',
-                      left: '-2px',
-                      right: '-2px',
-                      bottom: '-2px',
+                      top: '-3px',
+                      left: '-3px',
+                      right: '-3px',
+                      bottom: '-3px',
                       background: hoveredMember === index
-                        ? 'linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(184, 134, 11, 0.5), rgba(212, 175, 55, 0.4))'
-                        : 'transparent',
-                      backgroundSize: '200% 200%',
-                      borderRadius: '16px',
+                        ? 'linear-gradient(135deg, #F46733, #D4AF37, #F46733, #D4AF37)'
+                        : 'linear-gradient(135deg, rgba(244, 103, 51, 0.3), rgba(212, 175, 55, 0.3))',
+                      backgroundSize: hoveredMember === index ? '300% 300%' : '200% 200%',
+                      borderRadius: '20px',
                       zIndex: -1,
-                      opacity: hoveredMember === index ? 1 : 0,
-                      transition: 'opacity 0.6s ease',
-                      animation: hoveredMember === index ? 'softGlow 4s ease-in-out infinite' : 'none',
-                      filter: 'blur(8px)',
-                      '@keyframes softGlow': {
-                        '0%, 100%': { 
+                      opacity: hoveredMember === index ? 1 : 0.5,
+                      transition: 'all 0.5s ease',
+                      animation: hoveredMember === index ? 'funkBorderGlow 3s ease-in-out infinite' : 'none',
+                      filter: hoveredMember === index ? 'blur(1px)' : 'blur(2px)',
+                      '@keyframes funkBorderGlow': {
+                        '0%': { 
                           backgroundPosition: '0% 50%',
-                          opacity: 0.6,
                         },
                         '50%': { 
                           backgroundPosition: '100% 50%',
-                          opacity: 0.9,
+                        },
+                        '100%': { 
+                          backgroundPosition: '0% 50%',
                         },
                       },
                     },
@@ -374,26 +485,26 @@ const About = () => {
                       content: '""',
                       position: 'absolute',
                       inset: 0,
-                      borderRadius: '16px',
+                      borderRadius: '20px',
                       background: hoveredMember === index
-                        ? 'radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, transparent 70%)'
+                        ? 'radial-gradient(circle at 50% 0%, rgba(244, 103, 51, 0.15) 0%, rgba(212, 175, 55, 0.1) 50%, transparent 100%)'
                         : 'transparent',
                       pointerEvents: 'none',
-                      transition: 'all 0.6s ease',
+                      transition: 'all 0.5s ease',
                     },
                     '&:hover': {
-                      transform: 'translateY(-8px) scale(1.03)',
-                      borderColor: 'rgba(212, 175, 55, 0.8)',
+                      transform: 'translateY(-12px) scale(1.04)',
                       '& .member-emoji': {
-                        transform: 'scale(1.05)',
-                        filter: 'drop-shadow(0 8px 24px rgba(212, 175, 55, 0.4))',
+                        transform: 'scale(1.08) rotate(2deg)',
+                        filter: 'drop-shadow(0 12px 32px rgba(244, 103, 51, 0.5)) drop-shadow(0 0 40px rgba(212, 175, 55, 0.3))',
                       },
                       '& .member-name': {
-                        background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.95), rgba(255, 215, 0, 0.9))',
+                        background: 'linear-gradient(135deg, #F46733, #D4AF37, #FFD700)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         backgroundClip: 'text',
-                        transform: 'scale(1.05)',
+                        transform: 'scale(1.08)',
+                        filter: 'drop-shadow(0 0 8px rgba(244, 103, 51, 0.6))',
                       },
                       '& .member-info': {
                         opacity: 1,
@@ -407,35 +518,63 @@ const About = () => {
                     <Box
                       className="member-emoji"
                       sx={{
-                        width: { xs: '90px', sm: '110px', md: '150px' },
-                        height: { xs: '90px', sm: '110px', md: '150px' },
+                        width: { xs: '100px', sm: '120px', md: '160px' },
+                        height: { xs: '100px', sm: '120px', md: '160px' },
                         borderRadius: '50%',
                         margin: '0 auto',
-                        mb: { xs: 1, sm: 1.25, md: 1.5 },
+                        mb: { xs: 1.5, sm: 2, md: 2.5 },
                         position: 'relative',
-                        overflow: 'hidden',
-                        transition: 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-                        border: '3px solid',
+                        overflow: 'visible',
+                        transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                        border: '4px solid',
                         borderColor: hoveredMember === index 
-                          ? 'rgba(212, 175, 55, 0.7)' 
-                          : 'rgba(244, 103, 51, 0.2)',
+                          ? 'transparent'
+                          : 'rgba(244, 103, 51, 0.3)',
                         boxShadow: hoveredMember === index
-                          ? '0 12px 48px rgba(212, 175, 55, 0.3), 0 0 60px rgba(184, 134, 11, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15)'
-                          : '0 4px 20px rgba(244, 103, 51, 0.15)',
+                          ? '0 0 0 4px rgba(244, 103, 51, 0.4), 0 0 0 8px rgba(212, 175, 55, 0.2), 0 20px 60px rgba(244, 103, 51, 0.4), 0 0 80px rgba(212, 175, 55, 0.3)'
+                          : '0 8px 30px rgba(244, 103, 51, 0.2)',
                         '&::before': {
                           content: '""',
                           position: 'absolute',
-                          inset: '-6px',
+                          inset: '-8px',
                           borderRadius: '50%',
-                          border: '1px solid',
-                          borderColor: 'rgba(212, 175, 55, 0.5)',
-                          opacity: hoveredMember === index ? 1 : 0,
-                          transition: 'opacity 0.6s ease',
-                          zIndex: 1,
+                          background: hoveredMember === index
+                            ? 'linear-gradient(135deg, #F46733, #D4AF37, #F46733, #D4AF37)'
+                            : 'linear-gradient(135deg, rgba(244, 103, 51, 0.4), rgba(212, 175, 55, 0.4))',
+                          backgroundSize: hoveredMember === index ? '300% 300%' : '200% 200%',
+                          opacity: hoveredMember === index ? 1 : 0.6,
+                          transition: 'all 0.5s ease',
+                          animation: hoveredMember === index ? 'funkPhotoGlow 3s ease-in-out infinite' : 'none',
+                          zIndex: -1,
+                          filter: 'blur(4px)',
+                          '@keyframes funkPhotoGlow': {
+                            '0%': { 
+                              backgroundPosition: '0% 50%',
+                              transform: 'scale(1)',
+                            },
+                            '50%': { 
+                              backgroundPosition: '100% 50%',
+                              transform: 'scale(1.05)',
+                            },
+                            '100%': { 
+                              backgroundPosition: '0% 50%',
+                              transform: 'scale(1)',
+                            },
+                          },
                         },
-                        '&:hover': {
-                          transform: 'scale(1.02)',
-                          borderColor: 'rgba(212, 175, 55, 0.9)',
+                        '&::after': {
+                          content: '""',
+                          position: 'absolute',
+                          inset: '-4px',
+                          borderRadius: '50%',
+                          border: '2px solid',
+                          borderColor: hoveredMember === index 
+                            ? 'rgba(212, 175, 55, 0.6)' 
+                            : 'transparent',
+                          opacity: hoveredMember === index ? 1 : 0,
+                          transition: 'opacity 0.5s ease',
+                          zIndex: 1,
+                          pointerEvents: 'none',
                         },
                       }}
                     >
@@ -448,11 +587,13 @@ const About = () => {
                           height: '100%',
                           objectFit: 'cover',
                           borderRadius: '50%',
-                          transition: 'transform 0.6s ease, filter 0.6s ease',
-                          transform: hoveredMember === index ? 'scale(1.03)' : 'scale(1)',
+                          transition: 'transform 0.5s ease, filter 0.5s ease',
+                          transform: hoveredMember === index ? 'scale(1.05)' : 'scale(1)',
                           filter: hoveredMember === index 
-                            ? 'brightness(1.08) contrast(1.05) saturate(1.1)' 
-                            : 'brightness(0.95) contrast(1)',
+                            ? 'brightness(1.15) contrast(1.1) saturate(1.2)' 
+                            : 'brightness(0.9) contrast(1) saturate(0.95)',
+                          position: 'relative',
+                          zIndex: 2,
                         }}
                       />
                       {/* Gradient overlay on hover */}
@@ -462,10 +603,11 @@ const About = () => {
                           inset: 0,
                           borderRadius: '50%',
                           background: hoveredMember === index
-                            ? 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(184, 134, 11, 0.1) 50%, transparent 100%)'
+                            ? 'radial-gradient(circle, rgba(244, 103, 51, 0.2) 0%, rgba(212, 175, 55, 0.15) 50%, transparent 100%)'
                             : 'transparent',
-                          transition: 'all 0.6s ease',
+                          transition: 'all 0.5s ease',
                           pointerEvents: 'none',
+                          zIndex: 3,
                         }}
                       />
                     </Box>
@@ -476,13 +618,16 @@ const About = () => {
                       variant="h6"
                       component="div"
                       sx={{
-                        fontSize: { xs: '0.95rem', sm: '1rem', md: '1.3rem' },
-                        fontWeight: 700,
-                        color: '#FFFFFF',
-                        mb: 0.5,
-                        transition: 'all 0.3s ease',
+                        fontSize: { xs: '1rem', sm: '1.15rem', md: '1.4rem' },
+                        fontWeight: 800,
+                        color: hoveredMember === index ? '#FFFFFF' : '#F46733',
+                        mb: 0.75,
+                        transition: 'all 0.4s ease',
                         fontFamily: "'Righteous', cursive",
-                        textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                        textShadow: hoveredMember === index 
+                          ? '0 0 20px rgba(244, 103, 51, 0.8), 0 4px 15px rgba(0, 0, 0, 0.6)' 
+                          : '0 2px 10px rgba(0, 0, 0, 0.5)',
+                        letterSpacing: '0.02em',
                       }}
                     >
                       {member.name}
@@ -492,13 +637,18 @@ const About = () => {
                     <Typography
                       variant="body2"
                       sx={{
-                        fontSize: { xs: '0.8rem', sm: '0.85rem', md: '0.95rem' },
-                        color: 'rgba(255, 255, 255, 0.8)',
-                        mb: { xs: 1, sm: 1.5, md: 2 },
-                        fontWeight: 600,
+                        fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' },
+                        color: hoveredMember === index 
+                          ? 'rgba(212, 175, 55, 0.95)' 
+                          : 'rgba(255, 255, 255, 0.7)',
+                        mb: { xs: 1.5, sm: 2, md: 2.5 },
+                        fontWeight: 700,
                         textTransform: 'uppercase',
-                        letterSpacing: '0.05em',
-                        textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                        letterSpacing: '0.08em',
+                        textShadow: hoveredMember === index 
+                          ? '0 0 15px rgba(212, 175, 55, 0.6), 0 2px 8px rgba(0, 0, 0, 0.5)' 
+                          : '0 2px 10px rgba(0, 0, 0, 0.5)',
+                        transition: 'all 0.4s ease',
                       }}
                     >
                       {member.instrument}
@@ -515,18 +665,28 @@ const About = () => {
                         overflow: 'hidden',
                       }}
                     >
-                      <Stack spacing={1} sx={{ mt: 1 }}>
+                      <Stack spacing={1.5} sx={{ mt: 1.5 }}>
                         <Chip
                           label={member.role}
                           size="small"
                           sx={{
-                            background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
-                            color: '#F46733',
-                            fontWeight: 600,
-                            fontSize: '0.75rem',
-                            height: '24px',
-                            border: '1px solid',
-                            borderImage: 'linear-gradient(135deg, #F46733, #D4AF37) 1',
+                            background: hoveredMember === index
+                              ? 'linear-gradient(135deg, rgba(244, 103, 51, 0.3), rgba(212, 175, 55, 0.3))'
+                              : 'linear-gradient(135deg, rgba(244, 103, 51, 0.15), rgba(212, 175, 55, 0.15))',
+                            color: hoveredMember === index ? '#FFD700' : '#F46733',
+                            fontWeight: 700,
+                            fontSize: '0.8rem',
+                            height: '28px',
+                            border: '2px solid',
+                            borderColor: hoveredMember === index 
+                              ? 'rgba(212, 175, 55, 0.6)' 
+                              : 'rgba(244, 103, 51, 0.4)',
+                            boxShadow: hoveredMember === index 
+                              ? '0 4px 15px rgba(212, 175, 55, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)' 
+                              : 'none',
+                            transition: 'all 0.4s ease',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.05em',
                           }}
                         />
                         <Typography
@@ -583,17 +743,33 @@ const About = () => {
             <Typography
               variant="body1"
               sx={{
-                maxWidth: '600px',
+                maxWidth: '700px',
                 mx: 'auto',
                 px: { xs: 2, sm: 0 },
                 color: 'rgba(255, 255, 255, 0.9)',
-                fontSize: { xs: '0.9rem', sm: '0.95rem', md: '1rem' },
-                lineHeight: 1.7,
+                fontSize: { xs: '0.95rem', sm: '1rem', md: '1.1rem' },
+                lineHeight: 1.8,
                 textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+                mb: 2,
               }}
             >
               Iga meeskonnaliige toob endaga kaasa aastatepikkuse kogemuse ja sügava armastuse funk-muusika vastu. 
               Koos loome midagi erilist.
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                maxWidth: '700px',
+                mx: 'auto',
+                px: { xs: 2, sm: 0 },
+                color: 'rgba(212, 175, 55, 0.9)',
+                fontSize: { xs: '0.85rem', sm: '0.9rem', md: '0.95rem' },
+                lineHeight: 1.7,
+                fontStyle: 'italic',
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+              }}
+            >
+              🎤 Lavale tõusevad ka meie vokalistid: Sofia Rubina-Hunter, Rita Ray, Kristel Aaslaid ja Rootsi jazzidiiva Viktoria Tolstoy.
             </Typography>
           </Box>
         </Fade>

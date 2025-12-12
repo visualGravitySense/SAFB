@@ -37,6 +37,9 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import MusicNoteIcon from '@mui/icons-material/MusicNote'
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote'
+import GroupsIcon from '@mui/icons-material/Groups'
+import GroupIcon from '@mui/icons-material/Group'
+import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 import { EMAILJS_CONFIG } from '../config/emailjs'
 
 const Booking = () => {
@@ -44,7 +47,7 @@ const Booking = () => {
     eventType: '',
     eventDate: '',
     location: '',
-    guests: '',
+    format: '',
     name: '',
     email: '',
     phone: '',
@@ -65,6 +68,36 @@ const Booking = () => {
     { value: 'private', label: 'Eraüritus', icon: <PeopleIcon /> },
     { value: 'club', label: 'Klubi/Kontsert', icon: <EventIcon /> },
     { value: 'other', label: 'Muu', icon: <EventIcon /> },
+  ]
+
+  const formatOptions = [
+    { 
+      value: 'premium', 
+      label: 'PREMIUM', 
+      subtitle: '7 muusikut', 
+      description: 'Täielik koosseis, kõige eredam show',
+      icon: <GroupsIcon />,
+      color: '#D4AF37',
+      recommended: false
+    },
+    { 
+      value: 'standard', 
+      label: 'STANDARD', 
+      subtitle: '4-5 muusikut', 
+      description: 'Optimaalne valik',
+      icon: <GroupIcon />,
+      color: '#F46733',
+      recommended: true
+    },
+    { 
+      value: 'duo', 
+      label: 'DUO', 
+      subtitle: '2 solisti', 
+      description: 'Kamberlik formaat',
+      icon: <PeopleIcon />,
+      color: '#8B6F47',
+      recommended: false
+    },
   ]
 
   // Intersection Observer for animations - PROMPTS
@@ -94,7 +127,7 @@ const Booking = () => {
 
   // Calculate form completion progress - ABILITY
   const calculateProgress = () => {
-    const fields = ['eventType', 'eventDate', 'location', 'guests', 'name', 'email', 'phone']
+    const fields = ['eventType', 'eventDate', 'location', 'format', 'name', 'email', 'phone']
     const filledFields = fields.filter(field => formData[field] && formData[field].trim() !== '').length
     return Math.round((filledFields / fields.length) * 100)
   }
@@ -122,11 +155,11 @@ const Booking = () => {
           delete errors.phone
         }
         break
-      case 'guests':
-        if (value && (isNaN(value) || parseInt(value) < 1)) {
-          errors.guests = 'Palun sisestage vähemalt 1 külaline'
+      case 'format':
+        if (!value || value.trim() === '') {
+          errors.format = 'Palun valige koosseisu formaat'
         } else {
-          delete errors.guests
+          delete errors.format
         }
         break
       case 'eventDate':
@@ -153,7 +186,7 @@ const Booking = () => {
   }
 
   const isFormValid = () => {
-    const requiredFields = ['eventType', 'eventDate', 'location', 'guests', 'name', 'email', 'phone']
+    const requiredFields = ['eventType', 'eventDate', 'location', 'format', 'name', 'email', 'phone']
     const allFilled = requiredFields.every(field => formData[field] && formData[field].trim() !== '')
     const noErrors = Object.keys(fieldErrors).length === 0
     return allFilled && noErrors
@@ -180,6 +213,23 @@ const Booking = () => {
     if (success) setSuccess(false)
   }
 
+  const handleFormatSelect = (formatValue) => {
+    setFormData({
+      ...formData,
+      format: formatValue
+    })
+    
+    setTouchedFields({
+      ...touchedFields,
+      format: true
+    })
+    
+    validateField('format', formatValue)
+    
+    if (error) setError('')
+    if (success) setSuccess(false)
+  }
+
   const handleBlur = (e) => {
     const { name, value } = e.target
     setTouchedFields({
@@ -198,6 +248,9 @@ const Booking = () => {
     try {
       // Проверяем, что EmailJS настроен
       if (
+        !EMAILJS_CONFIG.SERVICE_ID ||
+        !EMAILJS_CONFIG.TEMPLATE_ID ||
+        !EMAILJS_CONFIG.PUBLIC_KEY ||
         EMAILJS_CONFIG.SERVICE_ID === 'your_service_id' ||
         EMAILJS_CONFIG.TEMPLATE_ID === 'your_template_id' ||
         EMAILJS_CONFIG.PUBLIC_KEY === 'your_public_key'
@@ -213,7 +266,7 @@ const Booking = () => {
           eventType: eventTypes.find(t => t.value === formData.eventType)?.label || formData.eventType,
           eventDate: formData.eventDate,
           location: formData.location,
-          guests: formData.guests,
+          format: formatOptions.find(f => f.value === formData.format) ? `${formatOptions.find(f => f.value === formData.format).label} (${formatOptions.find(f => f.value === formData.format).subtitle})` : formData.format,
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
@@ -222,14 +275,15 @@ const Booking = () => {
         EMAILJS_CONFIG.PUBLIC_KEY
       )
 
-      if (result.status === 200) {
+      // Проверяем успешную отправку (EmailJS возвращает status 200 или text: 'OK')
+      if (result.status === 200 || result.text === 'OK') {
         setSuccess(true)
         // Сброс формы
         setFormData({
           eventType: '',
           eventDate: '',
           location: '',
-          guests: '',
+          format: '',
           name: '',
           email: '',
           phone: '',
@@ -237,6 +291,8 @@ const Booking = () => {
         })
         setTouchedFields({})
         setFieldErrors({})
+      } else {
+        throw new Error('Viga päringu saatmisel. Palun proovige uuesti.')
       }
     } catch (err) {
       console.error('EmailJS Error:', err)
@@ -1088,50 +1144,197 @@ const Booking = () => {
                       />
                     </Grid>
 
-                    {/* Number of Guests */}
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        type="number"
-                        label="Eeldatav külaliste arv *"
-                        name="guests"
-                        value={formData.guests}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder="nt. 150"
-                        required
-                        error={touchedFields.guests && !!fieldErrors.guests}
-                        helperText={touchedFields.guests ? (fieldErrors.guests || 'Palun sisestage eeldatav külaliste arv') : ''}
-                        inputProps={{ min: 1 }}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <PeopleIcon sx={{ color: formData.guests ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
-                            </InputAdornment>
-                          ),
-                        }}
-                        sx={{
-                          '& .MuiInputLabel-root': {
+                    {/* Format Selection */}
+                    <Grid item xs={12}>
+                      <Box>
+                        <Typography
+                          variant="body2"
+                          sx={{
                             fontSize: { xs: '0.8rem', md: '0.875rem' },
-                          },
-                          '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.875rem', md: '0.9rem' },
-                            py: { xs: 0.75, md: 1 },
-                          },
-                          '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.65rem', md: '0.7rem' },
-                            mt: 0.5,
-                          },
-                          '& .MuiOutlinedInput-root': {
-                            '&:hover fieldset': {
-                              borderColor: '#D4AF37',
-                            },
-                            '&.Mui-focused fieldset': {
-                              borderColor: '#D4AF37',
-                            },
-                          },
-                        }}
-                      />
+                            color: '#666',
+                            mb: 1,
+                            fontWeight: 500,
+                          }}
+                        >
+                          Koosseisu formaat *
+                        </Typography>
+                        <Grid container spacing={{ xs: 1.5, sm: 2 }}>
+                          {formatOptions.map((option) => {
+                            const isSelected = formData.format === option.value
+                            return (
+                              <Grid item xs={12} sm={4} key={option.value}>
+                                <Box
+                                  onClick={() => handleFormatSelect(option.value)}
+                                  sx={{
+                                    position: 'relative',
+                                    p: { xs: 1.5, sm: 2 },
+                                    borderRadius: '12px',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                    border: isSelected ? `2px solid ${option.color}` : '2px solid rgba(212, 175, 55, 0.2)',
+                                    background: isSelected
+                                      ? `linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(244, 103, 51, 0.05) 100%)`
+                                      : 'rgba(255, 255, 255, 0.05)',
+                                    backdropFilter: 'blur(10px)',
+                                    '&:hover': {
+                                      transform: 'translateY(-3px)',
+                                      borderColor: option.color,
+                                      boxShadow: `0 8px 24px rgba(212, 175, 55, 0.2), 0 0 0 1px ${option.color}40`,
+                                    },
+                                    ...(isSelected && {
+                                      boxShadow: `0 8px 24px ${option.color}40, 0 0 0 1px ${option.color}60`,
+                                    }),
+                                  }}
+                                >
+                                  {/* Recommended Badge */}
+                                  {option.recommended && (
+                                    <Chip
+                                      icon={<LocalOfferIcon sx={{ fontSize: '0.875rem !important' }} />}
+                                      label="Soovitame"
+                                      size="small"
+                                      sx={{
+                                        position: 'absolute',
+                                        top: -10,
+                                        right: 8,
+                                        height: '22px',
+                                        fontSize: '0.65rem',
+                                        fontWeight: 600,
+                                        background: 'linear-gradient(135deg, #D4AF37 0%, #F46733 100%)',
+                                        color: '#fff',
+                                        boxShadow: '0 2px 8px rgba(212, 175, 55, 0.4)',
+                                        '& .MuiChip-icon': {
+                                          color: '#fff',
+                                        },
+                                      }}
+                                    />
+                                  )}
+                                  
+                                  {/* Icon */}
+                                  <Box
+                                    sx={{
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      width: { xs: '40px', sm: '48px' },
+                                      height: { xs: '40px', sm: '48px' },
+                                      borderRadius: '50%',
+                                      mb: 1,
+                                      background: isSelected
+                                        ? `linear-gradient(135deg, ${option.color}20 0%, ${option.color}10 100%)`
+                                        : 'rgba(212, 175, 55, 0.1)',
+                                      transition: 'all 0.3s ease',
+                                      ...(isSelected && {
+                                        boxShadow: `0 0 20px ${option.color}40`,
+                                      }),
+                                    }}
+                                  >
+                                    <Box
+                                      sx={{
+                                        color: isSelected ? option.color : '#999',
+                                        fontSize: { xs: '1.5rem', sm: '1.75rem' },
+                                        transition: 'all 0.3s ease',
+                                        filter: isSelected ? 'drop-shadow(0 0 4px rgba(212, 175, 55, 0.5))' : 'none',
+                                      }}
+                                    >
+                                      {option.icon}
+                                    </Box>
+                                  </Box>
+
+                                  {/* Label */}
+                                  <Typography
+                                    variant="h6"
+                                    sx={{
+                                      fontSize: { xs: '0.95rem', sm: '1.1rem' },
+                                      fontWeight: 700,
+                                      color: isSelected ? option.color : '#1A1A1A',
+                                      mb: 0.5,
+                                      transition: 'color 0.3s ease',
+                                    }}
+                                  >
+                                    {option.label}
+                                  </Typography>
+
+                                  {/* Subtitle */}
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      fontSize: { xs: '0.75rem', sm: '0.85rem' },
+                                      fontWeight: 600,
+                                      color: '#666',
+                                      mb: 0.5,
+                                    }}
+                                  >
+                                    {option.subtitle}
+                                  </Typography>
+
+                                  {/* Description */}
+                                  <Typography
+                                    variant="body2"
+                                    sx={{
+                                      fontSize: { xs: '0.7rem', sm: '0.75rem' },
+                                      color: '#888',
+                                      lineHeight: 1.4,
+                                    }}
+                                  >
+                                    {option.description}
+                                  </Typography>
+
+                                  {/* Selection Indicator */}
+                                  {isSelected && (
+                                    <Box
+                                      sx={{
+                                        position: 'absolute',
+                                        top: 8,
+                                        right: 8,
+                                        width: '20px',
+                                        height: '20px',
+                                        borderRadius: '50%',
+                                        background: `linear-gradient(135deg, ${option.color} 0%, ${option.color}dd 100%)`,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        boxShadow: `0 0 10px ${option.color}60`,
+                                        transition: 'all 0.3s ease',
+                                        animation: 'funkPulse 2s ease-in-out infinite',
+                                        '@keyframes funkPulse': {
+                                          '0%, 100%': {
+                                            transform: 'scale(1)',
+                                            boxShadow: `0 0 10px ${option.color}60`,
+                                          },
+                                          '50%': {
+                                            transform: 'scale(1.15)',
+                                            boxShadow: `0 0 20px ${option.color}80`,
+                                          },
+                                        },
+                                      }}
+                                    >
+                                      <CheckCircleIcon
+                                        sx={{
+                                          fontSize: '0.875rem',
+                                          color: '#fff',
+                                        }}
+                                      />
+                                    </Box>
+                                  )}
+                                </Box>
+                              </Grid>
+                            )
+                          })}
+                        </Grid>
+                        {touchedFields.format && fieldErrors.format && (
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: '#d32f2f',
+                              fontSize: { xs: '0.65rem', md: '0.7rem' },
+                              mt: 0.5,
+                              display: 'block',
+                            }}
+                          >
+                            {fieldErrors.format}
+                          </Typography>
+                        )}
+                      </Box>
                     </Grid>
 
                     {/* Location */}
