@@ -19,10 +19,10 @@ function App() {
       <Navigation />
       <Hero />
       <Stats />
-      <Events />
+      {/* <Events /> */}
       <Music />
       <About />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Booking />
       <Gallery />
       <Footer />

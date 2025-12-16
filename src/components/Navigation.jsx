@@ -462,9 +462,9 @@ const Navigation = () => {
                       filter: 'drop-shadow(0 0 6px rgba(212, 175, 55, 0.6))',
                       transition: 'all 0.3s ease',
                     }} />}
-                    label="+372 511 8528"
+                    label="55519757"
                     component="a"
-                    href="tel:+3725118528"
+                    href="tel:+37255519757"
                     onClick={(e) => {
                       e.stopPropagation()
                     }}
@@ -632,7 +632,7 @@ const Navigation = () => {
               variant="outlined"
               startIcon={<PhoneIcon />}
               component="a"
-              href="tel:+3725118528"
+              href="tel:+37255519757"
               onClick={() => {
                 setMenuOpen(false)
               }}

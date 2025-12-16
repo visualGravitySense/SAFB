@@ -387,7 +387,7 @@ const Footer = () => {
               </Box>
               <Box 
                 component="a"
-                href="tel:+3725118528"
+                href="tel:+37255519757"
                 sx={{ 
                   display: 'flex', 
                   alignItems: 'center', 
@@ -404,7 +404,7 @@ const Footer = () => {
               >
                 <PhoneIcon sx={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '1rem' }} />
                 <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem' }}>
-                  +372 511 8528
+                  55519757
                 </Typography>
               </Box>
               <Box 
