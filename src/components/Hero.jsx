@@ -145,7 +145,7 @@ const Hero = () => {
                     position: 'relative',
                   }}
                 >
-                  50K+ Õnnestunud Üritust
+                  50K+ Vaatajat
                 </Typography>
               </Box>
 

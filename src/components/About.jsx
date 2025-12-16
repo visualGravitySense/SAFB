@@ -13,13 +13,13 @@ import {
 } from '@mui/material'
 import MusicNoteIcon from '@mui/icons-material/MusicNote'
 import StarIcon from '@mui/icons-material/Star'
-import siimPhoto from '../img/siim.jpg'
-import jasonPhoto from '../img/jason.jpg'
-import stenPhoto from '../img/sten.jpg'
-import artisPhoto from '../img/artis.jpg'
-import paulPhoto from '../img/paul.jpg'
-import rolandPhoto from '../img/roland.jpg'
-import karlPhoto from '../img/karl.jpg'
+import siimPhoto from '../img/siim.png'
+import jasonPhoto from '../img/jason.png'
+import stenPhoto from '../img/sten.png'
+import artisPhoto from '../img/artis.png'
+import paulPhoto from '../img/paul.png'
+import rolandPhoto from '../img/roland.png'
+import karlPhoto from '../img/karl.png'
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -33,62 +33,62 @@ const About = () => {
       emoji: '🎷',
       photo: siimPhoto,
       role: 'Bändiliider',
-      experience: '15+ aastat',
-      highlight: 'Eesti funk-ikoon',
+      experience: '',
+      highlight: '',
     },
     { 
       name: 'Jason Hunter', 
       instrument: 'Trompet', 
       emoji: '🎺',
       photo: jasonPhoto,
-      role: 'Brass sektsioon',
-      experience: '12+ aastat',
-      highlight: 'Internatsionaalne kogemus',
+      role: '',
+      experience: '',
+      highlight: '',
     },
     { 
       name: 'Sten Valdmaa', 
       instrument: 'Tromboon', 
       emoji: '🎺',
       photo: stenPhoto,
-      role: 'Brass sektsioon',
-      experience: '10+ aastat',
-      highlight: 'Eesti muusikakooli vilistlane',
+      role: '',
+      experience: '',
+      highlight: '',
     },
     { 
       name: 'Artis Boriss', 
       instrument: 'Klahvpillid', 
       emoji: '🎹',
       photo: artisPhoto,
-      role: 'Rütmi sektsioon',
-      experience: '14+ aastat',
-      highlight: 'Multi-instrumentalist',
+      role: '',
+      experience: '',
+      highlight: '',
     },
     { 
       name: 'Paul Daniel', 
       instrument: 'Kitarr', 
       emoji: '🎸',
       photo: paulPhoto,
-      role: 'Rütmi sektsioon',
-      experience: '11+ aastat',
-      highlight: 'Ekspert funk-stiilis',
+      role: '',
+      experience: '',
+      highlight: '',
     },
     { 
       name: 'Roland Jairus', 
       instrument: 'Basskitarr', 
       emoji: '🎸',
       photo: rolandPhoto,
-      role: 'Rütmi sektsioon',
-      experience: '13+ aastat',
-      highlight: 'Groove meister',
+      role: '',
+      experience: '',
+      highlight: '',
     },
     { 
       name: 'Karl-Juhan Laanesaar', 
       instrument: 'Trummid', 
       emoji: '🥁',
       photo: karlPhoto,
-      role: 'Rütmi sektsioon',
-      experience: '16+ aastat',
-      highlight: 'Energeetiline rütm',
+      role: '',
+      experience: '',
+      highlight: '',
     }
   ]
 
@@ -696,7 +696,7 @@ const About = () => {
                             fontSize: { xs: '0.7rem', sm: '0.75rem', md: '0.8rem' },
                           }}
                         >
-                          {member.experience} kogemust
+                          {member.experience} 
                         </Typography>
                         <Typography
                           variant="caption"

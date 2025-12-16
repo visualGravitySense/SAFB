@@ -55,7 +55,7 @@ LISAINFO / SOOVID:
 
 ═══════════════════════════════════════
 Küsimuste korral võtke ühendust:
-info@safunkband.ee | +372 511 8528
+info@safunkband.ee | 55519757
 ═══════════════════════════════════════
 ```
 
@@ -133,7 +133,7 @@ Oleme huvitatud funk klassikast.
 ═══════════════════════════════════════
 
 Küsimuste korral võtke ühendust:
-info@safunkband.ee | +372 511 8528
+info@safunkband.ee | 55519757
 ═══════════════════════════════════════
 ```
 

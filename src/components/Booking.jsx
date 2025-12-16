@@ -74,8 +74,8 @@ const Booking = () => {
     { 
       value: 'premium', 
       label: 'PREMIUM', 
-      subtitle: '7 muusikut', 
-      description: 'Täielik koosseis, kõige eredam show',
+      subtitle: '11 muusikut', 
+      description: 'Band + keelpillid',
       icon: <GroupsIcon />,
       color: '#D4AF37',
       recommended: false
@@ -83,7 +83,7 @@ const Booking = () => {
     { 
       value: 'standard', 
       label: 'STANDARD', 
-      subtitle: '4-5 muusikut', 
+      subtitle: '8 muusikut', 
       description: 'Optimaalne valik',
       icon: <GroupIcon />,
       color: '#F46733',
@@ -91,9 +91,9 @@ const Booking = () => {
     },
     { 
       value: 'duo', 
-      label: 'DUO', 
-      subtitle: '2 solisti', 
-      description: 'Kamberlik formaat',
+      label: 'Tiny', 
+      subtitle: '2-5 muusikut', 
+      description: 'Paindlik formaat',
       icon: <PeopleIcon />,
       color: '#8B6F47',
       recommended: false
