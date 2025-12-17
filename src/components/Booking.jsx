@@ -258,6 +258,12 @@ const Booking = () => {
         throw new Error('EmailJS не настроен. Пожалуйста, настройте конфигурацию в src/config/emailjs.js')
       }
 
+      // Формируем строку формата для email
+      const selectedFormat = formatOptions.find(f => f.value === formData.format)
+      const formatString = selectedFormat 
+        ? `${selectedFormat.label} - ${selectedFormat.subtitle} (${selectedFormat.description})` 
+        : formData.format
+
       // Отправляем email через EmailJS
       const result = await emailjs.send(
         EMAILJS_CONFIG.SERVICE_ID,
@@ -266,7 +272,7 @@ const Booking = () => {
           eventType: eventTypes.find(t => t.value === formData.eventType)?.label || formData.eventType,
           eventDate: formData.eventDate,
           location: formData.location,
-          format: formatOptions.find(f => f.value === formData.format) ? `${formatOptions.find(f => f.value === formData.format).label} (${formatOptions.find(f => f.value === formData.format).subtitle})` : formData.format,
+          format: formatString,
           name: formData.name,
           email: formData.email,
           phone: formData.phone,

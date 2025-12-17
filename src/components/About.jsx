@@ -13,13 +13,13 @@ import {
 } from '@mui/material'
 import MusicNoteIcon from '@mui/icons-material/MusicNote'
 import StarIcon from '@mui/icons-material/Star'
-import siimPhoto from '../img/siim.png'
-import jasonPhoto from '../img/jason.png'
-import stenPhoto from '../img/sten.png'
-import artisPhoto from '../img/artis.png'
-import paulPhoto from '../img/paul.png'
-import rolandPhoto from '../img/roland.png'
-import karlPhoto from '../img/karl.png'
+import siimPhoto from '../img/siim.jpg'
+import jasonPhoto from '../img/jason.jpg'
+import stenPhoto from '../img/sten.jpg'
+import artisPhoto from '../img/artis.jpg'
+import paulPhoto from '../img/paul.jpg'
+import rolandPhoto from '../img/roland.jpg'
+import karlPhoto from '../img/karl.jpg'
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false)
