@@ -260,7 +260,7 @@ const About = () => {
                 Siim Aimla Funk Band on see, mis muudab iga ürituse peoks. James Brown'i energia, Michael Breckeri vibe ja eesti popiklassika, mida keegi ei oska oodata – kõik ühes paketis. Alates <strong style={{ color: '#D4AF37' }}>2017. aastast</strong> on see ansambel tõestanud, et funk ei küsi luba – ta lihtsalt võtab lava üle.
               </Typography>
 
-              <Typography
+              {/* <Typography
                 variant="body1"
                 sx={{
                   fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' },
@@ -276,7 +276,7 @@ const About = () => {
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
                 }}>Siim Aimla</strong> juhib bändi, mis ei tea sõna "igav". Lavale tõusevad ka Eesti ja rahvusvahelised vokalistid nagu <strong style={{ color: '#D4AF37' }}>Sofia Rubina-Hunter</strong>, <strong style={{ color: '#D4AF37' }}>Rita Ray</strong>, <strong style={{ color: '#D4AF37' }}>Kristel Aaslaid</strong> ja Rootsi jazzidiiva <strong style={{ color: '#D4AF37' }}>Viktoria Tolstoy</strong>. Tulemus? Muusika, mis jääb kõlama veel kaua pärast viimast nooti.
-              </Typography>
+              </Typography> */}
 
             </Box>
 
