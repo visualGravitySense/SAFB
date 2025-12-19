@@ -21,11 +21,11 @@ import ZoomInIcon from '@mui/icons-material/ZoomIn'
 import CategoryIcon from '@mui/icons-material/Category'
 import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import creativeGallery1 from '../img/creative-gallery-1.jpg'
+import creativeGallery1 from '../img/creative-gallery-1.webp'
 import creativeGallery2 from '../img/creative-gallery-2.jpg'
 import creativeGallery3 from '../img/creative-gallery-3.jpg'
 import creativeGallery4 from '../img/creative-gallery-4.jpg'
-import creativeGallery5 from '../img/creative-gallery-5.jpg'
+import creativeGallery5 from '../img/creative-gallery-5.png'
 
 const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false)
