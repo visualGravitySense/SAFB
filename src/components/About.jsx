@@ -738,7 +738,7 @@ const About = () => {
                 fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.5rem' },
               }}
             >
-              ✨ Professionaalsus ja Passioon
+              ✨ Professionaalsus ja Kirg
             </Typography>
             <Typography
               variant="body1"
@@ -756,7 +756,7 @@ const About = () => {
               Iga meeskonnaliige toob endaga kaasa aastatepikkuse kogemuse ja sügava armastuse funk-muusika vastu. 
               Koos loome midagi erilist.
             </Typography>
-            <Typography
+            {/* <Typography
               variant="body2"
               sx={{
                 maxWidth: '700px',
@@ -770,7 +770,7 @@ const About = () => {
               }}
             >
               🎤 Lavale tõusevad ka meie vokalistid: Sofia Rubina-Hunter, Rita Ray, Kristel Aaslaid ja Rootsi jazzidiiva Viktoria Tolstoy.
-            </Typography>
+            </Typography> */}
           </Box>
         </Fade>
       </Container>
