@@ -202,7 +202,7 @@ const Stats = () => {
                 },
               }}
             >
-              🎷 Kas teie külalised seisavad nurgas kohvitassiga või tantsivad laest jalust? Vahe teeb ainult üks asi – <strong>õige bänd</strong>.
+              🎷 Kas teie külalised seisavad nurgas kohvitassiga või tantsivad hommikuni? Vahe teeb ainult üks asi – <strong>õige bänd</strong>.
             </Typography>
           </Box>
         </Fade>
