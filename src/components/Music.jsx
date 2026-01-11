@@ -10,16 +10,32 @@ import {
 import HeadphonesIcon from '@mui/icons-material/Headphones'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import { useState, useEffect, useRef } from 'react'
+import { useContent } from '../context/ContentContext'
 
 const Music = () => {
+  const { content } = useContent()
   const [isVisible, setIsVisible] = useState(false)
   const musicRef = useRef(null)
 
-  const videos = [
-    { id: 'i8pk65jrAr4' },
-    { id: 'diNFHbWtF6o' },
-    { id: 'Twa7DHyG81A' }
-  ]
+  // Get music data from API or use defaults
+  const musicData = content?.music || {
+    videos: [
+      { id: 'i8pk65jrAr4' },
+      { id: 'diNFHbWtF6o' },
+      { id: 'Twa7DHyG81A' }
+    ],
+    albums: [],
+    spotifyLink: '',
+    youtubeLink: ''
+  }
+
+  const videos = musicData.videos && musicData.videos.length > 0 
+    ? musicData.videos 
+    : [
+        { id: 'i8pk65jrAr4' },
+        { id: 'diNFHbWtF6o' },
+        { id: 'Twa7DHyG81A' }
+      ]
 
   // Intersection Observer for scroll-triggered animations
   useEffect(() => {
@@ -400,7 +416,7 @@ const Music = () => {
             variant="outlined"
             size="large"
             startIcon={<PlayArrowIcon />}
-            href="https://www.youtube.com/@siimaimlafunkband3223"
+            href={musicData.youtubeLink || "https://www.youtube.com/@siimaimlafunkband3223"}
             target="_blank"
             rel="noopener noreferrer"
             sx={{
