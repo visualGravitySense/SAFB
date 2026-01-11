@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import {
   Box,
   Container,
@@ -26,15 +26,18 @@ import creativeGallery2 from '../img/creative-gallery-2.jpg'
 import creativeGallery3 from '../img/creative-gallery-3.jpg'
 import creativeGallery4 from '../img/creative-gallery-4.jpg'
 import creativeGallery5 from '../img/creative-gallery-5.png'
+import { useContent } from '../context/ContentContext'
+import { getImageUrl } from '../config/api'
 
 const Gallery = () => {
+  const { content } = useContent()
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredIndex, setHoveredIndex] = useState(null)
   const [selectedCategory, setSelectedCategory] = useState('all')
   const galleryRef = useRef(null)
 
-  // Gallery items with metadata for Fogg's Model
-  const galleryItems = [
+  // Default gallery items as fallback
+  const defaultGalleryItems = [
     { image: creativeGallery1, category: 'events', views: 1250, likes: 89, title: 'Live Performance' },
     { image: creativeGallery2, category: 'instruments', views: 980, likes: 72, title: 'Stage Moments' },
     { image: creativeGallery3, category: 'events', views: 1100, likes: 95, title: 'Energy & Rhythm' },
@@ -42,15 +45,26 @@ const Gallery = () => {
     { image: creativeGallery5, category: 'events', views: 920, likes: 68, title: 'Keyboard Magic' },
   ]
 
-  const categories = [
+  // Use gallery items from API if available, otherwise use defaults
+  const galleryItems = (content?.gallery && content.gallery.length > 0)
+    ? content.gallery.map(item => ({
+        ...item,
+        image: item.image ? getImageUrl(item.image) : item.image
+      }))
+    : defaultGalleryItems
+
+  const categories = useMemo(() => [
     { id: 'all', label: 'Kõik', count: galleryItems.length },
     { id: 'instruments', label: 'Instrumendid', count: galleryItems.filter(item => item.category === 'instruments').length },
     { id: 'events', label: 'Üritused', count: galleryItems.filter(item => item.category === 'events').length },
-  ]
+  ], [galleryItems])
 
-  const filteredItems = selectedCategory === 'all' 
-    ? galleryItems 
-    : galleryItems.filter(item => item.category === selectedCategory)
+  const filteredItems = useMemo(() => 
+    selectedCategory === 'all' 
+      ? galleryItems 
+      : galleryItems.filter(item => item.category === selectedCategory),
+    [galleryItems, selectedCategory]
+  )
 
   // Intersection Observer for scroll-triggered animations
   useEffect(() => {

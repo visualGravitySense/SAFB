@@ -11,8 +11,10 @@ import EventIcon from '@mui/icons-material/Event'
 import PeopleIcon from '@mui/icons-material/People'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import AlbumIcon from '@mui/icons-material/Album'
+import { useContent } from '../context/ContentContext'
 
 const Stats = () => {
+  const { content } = useContent()
   const [isVisible, setIsVisible] = useState(false)
   const [countedValues, setCountedValues] = useState({
     events: 0,
@@ -22,10 +24,18 @@ const Stats = () => {
   })
   const statsRef = useRef(null)
 
+  // Get stats data from API or use defaults
+  const statsData = content?.stats || {
+    events: 200,
+    viewers: 50,
+    years: 8,
+    albums: 2
+  }
+
   const stats = [
     {
       icon: <EventIcon sx={{ fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }} />,
-      value: 200,
+      value: statsData.events || 200,
       suffix: '+',
       label: 'Üritust',
       description: 'Õnnestunud kontserti',
@@ -34,7 +44,7 @@ const Stats = () => {
     },
     {
       icon: <PeopleIcon sx={{ fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }} />,
-      value: 50,
+      value: statsData.viewers || 50,
       suffix: 'K+',
       label: 'Vaatajat',
       description: 'Rõõmsaid külalisi',
@@ -43,7 +53,7 @@ const Stats = () => {
     },
     {
       icon: <CalendarTodayIcon sx={{ fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }} />,
-      value: 8,
+      value: statsData.years || 8,
       suffix: '',
       label: 'Aastat',
       description: 'Professionaalset kogemust',
@@ -52,7 +62,7 @@ const Stats = () => {
     },
     {
       icon: <AlbumIcon sx={{ fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }} />,
-      value: 2,
+      value: statsData.albums || 2,
       suffix: '',
       label: 'Albumit',
       description: 'Välja antud albumid',

@@ -20,13 +20,24 @@ import artisPhoto from '../img/artis.jpg'
 import paulPhoto from '../img/paul.jpg'
 import rolandPhoto from '../img/roland.jpg'
 import karlPhoto from '../img/karl.jpg'
+import { useContent } from '../context/ContentContext'
+import { getImageUrl } from '../config/api'
 
 const About = () => {
+  const { content } = useContent()
   const [isVisible, setIsVisible] = useState(false)
   const [hoveredMember, setHoveredMember] = useState(null)
   const aboutRef = useRef(null)
 
-  const members = [
+  // Get about data from API or use defaults
+  const aboutData = content?.about || {
+    title: 'Bändist',
+    description: 'Siim Aimla Funk Band on see, mis muudab iga ürituse peoks. James Brown\'i energia, Michael Breckeri vibe ja eesti popiklassika, mida keegi ei oska oodata – kõik ühes paketis.',
+    members: []
+  }
+
+  // Default members with local photos as fallback
+  const defaultMembers = [
     { 
       name: 'Siim Aimla', 
       instrument: 'Saksofon', 
@@ -91,6 +102,14 @@ const About = () => {
       highlight: '',
     }
   ]
+
+  // Use members from API if available, otherwise use defaults
+  const members = aboutData.members && aboutData.members.length > 0 
+    ? aboutData.members.map(member => ({
+        ...member,
+        photo: member.photo ? getImageUrl(member.photo) : (defaultMembers.find(dm => dm.name === member.name)?.photo || null)
+      }))
+    : defaultMembers
 
   // Intersection Observer for scroll-triggered animations - PROMPTS
   useEffect(() => {
@@ -213,7 +232,7 @@ const About = () => {
                 },
               }}
             >
-              Bändist
+              {aboutData.title}
             </Typography>
 
             <Typography
@@ -257,7 +276,7 @@ const About = () => {
                   textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
                 }}
               >
-                Siim Aimla Funk Band on see, mis muudab iga ürituse peoks. James Brown'i energia, Michael Breckeri vibe ja eesti popiklassika, mida keegi ei oska oodata – kõik ühes paketis. Alates <strong style={{ color: '#D4AF37' }}>2017. aastast</strong> on see ansambel tõestanud, et funk ei küsi luba – ta lihtsalt võtab lava üle.
+                {aboutData.description}
               </Typography>
 
               {/* <Typography

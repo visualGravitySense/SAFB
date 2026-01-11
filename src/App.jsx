@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import theme from './theme'
+import { ContentProvider } from './context/ContentContext'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
@@ -14,19 +15,21 @@ import Footer from './components/Footer'
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Navigation />
-      <Hero />
-      <Stats />
-      {/* <Events /> */}
-      <Music />
-      <About />
-      {/* <Testimonials /> */}
-      <Booking />
-      <Gallery />
-      <Footer />
-    </ThemeProvider>
+    <ContentProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Navigation />
+        <Hero />
+        <Stats />
+        {/* <Events /> */}
+        <Music />
+        <About />
+        {/* <Testimonials /> */}
+        <Booking />
+        <Gallery />
+        <Footer />
+      </ThemeProvider>
+    </ContentProvider>
   )
 }
 

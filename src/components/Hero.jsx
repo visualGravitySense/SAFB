@@ -5,9 +5,26 @@ import EventIcon from '@mui/icons-material/Event'
 import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import PeopleIcon from '@mui/icons-material/People'
 import heroImage from '../img/band-hero-1.jpg'
+import { useContent } from '../context/ContentContext'
 
 const Hero = () => {
+  const { content, loading } = useContent()
   const [fadeIn, setFadeIn] = useState(false)
+  
+  // Get hero data from API or use defaults
+  const heroData = content?.hero || {
+    title: 'SIIM AIMLA FUNK BAND',
+    subtitle: 'Funk, mis paneb sind tantsima',
+    description: 'Tipptasemel live-muusika, mis loob unustamatu elamuse teie üritusele',
+    ctaPrimary: 'Broneeri Nüüd',
+    ctaSecondary: 'Kuula Muusikat',
+    stats: {
+      viewers: '50K+',
+      viewersLabel: 'Vaatajat',
+      experience: '8+',
+      experienceLabel: 'Aastat Kogemust'
+    }
+  }
 
   useEffect(() => {
     setFadeIn(true)
@@ -145,7 +162,7 @@ const Hero = () => {
                     position: 'relative',
                   }}
                 >
-                  50K+ Vaatajat
+                  {heroData.stats.viewers} {heroData.stats.viewersLabel}
                 </Typography>
               </Box>
 
@@ -201,7 +218,7 @@ const Hero = () => {
                     position: 'relative',
                   }}
                 >
-                  8+ Aastat Kogemust
+                  {heroData.stats.experience} {heroData.stats.experienceLabel}
                 </Typography>
               </Box>
             </Stack>
@@ -244,7 +261,7 @@ const Hero = () => {
                 },
               }}
             >
-              SIIM AIMLA FUNK BAND
+              {heroData.title}
             </Typography>
 
             {/* Value Proposition - Enhanced MOTIVATION with FUNK */}
@@ -278,7 +295,7 @@ const Hero = () => {
                 },
               }}
             >
-              Funk, mis paneb sind tantsima
+              {heroData.subtitle}
             </Typography>
             
             {/* Sub-value Proposition */}
@@ -296,7 +313,7 @@ const Hero = () => {
                 animation: fadeIn ? 'fadeInUp 1s ease-out 0.5s both' : 'none',
               }}
             >
-              Tipptasemel live-muusika, mis loob unustamatu elamuse teie üritusele
+              {heroData.description}
             </Typography>
 
             {/* CTA Buttons - Enhanced ABILITY & PROMPTS */}
@@ -379,7 +396,7 @@ const Hero = () => {
                   },
                 }}
               >
-                Broneeri Nüüd
+                {heroData.ctaPrimary}
               </Button>
               
               {/* Secondary CTA - Clear Alternative with FUNK Style */}
@@ -416,7 +433,7 @@ const Hero = () => {
                   },
                 }}
               >
-                Kuula Muusikat
+                {heroData.ctaSecondary}
               </Button>
             </Stack>
 

@@ -23,12 +23,15 @@ import PeopleIcon from '@mui/icons-material/People'
 import WarningIcon from '@mui/icons-material/Warning'
 import StarIcon from '@mui/icons-material/Star'
 import bandHero2 from '../img/band-hero-2.jpg'
+import { useContent } from '../context/ContentContext'
 
 const Events = () => {
+  const { content } = useContent()
   const [isVisible, setIsVisible] = useState(false)
   const eventsRef = useRef(null)
 
-  const events = [
+  // Default events as fallback
+  const defaultEvents = [
     {
       date: '15. DETS 2024',
       title: 'Jõulukontsert',
@@ -68,6 +71,11 @@ const Events = () => {
       attendees: 342,
     },
   ]
+
+  // Use events from API if available, otherwise use defaults
+  const events = (content?.events && content.events.length > 0) 
+    ? content.events 
+    : defaultEvents
 
   // Intersection Observer for scroll-triggered animations - PROMPTS
   useEffect(() => {
