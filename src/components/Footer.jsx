@@ -363,28 +363,42 @@ const Footer = () => {
               Kontakt
             </Typography>
             <Stack spacing={1.5}>
-              <Box 
+              <Button
                 component="a"
-                href="mailto:info@safunkband.ee"
-                sx={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: 1,
-                  py: 0.75,
+                href="mailto:sten.valdmaa@gmail.com"
+                startIcon={<EmailIcon />}
+                sx={{
+                  background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.9) 0%, rgba(244, 103, 51, 0.9) 100%)',
+                  color: '#0F0F0F',
+                  fontWeight: 700,
+                  fontSize: '1rem',
+                  py: 1.5,
+                  px: 2.5,
+                  textTransform: 'none',
+                  fontFamily: "'Righteous', cursive",
+                  letterSpacing: '0.05em',
+                  borderRadius: '8px',
+                  border: '2px solid rgba(212, 175, 55, 0.5)',
+                  boxShadow: '0 4px 20px rgba(212, 175, 55, 0.4), 0 0 20px rgba(244, 103, 51, 0.2)',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   textDecoration: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 1,
                   '&:hover': {
-                    opacity: 0.8,
-                    transform: 'translateX(3px)',
+                    background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.95) 0%, rgba(212, 175, 55, 0.95) 100%)',
+                    transform: 'translateY(-3px) scale(1.02)',
+                    boxShadow: '0 8px 30px rgba(212, 175, 55, 0.6), 0 0 30px rgba(244, 103, 51, 0.4)',
+                    borderColor: 'rgba(212, 175, 55, 0.8)',
+                  },
+                  '&:active': {
+                    transform: 'translateY(-1px) scale(0.98)',
                   },
                 }}
               >
-                <EmailIcon sx={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '1rem' }} />
-                <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem' }}>
-                  info@safunkband.ee
-                </Typography>
-              </Box>
+                sten.valdmaa@gmail.com
+              </Button>
               <Box 
                 component="a"
                 href="tel:+37255519757"
