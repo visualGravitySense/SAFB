@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 import { Box, Button, Typography, Stack, Chip, Fade } from '@mui/material'
 import MusicNoteIcon from '@mui/icons-material/MusicNote'
 import EventIcon from '@mui/icons-material/Event'
-import TrendingUpIcon from '@mui/icons-material/TrendingUp'
-import PeopleIcon from '@mui/icons-material/People'
 import heroImage from '../img/band-hero-1.jpg'
 import { useContent } from '../context/ContentContext'
 
@@ -18,12 +16,6 @@ const Hero = () => {
     description: 'Tipptasemel live-muusika, mis loob unustamatu elamuse teie üritusele',
     ctaPrimary: 'Broneeri Nüüd',
     ctaSecondary: 'Kuula Muusikat',
-    stats: {
-      viewers: '50K+',
-      viewersLabel: 'Vaatajat',
-      experience: '8+',
-      experienceLabel: 'Aastat Kogemust'
-    }
   }
 
   useEffect(() => {
@@ -98,131 +90,6 @@ const Hero = () => {
       >
         <Fade in={fadeIn} timeout={1000}>
           <Box>
-            {/* Social Proof Badge - MOTIVATION with FUNK Style */}
-            <Stack
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-              alignItems="center"
-              sx={{ 
-                mb: 4, 
-                flexWrap: 'wrap',
-                display: { xs: 'none', sm: 'flex' }
-              }}
-            >
-              {/* First Badge - Orange Theme */}
-              <Box
-                sx={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 1.5,
-                  px: 3,
-                  py: 1.5,
-                  borderRadius: '10px',
-                  background: 'linear-gradient(135deg, rgba(40, 25, 20, 0.95) 0%, rgba(60, 35, 25, 0.95) 50%, rgba(40, 25, 20, 0.95) 100%)',
-                  border: '2px solid #F46733',
-                  boxShadow: '0 4px 20px rgba(244, 103, 51, 0.3), inset 0 0 30px rgba(244, 103, 51, 0.1)',
-                  transition: 'all 0.3s ease',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.15) 0%, transparent 50%, rgba(244, 103, 51, 0.1) 100%)',
-                    pointerEvents: 'none',
-                  },
-                  '&:hover': {
-                    transform: 'translateY(-3px) scale(1.03)',
-                    borderColor: '#FF7744',
-                    boxShadow: '0 6px 30px rgba(244, 103, 51, 0.5), inset 0 0 40px rgba(244, 103, 51, 0.15)',
-                  },
-                }}
-              >
-                <PeopleIcon 
-                  sx={{ 
-                    color: '#F46733', 
-                    fontSize: '1.5rem !important',
-                    filter: 'drop-shadow(0 0 8px rgba(244, 103, 51, 0.6))',
-                    zIndex: 1,
-                    position: 'relative',
-                  }} 
-                />
-                <Typography
-                  component="span"
-                  sx={{
-                    color: '#F46733',
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    letterSpacing: '0.02em',
-                    zIndex: 1,
-                    position: 'relative',
-                  }}
-                >
-                  {heroData.stats.viewers} {heroData.stats.viewersLabel}
-                </Typography>
-              </Box>
-
-              {/* Second Badge - Gold Theme */}
-              <Box
-                sx={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 1.5,
-                  px: 3,
-                  py: 1.5,
-                  borderRadius: '10px',
-                  background: 'linear-gradient(135deg, rgba(40, 30, 15, 0.95) 0%, rgba(60, 45, 25, 0.95) 50%, rgba(40, 30, 15, 0.95) 100%)',
-                  border: '2px solid #D4AF37',
-                  boxShadow: '0 4px 20px rgba(212, 175, 55, 0.3), inset 0 0 30px rgba(212, 175, 55, 0.1)',
-                  transition: 'all 0.3s ease',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, transparent 50%, rgba(212, 175, 55, 0.1) 100%)',
-                    pointerEvents: 'none',
-                  },
-                  '&:hover': {
-                    transform: 'translateY(-3px) scale(1.03)',
-                    borderColor: '#E5BF50',
-                    boxShadow: '0 6px 30px rgba(212, 175, 55, 0.5), inset 0 0 40px rgba(212, 175, 55, 0.15)',
-                  },
-                }}
-              >
-                <TrendingUpIcon 
-                  sx={{ 
-                    color: '#D4AF37', 
-                    fontSize: '1.5rem !important',
-                    filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.6))',
-                    zIndex: 1,
-                    position: 'relative',
-                  }} 
-                />
-                <Typography
-                  component="span"
-                  sx={{
-                    color: '#D4AF37',
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    letterSpacing: '0.02em',
-                    zIndex: 1,
-                    position: 'relative',
-                  }}
-                >
-                  {heroData.stats.experience} {heroData.stats.experienceLabel}
-                </Typography>
-              </Box>
-            </Stack>
-
             {/* Main Headline - Enhanced MOTIVATION with FUNK Style */}
             <Typography
               variant="h1"

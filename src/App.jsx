@@ -2,6 +2,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import theme from './theme'
 import { ContentProvider } from './context/ContentContext'
+import { useButtonClickTracker } from './hooks/useButtonClickTracker'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
@@ -12,13 +13,17 @@ import Testimonials from './components/Testimonials'
 import Booking from './components/Booking'
 import Gallery from './components/Gallery'
 import Footer from './components/Footer'
+import FloatingTelegramButton from './components/FloatingTelegramButton'
 
 function App() {
+  useButtonClickTracker()
+
   return (
     <ContentProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navigation />
+        <FloatingTelegramButton />
         <Hero />
         <Stats />
         {/* <Events /> */}

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAFB – Summer Header</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Nunito:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a2e;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ─────────────────────────────────────── */
+  header {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(135deg, #0d3b2e 0%, #1a5c3a 40%, #0f4a30 70%, #0a2e1f 100%);
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, #f9c74f, #f77f00, #f9c74f) 1;
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Warm sunlight glow overlay */
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 50% -30%, rgba(249,199,79,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 30% 60% at 0% 50%, rgba(255,140,0,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 60% at 100% 50%, rgba(255,140,0,0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── FLOATING SUMMER ELEMENTS (летняя тема) ──────── */
+  .summer-particle {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    font-size: 16px;
+    animation: summerFloat linear forwards;
+    opacity: 0;
+    filter: drop-shadow(0 0 4px rgba(249,199,79,0.3));
+  }
+
+  /* Плавное покачивание вверх + лёгкое раскачивание в стороны (как листья/бабочки на ветру) */
+  @keyframes summerFloat {
+    0%   { transform: translateY(60px) translateX(0) rotate(0deg) scale(0.7); opacity: 0; }
+    8%   { opacity: 0.85; }
+    25%  { transform: translateY(35px) translateX(8px) rotate(12deg) scale(0.9); }
+    50%  { transform: translateY(10px) translateX(-6px) rotate(-8deg) scale(1); }
+    75%  { transform: translateY(-10px) translateX(4px) rotate(5deg) scale(0.95); }
+    92%  { opacity: 0.7; }
+    100% { transform: translateY(-25px) translateX(0) rotate(0deg) scale(0.8); opacity: 0; }
+  }
+
+  /* Солнечные блики (искры) */
+  .summer-sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(249,199,79,0.9);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    animation: sparkleTwinkle 2.5s ease-in-out infinite;
+    box-shadow: 0 0 6px rgba(249,199,79,0.8);
+  }
+
+  @keyframes sparkleTwinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+
+  /* Sunrays at top */
+  .sunray {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(to bottom, rgba(249,199,79,0.5), transparent);
+    transform-origin: top center;
+    animation: rayPulse 3s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  @keyframes rayPulse {
+    0%, 100% { opacity: 0.3; height: 20px; }
+    50% { opacity: 0.7; height: 35px; }
+  }
+
+  /* ── LOGO ────────────────────────────────────────── */
+  .logo {
+    font-family: 'Righteous', cursive;
+    font-size: 26px;
+    color: #f9c74f;
+    letter-spacing: 2px;
+    text-decoration: none;
+    position: relative;
+    z-index: 10;
+    flex-shrink: 0;
+    text-shadow: 0 0 20px rgba(249,199,79,0.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .logo .leaf {
+    font-size: 20px;
+    animation: leafSway 2.5s ease-in-out infinite;
+    display: inline-block;
+  }
+  @keyframes leafSway {
+    0%, 100% { transform: rotate(-15deg); }
+    50% { transform: rotate(15deg); }
+  }
+
+  /* ── NAV ─────────────────────────────────────────── */
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .nav-link .icon { font-size: 15px; }
+
+  .nav-link:hover {
+    background: rgba(249,199,79,0.15);
+    color: #f9c74f;
+    transform: translateY(-1px);
+  }
+
+  .nav-link.active {
+    color: #f9c74f;
+    border-bottom: 2px solid #f9c74f;
+    border-radius: 8px 8px 0 0;
+  }
+
+  /* Broneeri CTA button */
+  .nav-link.cta {
+    background: linear-gradient(135deg, #f9c74f, #f77f00);
+    color: #0d3b2e;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 7px 18px;
+    box-shadow: 0 4px 15px rgba(249,199,79,0.4);
+    border: none;
+    animation: ctaPulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes ctaPulse {
+    0%, 100% { box-shadow: 0 4px 15px rgba(249,199,79,0.4); }
+    50% { box-shadow: 0 4px 25px rgba(249,199,79,0.7); }
+  }
+
+  .nav-link.cta:hover {
+    background: linear-gradient(135deg, #ffd166, #f9a825);
+    color: #0d3b2e;
+    transform: translateY(-2px) scale(1.05);
+  }
+
+  /* ── PHONE ───────────────────────────────────────── */
+  .phone-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 2px solid rgba(249,199,79,0.6);
+    border-radius: 24px;
+    padding: 7px 16px;
+    color: #f9c74f;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    z-index: 10;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+
+  .phone-btn:hover {
+    background: rgba(249,199,79,0.15);
+    border-color: #f9c74f;
+    transform: scale(1.05);
+  }
+
+  /* ── DEMO INFO ───────────────────────────────────── */
+  .demo-note {
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 40px 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+
+  <!-- Sunrays -->
+  <div class="sunray" style="left:20%; animation-delay:0s; animation-duration:2.8s;"></div>
+  <div class="sunray" style="left:30%; animation-delay:0.4s; animation-duration:3.2s;"></div>
+  <div class="sunray" style="left:40%; animation-delay:0.8s; animation-duration:2.5s;"></div>
+  <div class="sunray" style="left:50%; animation-delay:0.2s; animation-duration:3.5s;"></div>
+  <div class="sunray" style="left:60%; animation-delay:1s; animation-duration:2.9s;"></div>
+  <div class="sunray" style="left:70%; animation-delay:0.6s; animation-duration:3.1s;"></div>
+  <div class="sunray" style="left:80%; animation-delay:1.4s; animation-duration:2.7s;"></div>
+
+  <!-- Summer floating particles (generated by JS) -->
+
+  <!-- Logo -->
+  <a href="#" class="logo">SAFB <span class="leaf">🌿</span></a>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#" class="nav-link active"><span class="icon"></span> Avaleht</a>
+    <a href="#" class="nav-link"><span class="icon"></span> Kontserdid</a>
+    <a href="#" class="nav-link"><span class="icon"></span> Muusika</a>
+    <a href="#" class="nav-link"><span class="icon">ℹ</span> Meist</a>
+    <a href="#" class="nav-link cta"><span class="icon"></span> Broneeri</a>
+    <a href="#" class="nav-link"><span class="icon"></span> Galerii</a>
+    <a href="#" class="nav-link"><span class="icon"></span> Kontakt</a>
+  </nav>
+
+  <!-- Phone -->
+  <a href="tel:55519757" class="phone-btn">📞 55519757</a>
+
+</header>
+
+<div class="demo-note">☀️ SAFB Summer Header</div>
+
+<script>
+  const particles = ['🎵','🎶','🎷','🎺','🎹','🎸','🎤','♪','♫','🎼'];
+  const header = document.getElementById('header');
+
+  function createParticle() {
+    const el = document.createElement('div');
+    el.className = 'summer-particle';
+    el.textContent = particles[Math.floor(Math.random() * particles.length)];
+    el.style.left = Math.random() * 100 + '%';
+    el.style.fontSize = (14 + Math.random() * 8) + 'px';
+    el.style.bottom = '0';
+    const dur = 6 + Math.random() * 4;
+    el.style.animationDuration = dur + 's';
+    el.style.animationDelay = '0s';
+    header.appendChild(el);
+    setTimeout(() => el.remove(), dur * 1000);
+  }
+
+  function createSparkle() {
+    const el = document.createElement('div');
+    el.className = 'summer-sparkle';
+    el.style.left = Math.random() * 100 + '%';
+    el.style.top = Math.random() * 100 + '%';
+    el.style.animationDelay = Math.random() * 2 + 's';
+    el.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+    header.appendChild(el);
+    setTimeout(() => el.remove(), 4000);
+  }
+
+  // Музыкальные частицы (лёгкое покачивание вверх)
+  setInterval(createParticle, 900);
+  for (let i = 0; i < 5; i++) setTimeout(createParticle, i * 250);
+
+  // Солнечные искры
+  setInterval(createSparkle, 400);
+  for (let i = 0; i < 8; i++) setTimeout(createSparkle, i * 150);
+</script>
+
+</body>
+</html>
