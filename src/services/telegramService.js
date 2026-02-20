@@ -3,6 +3,8 @@
 
 const ADMIN_CHAT_ID = import.meta.env.VITE_TELEGRAM_ADMIN_CHAT_ID || ''
 const DEBUG_MODE = import.meta.env.VITE_TELEGRAM_DEBUG === 'true'
+// Для GitHub Pages: URL Vercel API (напр. https://safunkband.vercel.app). На Vercel — пусто (same origin).
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '')
 
 export class TelegramService {
   /**
@@ -23,7 +25,8 @@ export class TelegramService {
     const chatId = ADMIN_CHAT_ID || (DEBUG_MODE ? 'debug' : '')
 
     try {
-      const response = await fetch('/api/telegram-notify', {
+      const apiUrl = API_BASE ? `${API_BASE}/api/telegram-notify` : '/api/telegram-notify'
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
