@@ -34,14 +34,15 @@ const Navigation = () => {
   const [isNavVisible, setIsNavVisible] = useState(true)
   const theme = useTheme()
 
-  // Generate snowflakes for Christmas animation in header
-  const snowflakes = Array.from({ length: 15 }, (_, i) => ({
+  // Музыкальные частицы для летней анимации в header
+  const musicEmoji = ['🎵', '🎶', '🎷', '🎺', '🎹', '🎸', '🎤', '♪', '♫', '🎼']
+  const particles = Array.from({ length: 12 }, (_, i) => ({
     id: i,
     left: Math.random() * 100,
-    delay: Math.random() * 8,
-    duration: 5 + Math.random() * 7,
-    size: 8 + Math.random() * 10,
-    opacity: 0.4 + Math.random() * 0.4,
+    delay: Math.random() * 6,
+    duration: 6 + Math.random() * 4,
+    size: 12 + Math.random() * 8,
+    emoji: musicEmoji[i % musicEmoji.length],
   }))
 
   // Track scroll for header styling - PROMPTS
@@ -68,7 +69,7 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Track navigation visibility to disable snowflake animation when not visible
+  // Track navigation visibility to disable particle animation when not visible
   useEffect(() => {
     const navElement = document.querySelector('[role="banner"]') || document.querySelector('header')
     if (!navElement) return
@@ -142,37 +143,35 @@ const Navigation = () => {
               : 'none',
             transition: 'all 0.3s ease',
             overflow: 'visible',
-            // Christmas snowflakes animation keyframes
-            '@keyframes snowfallHeader': {
+            // Летняя анимация — плавное покачивание музыкальных частиц
+            '@keyframes summerFloatHeader': {
               '0%': {
-                transform: 'translateY(0) translateX(0) rotate(0deg)',
+                transform: 'translateY(0) translateX(0) rotate(0deg) scale(0.8)',
                 opacity: 0,
               },
-              '5%': {
-                opacity: 0.9,
+              '10%': { opacity: 0.85 },
+              '25%': {
+                transform: 'translateY(25px) translateX(6px) rotate(15deg) scale(0.95)',
               },
               '50%': {
-                transform: 'translateY(60px) translateX(10px) rotate(180deg)',
-                opacity: 0.8,
+                transform: 'translateY(50px) translateX(-4px) rotate(-10deg) scale(1)',
               },
-              '95%': {
-                opacity: 0.2,
+              '75%': {
+                transform: 'translateY(75px) translateX(3px) rotate(8deg) scale(0.95)',
               },
+              '90%': { opacity: 0.6 },
               '100%': {
-                transform: 'translateY(100px) translateX(-5px) rotate(360deg)',
+                transform: 'translateY(100px) translateX(0) rotate(0deg) scale(0.85)',
                 opacity: 0,
               },
             },
-            // Christmas snowflakes animation in header
-            '& .snowflake': {
+            '& .summer-particle': {
               position: 'absolute',
               top: '-10px',
-              color: 'rgba(255, 255, 255, 1)',
-              fontSize: '1.2rem',
               pointerEvents: 'none',
               userSelect: 'none',
               zIndex: 100,
-              textShadow: '0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(212, 175, 55, 0.6)',
+              filter: 'drop-shadow(0 0 4px rgba(249, 199, 79, 0.5))',
               willChange: 'transform, opacity',
               lineHeight: 1,
               display: 'block',
@@ -208,26 +207,25 @@ const Navigation = () => {
             },
           }}
         >
-          {/* Christmas Snowflakes in Header - Only animate when visible */}
-          {isNavVisible && snowflakes.map((snowflake) => (
+          {/* Музыкальные частицы в header — летняя тема */}
+          {isNavVisible && particles.map((p) => (
             <Box
-              key={snowflake.id}
-              className="snowflake"
+              key={p.id}
+              className="summer-particle"
               component="span"
               sx={{
                 position: 'absolute',
-                left: `${snowflake.left}%`,
+                left: `${p.left}%`,
                 top: '-10px',
-                animation: isNavVisible 
-                  ? `snowfallHeader ${snowflake.duration}s linear ${snowflake.delay}s infinite`
+                animation: isNavVisible
+                  ? `summerFloatHeader ${p.duration}s ease-in-out ${p.delay}s infinite`
                   : 'none',
-                fontSize: `${snowflake.size}px`,
-                filter: 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.7))',
+                fontSize: `${p.size}px`,
                 zIndex: 100,
                 display: isNavVisible ? 'block' : 'none',
               }}
             >
-              ❄
+              {p.emoji}
             </Box>
           ))}
 

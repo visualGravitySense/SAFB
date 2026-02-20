@@ -41,6 +41,7 @@ import GroupsIcon from '@mui/icons-material/Groups'
 import GroupIcon from '@mui/icons-material/Group'
 import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 import { EMAILJS_CONFIG } from '../config/emailjs'
+import { TelegramService } from '../services/telegramService'
 
 const Booking = () => {
   const [formData, setFormData] = useState({
@@ -283,6 +284,21 @@ const Booking = () => {
 
       // Проверяем успешную отправку (EmailJS возвращает status 200 или text: 'OK')
       if (result.status === 200 || result.text === 'OK') {
+        // Отправляем уведомление в Telegram
+        try {
+          await TelegramService.notifyContactForm({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            eventType: eventTypes.find(t => t.value === formData.eventType)?.label || formData.eventType,
+            eventDate: formData.eventDate,
+            location: formData.location,
+            format: formatString,
+            message: formData.message || '',
+          })
+        } catch (tgErr) {
+          console.warn('Telegram notification failed:', tgErr)
+        }
         setSuccess(true)
         // Сброс формы
         setFormData({

@@ -31,6 +31,7 @@ import PeopleIcon from '@mui/icons-material/People'
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
+import { TelegramService } from '../services/telegramService'
 
 const Footer = () => {
   const [email, setEmail] = useState('')
@@ -59,15 +60,17 @@ const Footer = () => {
     setError('')
     
     // Имитация загрузки для лучшего UX
-    setTimeout(() => {
-      // Здесь можно добавить интеграцию с EmailJS или другим сервисом
-      console.log('Newsletter subscription:', email)
+    setTimeout(async () => {
+      try {
+        await TelegramService.notifyNewsletterSubscription(email)
+      } catch (err) {
+        console.warn('Telegram notification failed:', err)
+      }
       
       setIsSubmitting(false)
       setSuccess(true)
       setEmail('')
       
-      // Скрыть сообщение об успехе через 5 секунд
       setTimeout(() => setSuccess(false), 5000)
     }, 1000)
   }
