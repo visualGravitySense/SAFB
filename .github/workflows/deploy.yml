@@ -35,6 +35,10 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          # URL Vercel (где API) — замени на свой: Settings → Variables
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
+          VITE_TELEGRAM_ADMIN_CHAT_ID: ${{ vars.VITE_TELEGRAM_ADMIN_CHAT_ID }}
+          VITE_TELEGRAM_DEBUG: 'false'
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
