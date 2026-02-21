@@ -117,6 +117,17 @@ ${(data?.message || 'Puudub').substring(0, 500)}
         `.trim()
         break
 
+      case 'page_visit':
+        message = `
+👀 <b>Külastaja vaatas lehte</b>
+
+📍 <b>Leht:</b> ${data?.path ?? '/'}
+🔗 <b>Allikas:</b> ${data?.referrer ? (data.referrer.length > 80 ? data.referrer.slice(0, 80) + '…' : data.referrer) : 'Otseselt'}
+
+⏰ <b>Aeg:</b> ${new Date().toLocaleString('et-EE', { timeZone: 'Europe/Tallinn' })}
+        `.trim()
+        break
+
       default:
         return res.status(400).json({ error: 'Invalid notification type' })
     }
