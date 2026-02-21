@@ -3,6 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import theme from './theme'
 import { ContentProvider } from './context/ContentContext'
 import { useButtonClickTracker } from './hooks/useButtonClickTracker'
+import { usePageVisitTracker } from './hooks/usePageVisitTracker'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import Stats from './components/Stats'
@@ -17,6 +18,7 @@ import FloatingTelegramButton from './components/FloatingTelegramButton'
 
 function App() {
   useButtonClickTracker()
+  usePageVisitTracker()
 
   return (
     <ContentProvider>

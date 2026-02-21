@@ -103,4 +103,13 @@ export class TelegramService {
       console.warn('Button click notification failed:', err)
     )
   }
+
+  /**
+   * Уведомление о посещении страницы (кто-то зашёл на сайт, ничего не нажал)
+   */
+  static notifyPageVisit(data = {}) {
+    this.sendViaAPI('page_visit', data).catch((err) =>
+      console.warn('Page visit notification failed:', err)
+    )
+  }
 }
