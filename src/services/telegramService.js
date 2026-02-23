@@ -96,6 +96,16 @@ export class TelegramService {
   }
 
   /**
+   * Запрос предложения (Küsi pakkumist — мини-форма)
+   */
+  static async notifyQuoteRequest(data) {
+    const result = await this.sendViaAPI('quote_request', data)
+    if (!result.success) {
+      throw new Error(result.error || 'Failed to send Telegram notification')
+    }
+  }
+
+  /**
    * Уведомление о нажатии кнопки на сайте (fire-and-forget, не блокирует UI)
    */
   static notifyButtonClick(data) {

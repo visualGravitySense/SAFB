@@ -105,6 +105,20 @@ ${(data?.message || 'Puudub').substring(0, 500)}
         `.trim()
         break
 
+      case 'quote_request':
+        message = `
+📋 <b>Pakkumise päring</b> (Küsi pakkumist)
+
+💬 <b>Päring:</b>
+${(data?.request || 'Puudub').substring(0, 500)}
+
+📧 <b>Email:</b> ${data?.email ?? 'Puudub'}
+📱 <b>Telefon:</b> ${data?.phone ?? 'Puudub'}
+
+⏰ <b>Aeg:</b> ${new Date().toLocaleString('et-EE', { timeZone: 'Europe/Tallinn' })}
+        `.trim()
+        break
+
       case 'button_click':
         message = `
 🖱️ <b>Nupp vajutati</b>

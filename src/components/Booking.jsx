@@ -157,11 +157,12 @@ const Booking = () => {
         }
         break
       case 'format':
-        if (!value || value.trim() === '') {
-          errors.format = 'Palun valige koosseisu formaat'
-        } else {
-          delete errors.format
-        }
+      case 'eventType':
+      case 'location':
+      case 'name':
+      case 'message':
+        // Optional fields - no validation when empty
+        delete errors[name]
         break
       case 'eventDate':
         if (value) {
@@ -186,11 +187,12 @@ const Booking = () => {
     setFieldErrors(errors)
   }
 
+  // Minimal required for early submit: date + email + phone (reduces abandonment)
+  const requiredForSubmit = ['eventDate', 'email', 'phone']
   const isFormValid = () => {
-    const requiredFields = ['eventType', 'eventDate', 'location', 'format', 'name', 'email', 'phone']
-    const allFilled = requiredFields.every(field => formData[field] && formData[field].trim() !== '')
-    const noErrors = Object.keys(fieldErrors).length === 0
-    return allFilled && noErrors
+    const minFilled = requiredForSubmit.every(field => formData[field] && formData[field].trim() !== '')
+    const noErrors = !fieldErrors.eventDate && !fieldErrors.email && !fieldErrors.phone
+    return minFilled && noErrors
   }
 
   const handleChange = (e) => {
@@ -1068,12 +1070,11 @@ const Booking = () => {
                       <TextField
                         select
                         fullWidth
-                        label="Ürituse Tüüp *"
+                        label="Ürituse Tüüp (valikuline)"
                         name="eventType"
                         value={formData.eventType}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        required
                         error={touchedFields.eventType && !!fieldErrors.eventType}
                         helperText={touchedFields.eventType && fieldErrors.eventType}
                         InputProps={{
@@ -1178,7 +1179,7 @@ const Booking = () => {
                             fontWeight: 500,
                           }}
                         >
-                          Koosseisu formaat *
+                          Koosseisu formaat (valikuline)
                         </Typography>
                         <Grid container spacing={{ xs: 1.5, sm: 2 }}>
                           {formatOptions.map((option) => {
@@ -1369,7 +1370,6 @@ const Booking = () => {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         placeholder="Linn, koht (nt. Tallinn, Saku Suurhall)"
-                        required
                         error={touchedFields.location && !!fieldErrors.location}
                         helperText={touchedFields.location && fieldErrors.location}
                         InputProps={{
@@ -1413,7 +1413,6 @@ const Booking = () => {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         placeholder="Ees- ja perekonnanimi"
-                        required
                         error={touchedFields.name && !!fieldErrors.name}
                         helperText={touchedFields.name && fieldErrors.name}
                         InputProps={{
@@ -1668,7 +1667,7 @@ const Booking = () => {
                           },
                         }}
                       >
-                        {loading ? 'Saadetakse...' : isFormValid() ? 'Saada Päring' : 'Täida kõik väljad'}
+                        {loading ? 'Saadetakse...' : isFormValid() ? 'Saada Päring' : 'Kuupäev, e-mail ja telefon'}
                       </Button>
                     </Grid>
 

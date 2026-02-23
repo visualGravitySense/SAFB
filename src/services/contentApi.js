@@ -10,6 +10,7 @@ const defaultContent = {
     subtitle: 'Funk, mis paneb sind tantsima',
     description: 'Tipptasemel live-muusika, mis loob unustamatu elamuse teie üritusele',
     ctaPrimary: 'Broneeri Nüüd',
+    ctaQuote: 'Küsi pakkumist',
     ctaSecondary: 'Kuula Muusikat',
     stats: {
       viewers: '50K+',
