@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Box, Button, Typography, Stack, Chip, Fade } from '@mui/material'
-import MusicNoteIcon from '@mui/icons-material/MusicNote'
+import { Box, Button, Typography, Stack, Fade } from '@mui/material'
 import EventIcon from '@mui/icons-material/Event'
 import heroImage from '../img/band-hero-1.jpg'
 import { useContent } from '../context/ContentContext'
@@ -15,6 +14,7 @@ const Hero = () => {
     subtitle: 'Funk, mis paneb sind tantsima',
     description: 'Tipptasemel live-muusika, mis loob unustamatu elamuse teie üritusele',
     ctaPrimary: 'Broneeri Nüüd',
+    ctaQuote: 'Küsi pakkumist',
     ctaSecondary: 'Kuula Muusikat',
   }
 
@@ -264,43 +264,6 @@ const Hero = () => {
                 }}
               >
                 {heroData.ctaPrimary}
-              </Button>
-              
-              {/* Secondary CTA - Clear Alternative with FUNK Style */}
-              <Button
-                variant="outlined"
-                size="large"
-                startIcon={<MusicNoteIcon />}
-                onClick={() => handleScrollTo('#muusika')}
-                sx={{
-                  px: { xs: 5, md: 7 },
-                  py: 2.5,
-                  fontSize: { xs: '1.1rem', md: '1.3rem' },
-                  fontWeight: 700,
-                  fontFamily: "'Righteous', cursive",
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  borderColor: '#F46733',
-                  borderWidth: '3px',
-                  color: '#FFFFFF',
-                  borderRadius: '12px',
-                  minWidth: { xs: '100%', sm: '280px' },
-                  backdropFilter: 'blur(15px)',
-                  background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.2), rgba(212, 175, 55, 0.2))',
-                  boxShadow: '0 4px 20px rgba(244, 103, 51, 0.3)',
-                  transition: 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-                  animation: fadeIn ? 'fadeInUp 1s ease-out 0.9s both' : 'none',
-                  '&:hover': {
-                    borderColor: '#D4AF37',
-                    background: 'linear-gradient(135deg, rgba(244, 103, 51, 0.35), rgba(212, 175, 55, 0.35))',
-                    color: '#FFFFFF',
-                    transform: 'translateY(-5px) scale(1.05)',
-                    borderWidth: '3px',
-                    boxShadow: '0 8px 30px rgba(244, 103, 51, 0.5), 0 0 40px rgba(212, 175, 55, 0.3)',
-                  },
-                }}
-              >
-                {heroData.ctaSecondary}
               </Button>
             </Stack>
 
