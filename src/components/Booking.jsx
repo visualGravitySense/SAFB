@@ -33,8 +33,6 @@ import InfoIcon from '@mui/icons-material/Info'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
 import StarIcon from '@mui/icons-material/Star'
 import VerifiedIcon from '@mui/icons-material/Verified'
-import AccessTimeIcon from '@mui/icons-material/AccessTime'
-import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import MusicNoteIcon from '@mui/icons-material/MusicNote'
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote'
 import GroupsIcon from '@mui/icons-material/Groups'
@@ -126,9 +124,9 @@ const Booking = () => {
     }
   }, [])
 
-  // Calculate form completion progress - ABILITY
+  // Progress: only 3 required fields
   const calculateProgress = () => {
-    const fields = ['eventType', 'eventDate', 'location', 'format', 'name', 'email', 'phone']
+    const fields = ['eventDate', 'email', 'phone']
     const filledFields = fields.filter(field => formData[field] && formData[field].trim() !== '').length
     return Math.round((filledFields / fields.length) * 100)
   }
@@ -763,105 +761,6 @@ const Booking = () => {
                   </Stack>
                 </Box>
 
-                {/* Art Deco Divider */}
-                <Box
-                  sx={{
-                    my: { xs: 2, md: 3 },
-                    height: '2px',
-                    background: 'repeating-linear-gradient(90deg, #D4AF37 0px, #D4AF37 8px, transparent 8px, transparent 16px)',
-                    position: 'relative',
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      left: '50%',
-                      top: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      width: '12px',
-                      height: '12px',
-                      border: '2px solid #D4AF37',
-                      background: '#FFFFFF',
-                      borderRadius: '50%',
-                    },
-                  }}
-                />
-
-                {/* Benefits - MOTIVATION */}
-                <Box sx={{ position: 'relative', zIndex: 1 }}>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      color: '#1A1A1A',
-                      mb: { xs: 1.5, md: 2 },
-                      fontWeight: 700,
-                      fontSize: { xs: '1rem', md: '1.25rem' },
-                      fontFamily: "'Righteous', cursive",
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.1em',
-                      position: 'relative',
-                      pl: 2,
-                      '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        left: 0,
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        width: '4px',
-                        height: '60%',
-                        background: '#D4AF37',
-                        boxShadow: '0 0 10px rgba(212, 175, 55, 0.5)',
-                      },
-                    }}
-                  >
-                    Mis saad?
-                  </Typography>
-                  <Stack spacing={{ xs: 1, md: 1.5 }}>
-                    <Chip
-                      icon={<AccessTimeIcon sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, color: '#D4AF37' }} />}
-                      label="Kiire vastus 24h jooksul"
-                      sx={{
-                        bgcolor: 'rgba(212, 175, 55, 0.1)',
-                        color: '#1A1A1A',
-                        fontWeight: 600,
-                        fontSize: { xs: '0.75rem', md: '0.875rem' },
-                        height: { xs: '32px', md: '36px' },
-                        border: '1px solid rgba(212, 175, 55, 0.3)',
-                        '&:hover': {
-                          bgcolor: 'rgba(212, 175, 55, 0.2)',
-                        },
-                      }}
-                    />
-                    <Chip
-                      icon={<TrendingUpIcon sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, color: '#D4AF37' }} />}
-                      label="Tasuta konsultatsioon"
-                      sx={{
-                        bgcolor: 'rgba(212, 175, 55, 0.1)',
-                        color: '#1A1A1A',
-                        fontWeight: 600,
-                        fontSize: { xs: '0.75rem', md: '0.875rem' },
-                        height: { xs: '32px', md: '36px' },
-                        border: '1px solid rgba(212, 175, 55, 0.3)',
-                        '&:hover': {
-                          bgcolor: 'rgba(212, 175, 55, 0.2)',
-                        },
-                      }}
-                    />
-                    <Chip
-                      icon={<CheckCircleIcon sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, color: '#D4AF37' }} />}
-                      label="Kohandatud pakkumine"
-                      sx={{
-                        bgcolor: 'rgba(212, 175, 55, 0.1)',
-                        color: '#1A1A1A',
-                        fontWeight: 600,
-                        fontSize: { xs: '0.75rem', md: '0.875rem' },
-                        height: { xs: '32px', md: '36px' },
-                        border: '1px solid rgba(212, 175, 55, 0.3)',
-                        '&:hover': {
-                          bgcolor: 'rgba(212, 175, 55, 0.2)',
-                        },
-                      }}
-                    />
-                  </Stack>
-                </Box>
               </Paper>
             </Fade>
           </Grid>
@@ -1064,64 +963,9 @@ const Booking = () => {
                 </Box>
 
                 <form onSubmit={handleSubmit}>
-                  <Grid container spacing={{ xs: 1, sm: 1.5, md: 2 }}>
-                    {/* Event Type */}
+                  <Grid container spacing={{ xs: 1.5, sm: 2, md: 2.5 }}>
+                    {/* 1. Kuupäev */}
                     <Grid item xs={12}>
-                      <TextField
-                        select
-                        fullWidth
-                        label="Ürituse Tüüp (valikuline)"
-                        name="eventType"
-                        value={formData.eventType}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={touchedFields.eventType && !!fieldErrors.eventType}
-                        helperText={touchedFields.eventType && fieldErrors.eventType}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <EventIcon sx={{ color: formData.eventType ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
-                            </InputAdornment>
-                          ),
-                        }}
-                        sx={{
-                          '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.8rem', md: '0.875rem' },
-                          },
-                          '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.875rem', md: '0.9rem' },
-                            py: { xs: 0.75, md: 1 },
-                          },
-                          '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.65rem', md: '0.7rem' },
-                            mt: 0.5,
-                          },
-                          '& .MuiOutlinedInput-root': {
-                            '&:hover fieldset': {
-                              borderColor: '#D4AF37',
-                            },
-                            '&.Mui-focused fieldset': {
-                              borderColor: '#D4AF37',
-                            },
-                          },
-                        }}
-                      >
-                        <MenuItem value="">
-                          <em>Vali ürituse tüüp</em>
-                        </MenuItem>
-                        {eventTypes.map((option) => (
-                          <MenuItem key={option.value} value={option.value}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                              {option.icon}
-                              {option.label}
-                            </Box>
-                          </MenuItem>
-                        ))}
-                      </TextField>
-                    </Grid>
-
-                    {/* Event Date */}
-                    <Grid item xs={12} sm={6}>
                       <TextField
                         fullWidth
                         type="date"
@@ -1167,286 +1011,7 @@ const Booking = () => {
                       />
                     </Grid>
 
-                    {/* Format Selection */}
-                    <Grid item xs={12}>
-                      <Box>
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            fontSize: { xs: '0.8rem', md: '0.875rem' },
-                            color: '#666',
-                            mb: 1,
-                            fontWeight: 500,
-                          }}
-                        >
-                          Koosseisu formaat (valikuline)
-                        </Typography>
-                        <Grid container spacing={{ xs: 1.5, sm: 2 }}>
-                          {formatOptions.map((option) => {
-                            const isSelected = formData.format === option.value
-                            return (
-                              <Grid item xs={12} sm={4} key={option.value}>
-                                <Box
-                                  onClick={() => handleFormatSelect(option.value)}
-                                  sx={{
-                                    position: 'relative',
-                                    p: { xs: 1.5, sm: 2 },
-                                    borderRadius: '12px',
-                                    cursor: 'pointer',
-                                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                                    border: isSelected ? `2px solid ${option.color}` : '2px solid rgba(212, 175, 55, 0.2)',
-                                    background: isSelected
-                                      ? `linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(244, 103, 51, 0.05) 100%)`
-                                      : 'rgba(255, 255, 255, 0.05)',
-                                    backdropFilter: 'blur(10px)',
-                                    '&:hover': {
-                                      transform: 'translateY(-3px)',
-                                      borderColor: option.color,
-                                      boxShadow: `0 8px 24px rgba(212, 175, 55, 0.2), 0 0 0 1px ${option.color}40`,
-                                    },
-                                    ...(isSelected && {
-                                      boxShadow: `0 8px 24px ${option.color}40, 0 0 0 1px ${option.color}60`,
-                                    }),
-                                  }}
-                                >
-                                  {/* Recommended Badge */}
-                                  {option.recommended && (
-                                    <Chip
-                                      icon={<LocalOfferIcon sx={{ fontSize: '0.875rem !important' }} />}
-                                      label="Soovitame"
-                                      size="small"
-                                      sx={{
-                                        position: 'absolute',
-                                        top: -10,
-                                        right: 8,
-                                        height: '22px',
-                                        fontSize: '0.65rem',
-                                        fontWeight: 600,
-                                        background: 'linear-gradient(135deg, #D4AF37 0%, #F46733 100%)',
-                                        color: '#fff',
-                                        boxShadow: '0 2px 8px rgba(212, 175, 55, 0.4)',
-                                        '& .MuiChip-icon': {
-                                          color: '#fff',
-                                        },
-                                      }}
-                                    />
-                                  )}
-                                  
-                                  {/* Icon */}
-                                  <Box
-                                    sx={{
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      justifyContent: 'center',
-                                      width: { xs: '40px', sm: '48px' },
-                                      height: { xs: '40px', sm: '48px' },
-                                      borderRadius: '50%',
-                                      mb: 1,
-                                      background: isSelected
-                                        ? `linear-gradient(135deg, ${option.color}20 0%, ${option.color}10 100%)`
-                                        : 'rgba(212, 175, 55, 0.1)',
-                                      transition: 'all 0.3s ease',
-                                      ...(isSelected && {
-                                        boxShadow: `0 0 20px ${option.color}40`,
-                                      }),
-                                    }}
-                                  >
-                                    <Box
-                                      sx={{
-                                        color: isSelected ? option.color : '#999',
-                                        fontSize: { xs: '1.5rem', sm: '1.75rem' },
-                                        transition: 'all 0.3s ease',
-                                        filter: isSelected ? 'drop-shadow(0 0 4px rgba(212, 175, 55, 0.5))' : 'none',
-                                      }}
-                                    >
-                                      {option.icon}
-                                    </Box>
-                                  </Box>
-
-                                  {/* Label */}
-                                  <Typography
-                                    variant="h6"
-                                    sx={{
-                                      fontSize: { xs: '0.95rem', sm: '1.1rem' },
-                                      fontWeight: 700,
-                                      color: isSelected ? option.color : '#1A1A1A',
-                                      mb: 0.5,
-                                      transition: 'color 0.3s ease',
-                                    }}
-                                  >
-                                    {option.label}
-                                  </Typography>
-
-                                  {/* Subtitle */}
-                                  <Typography
-                                    variant="body2"
-                                    sx={{
-                                      fontSize: { xs: '0.75rem', sm: '0.85rem' },
-                                      fontWeight: 600,
-                                      color: '#666',
-                                      mb: 0.5,
-                                    }}
-                                  >
-                                    {option.subtitle}
-                                  </Typography>
-
-                                  {/* Description */}
-                                  <Typography
-                                    variant="body2"
-                                    sx={{
-                                      fontSize: { xs: '0.7rem', sm: '0.75rem' },
-                                      color: '#888',
-                                      lineHeight: 1.4,
-                                    }}
-                                  >
-                                    {option.description}
-                                  </Typography>
-
-                                  {/* Selection Indicator */}
-                                  {isSelected && (
-                                    <Box
-                                      sx={{
-                                        position: 'absolute',
-                                        top: 8,
-                                        right: 8,
-                                        width: '20px',
-                                        height: '20px',
-                                        borderRadius: '50%',
-                                        background: `linear-gradient(135deg, ${option.color} 0%, ${option.color}dd 100%)`,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        boxShadow: `0 0 10px ${option.color}60`,
-                                        transition: 'all 0.3s ease',
-                                        animation: 'funkPulse 2s ease-in-out infinite',
-                                        '@keyframes funkPulse': {
-                                          '0%, 100%': {
-                                            transform: 'scale(1)',
-                                            boxShadow: `0 0 10px ${option.color}60`,
-                                          },
-                                          '50%': {
-                                            transform: 'scale(1.15)',
-                                            boxShadow: `0 0 20px ${option.color}80`,
-                                          },
-                                        },
-                                      }}
-                                    >
-                                      <CheckCircleIcon
-                                        sx={{
-                                          fontSize: '0.875rem',
-                                          color: '#fff',
-                                        }}
-                                      />
-                                    </Box>
-                                  )}
-                                </Box>
-                              </Grid>
-                            )
-                          })}
-                        </Grid>
-                        {touchedFields.format && fieldErrors.format && (
-                          <Typography
-                            variant="caption"
-                            sx={{
-                              color: '#d32f2f',
-                              fontSize: { xs: '0.65rem', md: '0.7rem' },
-                              mt: 0.5,
-                              display: 'block',
-                            }}
-                          >
-                            {fieldErrors.format}
-                          </Typography>
-                        )}
-                      </Box>
-                    </Grid>
-
-                    {/* Location */}
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        label="Asukoht *"
-                        name="location"
-                        value={formData.location}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder="Linn, koht (nt. Tallinn, Saku Suurhall)"
-                        error={touchedFields.location && !!fieldErrors.location}
-                        helperText={touchedFields.location && fieldErrors.location}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <LocationOnIcon sx={{ color: formData.location ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
-                            </InputAdornment>
-                          ),
-                        }}
-                        sx={{
-                          '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.8rem', md: '0.875rem' },
-                          },
-                          '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.875rem', md: '0.9rem' },
-                            py: { xs: 0.75, md: 1 },
-                          },
-                          '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.65rem', md: '0.7rem' },
-                            mt: 0.5,
-                          },
-                          '& .MuiOutlinedInput-root': {
-                            '&:hover fieldset': {
-                              borderColor: '#D4AF37',
-                            },
-                            '&.Mui-focused fieldset': {
-                              borderColor: '#D4AF37',
-                            },
-                          },
-                        }}
-                      />
-                    </Grid>
-
-                    {/* Name */}
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        label="Teie Nimi *"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        placeholder="Ees- ja perekonnanimi"
-                        error={touchedFields.name && !!fieldErrors.name}
-                        helperText={touchedFields.name && fieldErrors.name}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <PersonIcon sx={{ color: formData.name ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
-                            </InputAdornment>
-                          ),
-                        }}
-                        sx={{
-                          '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.8rem', md: '0.875rem' },
-                          },
-                          '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.875rem', md: '0.9rem' },
-                            py: { xs: 0.75, md: 1 },
-                          },
-                          '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.65rem', md: '0.7rem' },
-                            mt: 0.5,
-                          },
-                          '& .MuiOutlinedInput-root': {
-                            '&:hover fieldset': {
-                              borderColor: '#D4AF37',
-                            },
-                            '&.Mui-focused fieldset': {
-                              borderColor: '#D4AF37',
-                            },
-                          },
-                        }}
-                      />
-                    </Grid>
-
-                    {/* Email */}
+                    {/* 2. E-mail */}
                     <Grid item xs={12} sm={6}>
                       <TextField
                         fullWidth
@@ -1491,8 +1056,8 @@ const Booking = () => {
                       />
                     </Grid>
 
-                    {/* Phone */}
-                    <Grid item xs={12}>
+                    {/* 3. Telefon */}
+                    <Grid item xs={12} sm={6}>
                       <TextField
                         fullWidth
                         type="tel"
@@ -1523,45 +1088,6 @@ const Booking = () => {
                           '& .MuiFormHelperText-root': {
                             fontSize: { xs: '0.65rem', md: '0.7rem' },
                             mt: 0.5,
-                          },
-                          '& .MuiOutlinedInput-root': {
-                            '&:hover fieldset': {
-                              borderColor: '#D4AF37',
-                            },
-                            '&.Mui-focused fieldset': {
-                              borderColor: '#D4AF37',
-                            },
-                          },
-                        }}
-                      />
-                    </Grid>
-
-                    {/* Message */}
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        multiline
-                        rows={2}
-                        label="Lisainfo / Soovid"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        placeholder="Kirjeldage oma üritust ja ootusi... (valikuline)"
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start" sx={{ alignSelf: 'flex-start', mt: { xs: 0.75, md: 0.5 } }}>
-                              <InfoIcon sx={{ color: '#999', fontSize: { xs: '0.9rem', md: '1rem' } }} />
-                            </InputAdornment>
-                          ),
-                        }}
-                        sx={{
-                          '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.8rem', md: '0.875rem' },
-                          },
-                          '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.875rem', md: '0.9rem' },
-                            py: { xs: 0.75, md: 1 },
-                            lineHeight: 1.4,
                           },
                           '& .MuiOutlinedInput-root': {
                             '&:hover fieldset': {
