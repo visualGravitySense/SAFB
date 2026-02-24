@@ -26,6 +26,7 @@ import ContactMailIcon from '@mui/icons-material/ContactMail'
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary'
 import InfoIcon from '@mui/icons-material/Info'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
+import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -51,7 +52,7 @@ const Navigation = () => {
       setScrolled(window.scrollY > 50)
       
       // Track active section for navigation highlighting - PROMPTS
-      const sections = ['avaleht', 'kontserdid', 'muusika', 'meist', 'broneeri', 'galerii', 'kontakt']
+      const sections = ['avaleht', 'kontserdid', 'muusika', 'meist', 'hinnad', 'broneeri', 'galerii', 'kontakt']
       const currentSection = sections.find(section => {
         const element = document.getElementById(section)
         if (element) {
@@ -110,6 +111,7 @@ const Navigation = () => {
     { label: 'Kontserdid', href: '#kontserdid', icon: <CalendarMonthIcon fontSize="small" /> },
     { label: 'Muusika', href: '#muusika', icon: <MusicNoteIcon fontSize="small" /> },
     { label: 'Meist', href: '#meist', icon: <InfoIcon fontSize="small" /> },
+    { label: 'Hinnad', href: '#hinnad', icon: <LocalOfferIcon fontSize="small" /> },
     { label: 'Broneeri', href: '#broneeri', icon: <EventIcon fontSize="small" />, isCTA: true },
     { label: 'Galerii', href: '#galerii', icon: <PhotoLibraryIcon fontSize="small" /> },
     { label: 'Kontakt', href: '#kontakt', icon: <ContactMailIcon fontSize="small" /> },
