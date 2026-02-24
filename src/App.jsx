@@ -18,6 +18,8 @@ import Pricing from './components/Pricing'
 import Gallery from './components/Gallery'
 import Footer from './components/Footer'
 import CtaBlock from './components/CtaBlock'
+import LeadMagnetBlock from './components/LeadMagnetBlock'
+import LeadMagnetPopup from './components/LeadMagnetPopup'
 import FloatingTelegramButton from './components/FloatingTelegramButton'
 import StickyCta from './components/StickyCta'
 
@@ -33,6 +35,7 @@ function App() {
           <Navigation />
           <FloatingTelegramButton />
           <StickyCta />
+          <LeadMagnetPopup />
           <Box sx={{ pb: { xs: '76px', md: 0 } }}>
             <Hero />
             {/* <Stats /> */}
