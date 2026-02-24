@@ -21,6 +21,7 @@ import ZoomInIcon from '@mui/icons-material/ZoomIn'
 import CategoryIcon from '@mui/icons-material/Category'
 import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import InstagramIcon from '@mui/icons-material/Instagram'
 import creativeGallery1 from '../img/creative-gallery-1.webp'
 import creativeGallery2 from '../img/creative-gallery-2.jpg'
 import creativeGallery3 from '../img/creative-gallery-3.jpg'
@@ -89,6 +90,7 @@ const Gallery = () => {
       }
     }
   }, [])
+
 
   return (
     <Box
@@ -368,6 +370,108 @@ const Gallery = () => {
           ))}
         </Grid>
 
+        {/* Instagram feed - image previews (no long captions) */}
+        <Fade in={isVisible} timeout={1000}>
+          <Box sx={{ mt: 6, mb: 4 }}>
+            <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} sx={{ mb: 3 }}>
+              <InstagramIcon sx={{ fontSize: '1.8rem', color: '#E4405F' }} />
+              <Typography
+                variant="h5"
+                sx={{
+                  fontFamily: "'Righteous', cursive",
+                  color: '#FFFFFF',
+                  fontWeight: 600,
+                }}
+              >
+                Jälgi meid Instagramis
+              </Typography>
+            </Stack>
+            <Grid container spacing={3} justifyContent="center" sx={{ mb: 3 }}>
+              {[
+                { url: 'https://www.instagram.com/p/DNhzjkct3LY/', img: creativeGallery1, label: 'Võru Vaskpillipäevad' },
+                { url: 'https://www.instagram.com/p/DLaXeztMGxs/', img: creativeGallery3, label: 'Juu Jääb 2025' },
+              ].map((post, i) => (
+                <Grid item xs={12} sm={6} md={6} key={i} sx={{ display: 'flex', justifyContent: 'center' }}>
+                  <Box
+                    component="a"
+                    href={post.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{
+                      display: 'block',
+                      width: '100%',
+                      maxWidth: 320,
+                      aspectRatio: '1',
+                      borderRadius: '12px',
+                      overflow: 'hidden',
+                      border: '2px solid rgba(212, 175, 55, 0.3)',
+                      transition: 'all 0.3s ease',
+                      position: 'relative',
+                      '&:hover': {
+                        borderColor: '#E4405F',
+                        transform: 'scale(1.02)',
+                        boxShadow: '0 8px 30px rgba(228, 64, 95, 0.4)',
+                        '& .ig-overlay': { opacity: 1 },
+                      },
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={post.img}
+                      alt={post.label}
+                      sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                    <Box
+                      className="ig-overlay"
+                      sx={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        p: 2,
+                        background: 'linear-gradient(transparent, rgba(0,0,0,0.9))',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 1,
+                        opacity: 0.7,
+                        transition: 'opacity 0.3s ease',
+                      }}
+                    >
+                      <InstagramIcon sx={{ color: '#E4405F', fontSize: '1.5rem' }} />
+                      <Typography sx={{ color: '#FFF', fontWeight: 600, fontSize: '0.9rem' }}>
+                        Vaata postitust
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+            <Box sx={{ textAlign: 'center' }}>
+              <Button
+                component="a"
+                href="https://www.instagram.com/siimaimlafunkband/"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outlined"
+                size="medium"
+                startIcon={<InstagramIcon />}
+                sx={{
+                  color: '#E4405F',
+                  borderColor: '#E4405F',
+                  fontWeight: 600,
+                  '&:hover': {
+                    borderColor: '#F77737',
+                    bgcolor: 'rgba(228, 64, 95, 0.1)',
+                  },
+                }}
+              >
+                @siimaimlafunkband
+              </Button>
+            </Box>
+          </Box>
+        </Fade>
+
         {/* Prompts: Clear CTA with Enhanced Visual Appeal */}
         <Fade in={isVisible} timeout={1200}>
           <Box sx={{ textAlign: 'center', mt: 6 }}>
@@ -384,6 +488,10 @@ const Gallery = () => {
               </Typography>
               
               <Button
+                component="a"
+                href="https://www.instagram.com/siimaimlafunkband/"
+                target="_blank"
+                rel="noopener noreferrer"
                 variant="contained"
                 size="large"
                 endIcon={<ArrowForwardIcon />}

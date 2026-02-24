@@ -14,6 +14,7 @@ import Music from './components/Music'
 import About from './components/About'
 import Testimonials from './components/Testimonials'
 import Booking from './components/Booking'
+import Pricing from './components/Pricing'
 import Gallery from './components/Gallery'
 import Footer from './components/Footer'
 import CtaBlock from './components/CtaBlock'
@@ -39,7 +40,7 @@ function App() {
             <Music />
             <CtaBlock />
             <About />
-            <CtaBlock />
+            <Pricing />
             <Booking />
             <Gallery />
             <CtaBlock />

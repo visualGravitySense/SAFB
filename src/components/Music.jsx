@@ -15,7 +15,9 @@ import { useContent } from '../context/ContentContext'
 const Music = () => {
   const { content } = useContent()
   const [isVisible, setIsVisible] = useState(false)
+  const [firstVideoInView, setFirstVideoInView] = useState(false)
   const musicRef = useRef(null)
+  const firstVideoRef = useRef(null)
 
   // Get music data from API or use defaults
   const musicData = content?.music || {
@@ -60,6 +62,28 @@ const Music = () => {
       }
     }
   }, [])
+
+  // Autoplay first video when in view (muted for browser policy)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setFirstVideoInView(true)
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    const el = firstVideoRef.current
+    if (el) {
+      observer.observe(el)
+    }
+    return () => {
+      if (el) observer.unobserve(el)
+    }
+  }, [videos.length])
 
   return (
     <Box
@@ -311,10 +335,17 @@ const Music = () => {
           </Box>
         </Fade>
 
-        {/* YouTube Videos Grid with FUNK */}
+        {/* YouTube Videos Grid with FUNK - first video autoplays when in view */}
         <Grid container spacing={3} sx={{ mb: 5, position: 'relative', zIndex: 1 }}>
-          {videos.map((video, index) => (
-            <Grid item xs={12} md={4} key={index}>
+          {videos.map((video, index) => {
+            const isFirst = index === 0
+            const embedParams = isFirst && firstVideoInView
+              ? '?autoplay=1&mute=1&playsinline=1'
+              : ''
+            const embedUrl = `https://www.youtube.com/embed/${video.id}${embedParams}`
+
+            return (
+            <Grid item xs={12} md={4} key={index} ref={isFirst ? firstVideoRef : undefined}>
               <Box
                 sx={{
                   position: 'relative',
@@ -355,7 +386,7 @@ const Music = () => {
                 <iframe
                   width="100%"
                   height="100%"
-                  src={`https://www.youtube.com/embed/${video.id}`}
+                  src={embedUrl}
                   title={`YouTube video ${index + 1}`}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -371,7 +402,7 @@ const Music = () => {
                 />
               </Box>
             </Grid>
-          ))}
+          )})}
         </Grid>
 
         {/* Streaming Links with FUNK */}
