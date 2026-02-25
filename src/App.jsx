@@ -8,6 +8,7 @@ import { useButtonClickTracker } from './hooks/useButtonClickTracker'
 import { usePageVisitTracker } from './hooks/usePageVisitTracker'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
+import Reviews from './components/Reviews'
 import Stats from './components/Stats'
 import Events from './components/Events'
 import Music from './components/Music'
@@ -38,6 +39,7 @@ function App() {
           <LeadMagnetPopup />
           <Box sx={{ pb: { xs: '76px', md: 0 } }}>
             <Hero />
+            <Reviews />
             {/* <Stats /> */}
             {/* <Events /> */}
             <Music />

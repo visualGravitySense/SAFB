@@ -1,20 +1,18 @@
 import { createContext, useContext, useState, useCallback } from 'react'
 import {
   Dialog,
-  DialogTitle,
   DialogContent,
-  DialogActions,
   TextField,
   Button,
   Typography,
   Alert,
   CircularProgress,
-  InputAdornment,
+  Box,
+  Stack,
 } from '@mui/material'
-import RequestQuoteIcon from '@mui/icons-material/RequestQuote'
-import EmailIcon from '@mui/icons-material/Email'
-import PhoneIcon from '@mui/icons-material/Phone'
-import SendIcon from '@mui/icons-material/Send'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import MusicNoteIcon from '@mui/icons-material/MusicNote'
 import { TelegramService } from '../services/telegramService'
 
 const QuoteRequestContext = createContext(null)
@@ -29,50 +27,56 @@ export const useQuoteRequest = () => {
 
 export const QuoteRequestProvider = ({ children }) => {
   const [open, setOpen] = useState(false)
-  const [request, setRequest] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
+  const [name, setName] = useState('')
+  const [contact, setContact] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const openQuotePopup = useCallback(() => {
     setOpen(true)
-    setRequest('')
-    setEmail('')
-    setPhone('')
+    setName('')
+    setContact('')
     setError('')
     setSuccess(false)
   }, [])
 
   const closePopup = useCallback(() => {
     setOpen(false)
-    setRequest('')
-    setEmail('')
-    setPhone('')
+    setName('')
+    setContact('')
     setError('')
     setSuccess(false)
   }, [])
 
-  const hasContact = () => {
-    const e = (email || '').trim()
-    const p = (phone || '').replace(/\D/g, '')
-    return (e && e.includes('@')) || p.length >= 7
+  const parseContact = (value) => {
+    const v = (value || '').trim()
+    if (!v) return { email: undefined, phone: undefined }
+    if (v.includes('@')) {
+      return { email: v, phone: undefined }
+    }
+    return { email: undefined, phone: v }
   }
 
   const validate = () => {
-    const r = (request || '').trim()
-    if (!r || r.length < 3) {
-      setError('Palun kirjeldage oma päringut lühidalt (vähemalt 3 tähemärki)')
+    const n = (name || '').trim()
+    const c = (contact || '').trim()
+    if (!n || n.length < 2) {
+      setError('Palun sisestage oma nimi')
       return false
     }
-    if (!hasContact()) {
-      setError('Palun sisestage e-mail või telefon (vähemalt üks kontakt)')
+    if (!c) {
+      setError('Palun sisestage telefon või e-mail')
       return false
     }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (email.trim() && !emailRegex.test(email.trim())) {
-      setError('Palun sisestage kehtiv e-maili aadress')
+    if (c.includes('@')) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(c)) {
+        setError('Palun sisestage kehtiv e-maili aadress')
+        return false
+      }
+    } else if (c.replace(/\D/g, '').length < 7) {
+      setError('Palun sisestage kehtiv telefoninumber')
       return false
     }
     return true
@@ -85,19 +89,27 @@ export const QuoteRequestProvider = ({ children }) => {
 
     setLoading(true)
     try {
+      const { email, phone } = parseContact(contact)
       await TelegramService.notifyQuoteRequest({
-        request: request.trim(),
-        email: email.trim() || undefined,
-        phone: phone.trim() || undefined,
+        name: name.trim(),
+        request: 'Kuupäeva kontrollimine',
+        email: email || undefined,
+        phone: phone || undefined,
       })
       setSuccess(true)
-      setTimeout(closePopup, 2000)
+      setTimeout(closePopup, 2500)
     } catch (err) {
       setError(err.message || 'Viga saatmisel. Palun proovige uuesti.')
     } finally {
       setLoading(false)
     }
   }
+
+  const benefits = [
+    'Vastame 24h jooksul',
+    'Ilma kohustuseta',
+    'Tasuta hinnapakkumine',
+  ]
 
   return (
     <QuoteRequestContext.Provider value={{ openQuotePopup }}>
@@ -109,140 +121,192 @@ export const QuoteRequestProvider = ({ children }) => {
         fullWidth
         PaperProps={{
           sx: {
-            background: 'linear-gradient(180deg, #1A0F1A 0%, #0A0A0A 100%)',
-            border: '2px solid rgba(244, 103, 51, 0.4)',
-            borderRadius: '12px',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+            background: 'linear-gradient(180deg, #2C2419 0%, #1A1510 100%)',
+            borderRadius: 3,
+            border: '1px solid rgba(212, 175, 55, 0.2)',
+            boxShadow: '0 24px 64px rgba(0,0,0,0.5)',
+            overflow: 'visible',
           },
         }}
       >
-        <DialogTitle
-          sx={{
-            fontFamily: "'Righteous', cursive",
-            color: '#D4AF37',
-            fontSize: '1.25rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-            borderBottom: '1px solid rgba(212, 175, 55, 0.3)',
-            pb: 2,
-          }}
-        >
-          Küsi pakkumist
-        </DialogTitle>
-        <form onSubmit={handleSubmit}>
-          <DialogContent sx={{ pt: 2 }}>
-            <TextField
-              fullWidth
-              multiline
-              rows={3}
-              label="Lühike päring *"
-              placeholder="Kirjeldage oma üritust ja soove lühidalt..."
-              value={request}
-              onChange={(e) => setRequest(e.target.value)}
-              required
-              disabled={loading || success}
-              sx={{
-                mb: 2,
-                '& .MuiOutlinedInput-root': {
-                  color: '#fff',
-                  '& fieldset': { borderColor: 'rgba(212, 175, 55, 0.4)' },
-                  '&:hover fieldset': { borderColor: '#D4AF37' },
-                  '&.Mui-focused fieldset': { borderColor: '#F46733' },
-                },
-                '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.7)' },
-                '& .MuiInputLabel-root.Mui-focused': { color: '#D4AF37' },
-              }}
-            />
-            <TextField
-              fullWidth
-              type="email"
-              label="E-mail (valikuline)"
-              placeholder="teie@email.ee"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={loading || success}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <EmailIcon sx={{ color: 'rgba(212, 175, 55, 0.6)', fontSize: '1.2rem' }} />
-                  </InputAdornment>
-                ),
-              }}
-              sx={{
-                mb: 2,
-                '& .MuiOutlinedInput-root': {
-                  color: '#fff',
-                  '& fieldset': { borderColor: 'rgba(212, 175, 55, 0.4)' },
-                  '&:hover fieldset': { borderColor: '#D4AF37' },
-                  '&.Mui-focused fieldset': { borderColor: '#F46733' },
-                },
-                '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.7)' },
-                '& .MuiInputLabel-root.Mui-focused': { color: '#D4AF37' },
-              }}
-            />
-            <TextField
-              fullWidth
-              type="tel"
-              label="Telefon (valikuline)"
-              placeholder="+372 5XXX XXXX"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              disabled={loading || success}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <PhoneIcon sx={{ color: 'rgba(212, 175, 55, 0.6)', fontSize: '1.2rem' }} />
-                  </InputAdornment>
-                ),
-              }}
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  color: '#fff',
-                  '& fieldset': { borderColor: 'rgba(212, 175, 55, 0.4)' },
-                  '&:hover fieldset': { borderColor: '#D4AF37' },
-                  '&.Mui-focused fieldset': { borderColor: '#F46733' },
-                },
-                '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.7)' },
-                '& .MuiInputLabel-root.Mui-focused': { color: '#D4AF37' },
-              }}
-            />
-            <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.6)', mt: 1, display: 'block' }}>
-              * Vähemalt üks kontakt (e-mail või telefon) on vajalik
-            </Typography>
-            {error && (
-              <Alert severity="error" sx={{ mt: 2 }} onClose={() => setError('')}>
-                {error}
-              </Alert>
-            )}
-            {success && (
-              <Alert severity="success" sx={{ mt: 2 }}>
-                Täname! Võtame peagi ühendust.
-              </Alert>
-            )}
-          </DialogContent>
-          <DialogActions sx={{ px: 3, pb: 2, gap: 1 }}>
-            <Button onClick={closePopup} disabled={loading} sx={{ color: 'rgba(255,255,255,0.8)' }}>
-              Tühista
-            </Button>
-            <Button
-              type="submit"
-              variant="contained"
-              startIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SendIcon />}
-              disabled={loading || success}
-              sx={{
-                background: 'linear-gradient(135deg, #F46733, #D4AF37)',
-                color: '#1A1A1A',
-                fontWeight: 700,
-                fontFamily: "'Righteous', cursive",
-                '&:hover': {
-                  background: 'linear-gradient(135deg, #FF7744, #E5BF50)',
-                },
-              }}
-            >
-              {loading ? 'Saadetakse...' : success ? 'Saadetud!' : 'Saada päring'}
-            </Button>
-          </DialogActions>
-        </form>
+        <Box sx={{ position: 'relative' }}>
+          {/* Music note decoration */}
+          <MusicNoteIcon
+            sx={{
+              position: 'absolute',
+              top: 16,
+              right: 24,
+              fontSize: 48,
+              color: 'rgba(212, 175, 55, 0.12)',
+              pointerEvents: 'none',
+            }}
+          />
+
+          <form onSubmit={handleSubmit}>
+            <DialogContent sx={{ pt: 4, pb: 2, px: 4 }}>
+              {/* Red urgency badge */}
+              <Box
+                sx={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 1,
+                  px: 2,
+                  py: 0.75,
+                  mb: 2,
+                  borderRadius: 2,
+                  bgcolor: '#C41E3A',
+                  color: '#FFFFFF',
+                }}
+              >
+                <Box
+                  sx={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: '50%',
+                    bgcolor: '#FFFFFF',
+                  }}
+                />
+                <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.05em' }}>
+                  2026 KALENDER TÄITUB KIIRESTI
+                </Typography>
+              </Box>
+
+              {/* Headline */}
+              <Typography
+                sx={{
+                  fontFamily: "'Righteous', cursive",
+                  fontSize: { xs: '1.5rem', sm: '1.8rem' },
+                  fontWeight: 700,
+                  color: '#FFFFFF',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.03em',
+                  lineHeight: 1.2,
+                  mb: 2,
+                }}
+              >
+                Kas sinu kuupäev on veel vaba?
+              </Typography>
+
+              {/* Description */}
+              <Typography
+                sx={{
+                  fontSize: '0.95rem',
+                  color: 'rgba(255, 255, 255, 0.75)',
+                  lineHeight: 1.6,
+                  mb: 3,
+                }}
+              >
+                Jäta oma kontakt — vastame{' '}
+                <Box component="strong" sx={{ color: '#FFFFFF', fontWeight: 600 }}>
+                  24 tunni jooksul
+                </Box>{' '}
+                koos hinnapakkumise ja vabade kuupäevadega. Ilma kohustuseta.
+              </Typography>
+
+              {/* Input fields - side by side */}
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 3 }}>
+                <TextField
+                  fullWidth
+                  placeholder="Teie nimi"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  disabled={loading || success}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      bgcolor: 'rgba(60, 50, 40, 0.6)',
+                      borderRadius: 2,
+                      '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.15)' },
+                      '&:hover fieldset': { borderColor: 'rgba(212, 175, 55, 0.4)' },
+                      '&.Mui-focused fieldset': { borderColor: '#D4AF37', borderWidth: 1 },
+                      '& input': { color: '#FFFFFF', '&::placeholder': { opacity: 0.7 } },
+                    },
+                  }}
+                />
+                <TextField
+                  fullWidth
+                  placeholder="Telefon või e-mail"
+                  value={contact}
+                  onChange={(e) => setContact(e.target.value)}
+                  disabled={loading || success}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      bgcolor: 'rgba(60, 50, 40, 0.6)',
+                      borderRadius: 2,
+                      '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.15)' },
+                      '&:hover fieldset': { borderColor: 'rgba(212, 175, 55, 0.4)' },
+                      '&.Mui-focused fieldset': { borderColor: '#D4AF37', borderWidth: 1 },
+                      '& input': { color: '#FFFFFF', '&::placeholder': { opacity: 0.7 } },
+                    },
+                  }}
+                />
+              </Stack>
+
+              {/* CTA Button */}
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                endIcon={loading ? <CircularProgress size={22} color="inherit" /> : <ArrowForwardIcon />}
+                disabled={loading || success}
+                sx={{
+                  py: 1.75,
+                  borderRadius: 2,
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  fontFamily: "'Righteous', cursive",
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  background: 'linear-gradient(135deg, #F46733, #D4AF37)',
+                  color: '#1A1510',
+                  boxShadow: '0 4px 20px rgba(244, 103, 51, 0.4)',
+                  '&:hover': {
+                    background: 'linear-gradient(135deg, #FF7744, #E5BF50)',
+                    boxShadow: '0 6px 24px rgba(244, 103, 51, 0.5)',
+                  },
+                }}
+              >
+                {loading ? 'Saadetakse...' : success ? 'Saadetud!' : 'Kontrolli kuupäeva'}
+              </Button>
+
+              {/* Benefit checkmarks */}
+              <Stack
+                direction="row"
+                flexWrap="wrap"
+                spacing={{ xs: 1, sm: 2 }}
+                sx={{ mt: 3, justifyContent: 'center', gap: 1 }}
+              >
+                {benefits.map((text, i) => (
+                  <Box
+                    key={i}
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 0.5,
+                      color: 'rgba(255, 255, 255, 0.7)',
+                      fontSize: '0.8rem',
+                    }}
+                  >
+                    <CheckCircleIcon sx={{ fontSize: '1rem', color: '#4CAF50' }} />
+                    <Typography component="span" sx={{ fontSize: '0.8rem' }}>
+                      {text}
+                    </Typography>
+                  </Box>
+                ))}
+              </Stack>
+
+              {error && (
+                <Alert severity="error" sx={{ mt: 2 }} onClose={() => setError('')}>
+                  {error}
+                </Alert>
+              )}
+              {success && (
+                <Alert severity="success" sx={{ mt: 2 }} icon={<CheckCircleIcon />}>
+                  Täname! Võtame peagi ühendust.
+                </Alert>
+              )}
+            </DialogContent>
+          </form>
+        </Box>
       </Dialog>
     </QuoteRequestContext.Provider>
   )

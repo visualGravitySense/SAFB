@@ -333,8 +333,8 @@ const Booking = () => {
       sx={{
         py: { xs: 4, sm: 6, md: 10 },
         px: { xs: 1, sm: 2 },
-        background: 'linear-gradient(180deg, #FAF8F3 0%, #F5F3ED 100%)',
-        color: '#1A1A1A',
+        background: 'linear-gradient(180deg, #0A0A0A 0%, #1A1510 50%, #0A0A0A 100%)',
+        color: '#FFFFFF',
         position: 'relative',
         overflow: 'hidden',
         '&::before': {
@@ -343,8 +343,10 @@ const Booking = () => {
           top: 0,
           left: 0,
           right: 0,
-          height: '6px',
-          background: 'repeating-linear-gradient(90deg, #D4AF37 0px, #D4AF37 20px, #1A1A1A 20px, #1A1A1A 40px)',
+          height: '4px',
+          background: 'linear-gradient(90deg, #F46733, #D4AF37, #C41E3A, #D4AF37, #F46733)',
+          backgroundSize: '200% 100%',
+          animation: 'funkShimmer 3s ease-in-out infinite',
         },
         '&::after': {
           content: '""',
@@ -352,12 +354,19 @@ const Booking = () => {
           bottom: 0,
           left: 0,
           right: 0,
-          height: '6px',
-          background: 'repeating-linear-gradient(90deg, #D4AF37 0px, #D4AF37 20px, #1A1A1A 20px, #1A1A1A 40px)',
+          height: '4px',
+          background: 'linear-gradient(90deg, #F46733, #D4AF37, #C41E3A, #D4AF37, #F46733)',
+          backgroundSize: '200% 100%',
+          animation: 'funkShimmer 3s ease-in-out infinite',
+        },
+        '@keyframes funkShimmer': {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
         },
       }}
     >
-      {/* Art Deco Background Pattern */}
+      {/* Subtle background pattern */}
       <Box
         sx={{
           position: 'absolute',
@@ -365,7 +374,7 @@ const Booking = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          opacity: 0.03,
+          opacity: 0.04,
           backgroundImage: `
             repeating-linear-gradient(45deg, transparent, transparent 10px, #D4AF37 10px, #D4AF37 20px),
             repeating-linear-gradient(-45deg, transparent, transparent 10px, #1A1A1A 10px, #1A1A1A 20px)
@@ -433,7 +442,7 @@ const Booking = () => {
                 mb: { xs: 1, md: 2 },
                 px: { xs: 1, sm: 0 },
                 lineHeight: 1.2,
-                textShadow: '0 0 20px rgba(212, 175, 55, 0.3)',
+                textShadow: '0 0 20px rgba(212, 175, 55, 0.4)',
                 position: 'relative',
                 '&::before': {
                   content: '""',
@@ -500,7 +509,7 @@ const Booking = () => {
                 variant="body1"
                 sx={{
                   fontSize: { xs: '1rem', sm: '1.1rem', md: '1.2rem' },
-                  color: '#555',
+                  color: 'rgba(255, 255, 255, 0.8)',
                   fontStyle: 'italic',
                   position: 'relative',
                   zIndex: 1,
@@ -517,32 +526,24 @@ const Booking = () => {
           <Grid item xs={12} md={4}>
             <Fade in={isVisible} timeout={1000}>
               <Paper
-                elevation={6}
+                elevation={0}
                 sx={{
                   p: { xs: 2.5, sm: 3, md: 4 },
-                  borderRadius: 0,
+                  borderRadius: 2,
                   height: '100%',
-                  background: '#FFFFFF',
-                  border: '3px solid #D4AF37',
+                  background: 'linear-gradient(180deg, #2C2419 0%, #1A1510 100%)',
+                  border: '1px solid rgba(212, 175, 55, 0.3)',
                   position: { xs: 'static', md: 'sticky' },
                   top: { md: 100 },
                   mb: { xs: 3, md: 0 },
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                   overflow: 'visible',
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
                   zIndex: 1,
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: '8px',
-                    background: 'repeating-linear-gradient(90deg, #D4AF37 0px, #D4AF37 8px, #FFFFFF 8px, #FFFFFF 16px)',
-                  },
                   '&:hover': {
                     transform: 'translateY(-5px)',
-                    boxShadow: '0 12px 40px rgba(212, 175, 55, 0.3)',
+                    boxShadow: '0 12px 40px rgba(212, 175, 55, 0.2)',
+                    borderColor: 'rgba(212, 175, 55, 0.5)',
                     '& .art-deco-corner': {
                       opacity: 1,
                     },
@@ -688,10 +689,10 @@ const Booking = () => {
                     >
                       <CheckCircleIcon sx={{ color: '#D4AF37', fontSize: { xs: '1.5rem', md: '2rem' }, flexShrink: 0, filter: 'drop-shadow(0 0 5px rgba(212, 175, 55, 0.5))' }} />
                       <Box>
-                        <Typography variant="h6" sx={{ color: '#1A1A1A', fontWeight: 700, fontSize: { xs: '0.95rem', md: '1.25rem' }, fontFamily: "'Righteous', cursive" }}>
+                        <Typography variant="h6" sx={{ color: '#FFFFFF', fontWeight: 700, fontSize: { xs: '0.95rem', md: '1.25rem' }, fontFamily: "'Righteous', cursive" }}>
                           200+ Õnnestunud Üritust
                         </Typography>
-                        <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' }, color: '#666' }}>
+                        <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' }, color: 'rgba(255, 255, 255, 0.7)' }}>
                           Professionaalne teenus
                         </Typography>
                       </Box>
@@ -719,10 +720,10 @@ const Booking = () => {
                     >
                       <StarIcon sx={{ color: '#D4AF37', fontSize: { xs: '1.5rem', md: '2rem' }, flexShrink: 0, filter: 'drop-shadow(0 0 5px rgba(212, 175, 55, 0.5))' }} />
                       <Box>
-                        <Typography variant="h6" sx={{ color: '#1A1A1A', fontWeight: 700, fontSize: { xs: '0.95rem', md: '1.25rem' }, fontFamily: "'Righteous', cursive" }}>
+                        <Typography variant="h6" sx={{ color: '#FFFFFF', fontWeight: 700, fontSize: { xs: '0.95rem', md: '1.25rem' }, fontFamily: "'Righteous', cursive" }}>
                           4.9/5 Keskmine Hinnang
                         </Typography>
-                        <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' }, color: '#666' }}>
+                        <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' }, color: 'rgba(255, 255, 255, 0.7)' }}>
                           Kõrge kvaliteet
                         </Typography>
                       </Box>
@@ -750,10 +751,10 @@ const Booking = () => {
                     >
                       <VerifiedIcon sx={{ color: '#D4AF37', fontSize: { xs: '1.5rem', md: '2rem' }, flexShrink: 0, filter: 'drop-shadow(0 0 5px rgba(212, 175, 55, 0.5))' }} />
                       <Box>
-                        <Typography variant="h6" sx={{ color: '#1A1A1A', fontWeight: 700, fontSize: { xs: '0.95rem', md: '1.25rem' }, fontFamily: "'Righteous', cursive" }}>
+                        <Typography variant="h6" sx={{ color: '#FFFFFF', fontWeight: 700, fontSize: { xs: '0.95rem', md: '1.25rem' }, fontFamily: "'Righteous', cursive" }}>
                           100% Rahulolu
                         </Typography>
-                        <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' }, color: '#666' }}>
+                        <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' }, color: 'rgba(255, 255, 255, 0.7)' }}>
                           Tagatud kvaliteet
                         </Typography>
                       </Box>
@@ -769,26 +770,17 @@ const Booking = () => {
           <Grid item xs={12} md={8}>
             <Grow in={isVisible} timeout={1200}>
               <Paper
-                elevation={8}
+                elevation={0}
                 sx={{
-                  p: { xs: 1.5, sm: 2, md: 2.5 },
-                  borderRadius: 0,
+                  p: { xs: 2, sm: 2.5, md: 3 },
+                  borderRadius: 3,
                   position: 'relative',
-                  background: '#FFFFFF',
-                  border: '3px solid #D4AF37',
+                  background: 'linear-gradient(180deg, #2C2419 0%, #1A1510 100%)',
+                  border: '1px solid rgba(212, 175, 55, 0.25)',
                   overflow: 'visible',
-                  boxShadow: '0 8px 30px rgba(0, 0, 0, 0.15)',
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: '8px',
-                    background: 'repeating-linear-gradient(90deg, #D4AF37 0px, #D4AF37 8px, #FFFFFF 8px, #FFFFFF 16px)',
-                  },
+                  boxShadow: '0 16px 48px rgba(0, 0, 0, 0.5)',
                   '&:hover': {
-                    boxShadow: '0 12px 40px rgba(212, 175, 55, 0.3)',
+                    boxShadow: '0 20px 56px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(212, 175, 55, 0.2)',
                     '& .art-deco-corner': {
                       opacity: 1,
                     },
@@ -908,10 +900,32 @@ const Booking = () => {
                     },
                   }}
                 />
-                {/* Progress Bar - ABILITY (Art Deco Style) */}
+                {/* Urgency badge + Music note */}
+                <Box sx={{ position: 'absolute', top: 16, right: 20, zIndex: 0 }}>
+                  <MusicNoteIcon sx={{ fontSize: 40, color: 'rgba(212, 175, 55, 0.12)' }} />
+                </Box>
+                <Box
+                  sx={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 1,
+                    px: 2,
+                    py: 0.75,
+                    mb: 2,
+                    borderRadius: 2,
+                    bgcolor: '#C41E3A',
+                    color: '#FFFFFF',
+                  }}
+                >
+                  <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: '#FFFFFF' }} />
+                  <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.05em' }}>
+                    2026 KALENDER TÄITUB KIIRESTI
+                  </Typography>
+                </Box>
+                {/* Progress Bar - ABILITY */}
                 <Box sx={{ mb: { xs: 3, md: 4 }, position: 'relative', zIndex: 1 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1.5 }}>
-                    <Typography variant="body2" sx={{ fontWeight: 700, fontSize: { xs: '0.75rem', md: '0.875rem' }, color: '#1A1A1A', fontFamily: "'Righteous', cursive", textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                    <Typography variant="body2" sx={{ fontWeight: 700, fontSize: { xs: '0.75rem', md: '0.875rem' }, color: 'rgba(255, 255, 255, 0.9)', fontFamily: "'Righteous', cursive", textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                       Vormi täitmine
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#D4AF37', fontWeight: 700, fontSize: { xs: '0.875rem', md: '1rem' }, fontFamily: "'Righteous', cursive" }}>
@@ -922,27 +936,10 @@ const Booking = () => {
                     sx={{
                       position: 'relative',
                       height: { xs: '10px', md: '12px' },
-                      background: 'rgba(212, 175, 55, 0.1)',
-                      border: '2px solid #D4AF37',
+                      background: 'rgba(60, 50, 40, 0.6)',
+                      border: '1px solid rgba(212, 175, 55, 0.3)',
+                      borderRadius: 1,
                       overflow: 'hidden',
-                      '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        left: '20px',
-                        top: 0,
-                        bottom: 0,
-                        width: '2px',
-                        background: 'repeating-linear-gradient(180deg, #D4AF37 0px, #D4AF37 4px, transparent 4px, transparent 8px)',
-                      },
-                      '&::after': {
-                        content: '""',
-                        position: 'absolute',
-                        right: '20px',
-                        top: 0,
-                        bottom: 0,
-                        width: '2px',
-                        background: 'repeating-linear-gradient(180deg, #D4AF37 0px, #D4AF37 4px, transparent 4px, transparent 8px)',
-                      },
                     }}
                   >
                     <LinearProgress
@@ -988,24 +985,15 @@ const Booking = () => {
                           ),
                         }}
                         sx={{
-                          '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.8rem', md: '0.875rem' },
-                          },
-                          '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.875rem', md: '0.9rem' },
-                            py: { xs: 0.75, md: 1 },
-                          },
-                          '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.65rem', md: '0.7rem' },
-                            mt: 0.5,
-                          },
+                          '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.8)', fontSize: { xs: '0.8rem', md: '0.875rem' } },
+                          '& .MuiOutlinedInput-input': { color: '#FFFFFF', fontSize: { xs: '0.875rem', md: '0.9rem' }, py: { xs: 0.75, md: 1 } },
+                          '& .MuiFormHelperText-root': { color: 'rgba(255, 255, 255, 0.6)', fontSize: { xs: '0.65rem', md: '0.7rem' }, mt: 0.5 },
                           '& .MuiOutlinedInput-root': {
-                            '&:hover fieldset': {
-                              borderColor: '#D4AF37',
-                            },
-                            '&.Mui-focused fieldset': {
-                              borderColor: '#D4AF37',
-                            },
+                            bgcolor: 'rgba(60, 50, 40, 0.6)',
+                            borderRadius: 2,
+                            '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.15)' },
+                            '&:hover fieldset': { borderColor: 'rgba(212, 175, 55, 0.4)' },
+                            '&.Mui-focused fieldset': { borderColor: '#D4AF37', borderWidth: 1 },
                           },
                         }}
                       />
@@ -1028,7 +1016,7 @@ const Booking = () => {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <EmailIcon sx={{ color: formData.email && !fieldErrors.email ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
+                              <EmailIcon sx={{ color: formData.email && !fieldErrors.email ? '#D4AF37' : 'rgba(255,255,255,0.4)', fontSize: { xs: '1rem', md: '1.25rem' } }} />
                             </InputAdornment>
                           ),
                         }}
@@ -1073,29 +1061,20 @@ const Booking = () => {
                         InputProps={{
                           startAdornment: (
                             <InputAdornment position="start">
-                              <PhoneIcon sx={{ color: formData.phone && !fieldErrors.phone ? '#D4AF37' : '#999', fontSize: { xs: '1rem', md: '1.25rem' } }} />
+                              <PhoneIcon sx={{ color: formData.phone && !fieldErrors.phone ? '#D4AF37' : 'rgba(255,255,255,0.4)', fontSize: { xs: '1rem', md: '1.25rem' } }} />
                             </InputAdornment>
                           ),
                         }}
                         sx={{
-                          '& .MuiInputLabel-root': {
-                            fontSize: { xs: '0.8rem', md: '0.875rem' },
-                          },
-                          '& .MuiOutlinedInput-input': {
-                            fontSize: { xs: '0.875rem', md: '0.9rem' },
-                            py: { xs: 0.75, md: 1 },
-                          },
-                          '& .MuiFormHelperText-root': {
-                            fontSize: { xs: '0.65rem', md: '0.7rem' },
-                            mt: 0.5,
-                          },
+                          '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.8)', fontSize: { xs: '0.8rem', md: '0.875rem' } },
+                          '& .MuiOutlinedInput-input': { color: '#FFFFFF', fontSize: { xs: '0.875rem', md: '0.9rem' }, py: { xs: 0.75, md: 1 } },
+                          '& .MuiFormHelperText-root': { color: 'rgba(255, 255, 255, 0.6)', fontSize: { xs: '0.65rem', md: '0.7rem' }, mt: 0.5 },
                           '& .MuiOutlinedInput-root': {
-                            '&:hover fieldset': {
-                              borderColor: '#D4AF37',
-                            },
-                            '&.Mui-focused fieldset': {
-                              borderColor: '#D4AF37',
-                            },
+                            bgcolor: 'rgba(60, 50, 40, 0.6)',
+                            borderRadius: 2,
+                            '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.15)' },
+                            '&:hover fieldset': { borderColor: 'rgba(212, 175, 55, 0.4)' },
+                            '&.Mui-focused fieldset': { borderColor: '#D4AF37', borderWidth: 1 },
                           },
                         }}
                       />
@@ -1151,18 +1130,18 @@ const Booking = () => {
                         sx={{
                           py: { xs: 1.25, md: 1.5 },
                           minHeight: { xs: '42px', md: '48px' },
-                          bgcolor: isFormValid() ? '#D4AF37' : '#ccc',
-                          color: '#1A1A1A',
+                          background: isFormValid() ? 'linear-gradient(135deg, #F46733, #D4AF37)' : 'rgba(80, 70, 60, 0.6)',
+                          color: isFormValid() ? '#1A1510' : 'rgba(255, 255, 255, 0.5)',
                           fontWeight: 700,
                           fontSize: { xs: '0.85rem', sm: '0.9rem', md: '0.95rem' },
                           textTransform: 'uppercase',
                           letterSpacing: '0.15em',
-                          borderRadius: 0,
+                          borderRadius: 2,
                           fontFamily: "'Righteous', cursive",
                           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                           touchAction: 'manipulation',
-                          border: '3px solid #1A1A1A',
-                          boxShadow: isFormValid() ? '0 4px 20px rgba(212, 175, 55, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)' : 'none',
+                          border: 'none',
+                          boxShadow: isFormValid() ? '0 4px 20px rgba(244, 103, 51, 0.4)' : 'none',
                           position: 'relative',
                           overflow: 'hidden',
                           '&::before': {
@@ -1176,9 +1155,9 @@ const Booking = () => {
                             transition: 'left 0.5s ease',
                           },
                           '&:hover': {
-                            bgcolor: isFormValid() ? '#E5BF50' : '#ccc',
+                            background: isFormValid() ? 'linear-gradient(135deg, #FF7744, #E5BF50)' : 'rgba(80, 70, 60, 0.6)',
                             transform: isFormValid() ? 'translateY(-3px)' : 'none',
-                            boxShadow: isFormValid() ? '0 8px 30px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4)' : 'none',
+                            boxShadow: isFormValid() ? '0 8px 30px rgba(244, 103, 51, 0.5)' : 'none',
                             '&::before': {
                               left: '100%',
                             },
@@ -1187,9 +1166,8 @@ const Booking = () => {
                             transform: 'translateY(-1px)',
                           },
                           '&:disabled': {
-                            bgcolor: '#ccc',
-                            color: '#666',
-                            borderColor: '#999',
+                            background: 'rgba(80, 70, 60, 0.6)',
+                            color: 'rgba(255, 255, 255, 0.5)',
                           },
                         }}
                       >
@@ -1208,15 +1186,15 @@ const Booking = () => {
                           flexWrap="wrap"
                         >
                           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                            <VerifiedIcon sx={{ color: '#D4AF37', fontSize: { xs: '1rem', md: '1.2rem' } }} />
-                            <Typography variant="body2" color="text.secondary" sx={{ fontSize: { xs: '0.75rem', md: '0.85rem' } }}>
+                            <CheckCircleIcon sx={{ color: '#4CAF50', fontSize: { xs: '1rem', md: '1.2rem' } }} />
+                            <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: { xs: '0.75rem', md: '0.85rem' } }}>
                               Teie andmed on turvalised
                             </Typography>
                           </Box>
-                          <Typography variant="body2" color="text.secondary" sx={{ mx: { xs: 0, sm: 1 }, display: { xs: 'none', sm: 'block' } }}>
+                          <Typography variant="body2" sx={{ mx: { xs: 0, sm: 1 }, display: { xs: 'none', sm: 'block' }, color: 'rgba(255, 255, 255, 0.5)' }}>
                             •
                           </Typography>
-                          <Typography variant="body2" color="text.secondary" sx={{ fontSize: { xs: '0.75rem', md: '0.85rem' } }}>
+                          <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: { xs: '0.75rem', md: '0.85rem' } }}>
                             Vastame 24h jooksul
                           </Typography>
                         </Stack>

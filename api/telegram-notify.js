@@ -107,13 +107,12 @@ ${(data?.message || 'Puudub').substring(0, 500)}
 
       case 'quote_request':
         message = `
-📋 <b>Pakkumise päring</b> (Küsi pakkumist)
+📋 <b>Kuupäeva kontrollimine</b>
 
-💬 <b>Päring:</b>
-${(data?.request || 'Puudub').substring(0, 500)}
-
+👤 <b>Nimi:</b> ${data?.name ?? 'Puudub'}
 📧 <b>Email:</b> ${data?.email ?? 'Puudub'}
 📱 <b>Telefon:</b> ${data?.phone ?? 'Puudub'}
+💬 <b>Päring:</b> ${(data?.request || 'Kuupäeva kontrollimine').substring(0, 500)}
 
 ⏰ <b>Aeg:</b> ${new Date().toLocaleString('et-EE', { timeZone: 'Europe/Tallinn' })}
         `.trim()
